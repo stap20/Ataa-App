@@ -4,7 +4,7 @@ export default class MyUser {
   static user = {
     id: 1,
     firstName: "أحمد",
-    lastName: "ًصالح",
+    lastName: "صالح",
     password: "123",
     email: "Saleh@email.com",
     profileImage: "assets/Profile Image Ex.png",
@@ -13,6 +13,10 @@ export default class MyUser {
 
   static getMyUser() {
     return this.user;
+  }
+
+  static getFullname() {
+    return this.user.firstName + " " + this.user.lastName;
   }
 
   static setMyUser(data) {

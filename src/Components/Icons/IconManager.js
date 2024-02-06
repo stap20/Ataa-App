@@ -4,6 +4,8 @@ import History from "./History";
 import TimeAtack from "./TimeAtack";
 import Camera from "./Camera";
 import { StyleSheet, View } from "react-native";
+import Shirt from "./Shirt";
+import Calendar from "./Calendar";
 
 const IconSwitcher = ({
   name,
@@ -21,6 +23,8 @@ const IconSwitcher = ({
     history: History,
     time_atack: TimeAtack,
     camera: Camera,
+    shirt: Shirt,
+    calendar: Calendar,
   };
 
   const CurrentIcon = options[name] !== undefined ? options[name] : null;

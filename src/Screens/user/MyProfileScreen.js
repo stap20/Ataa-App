@@ -10,6 +10,7 @@ import convertPxToDp from "./../../Components/ConvertPxToDp";
 import IconManager from "../../Components/Icons/IconManager";
 import { useState } from "react";
 import MyUser from "./../../OurUser";
+import ShowProfileImage from "../../Components/ShowProfileImage";
 const path = "#CB8949";
 const bg = "#EAD0B6";
 export default function MyProfileScreen({}) {
@@ -40,17 +41,7 @@ export default function MyProfileScreen({}) {
         <View style={styles.titleContainer}>
           <Text style={styles.titleText}>{"الملف الشخصي"}</Text>
         </View>
-        <View style={styles.profileImageContainer}>
-          <View style={styles.profileImageMask}>
-            <Image
-              style={styles.profileImage}
-              source={require(`../../../assets/Profile Image Ex.png`)}
-            />
-            <View style={styles.setImageIconContainer}>
-              <IconManager name={"camera"} />
-            </View>
-          </View>
-        </View>
+        <ShowProfileImage icon={"camera"} />
       </View>
       <View style={styles.body}>
         <View style={styles.inputContainer}>
@@ -139,37 +130,6 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     fontSize: 20,
     lineHeight: 28,
-  },
-  profileImageContainer: {
-    flex: 3,
-    // backgroundColor: "lightgreen",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  profileImageMask: {
-    aspectRatio: 1 / 1,
-    height: 120,
-    overflow: "hidden",
-  },
-  profileImage: {
-    aspectRatio: 1 / 1,
-    height: 120,
-    borderRadius: 999,
-    resizeMode: "contain",
-    backgroundColor: "#E6E9EA",
-  },
-  setImageIconContainer: {
-    aspectRatio: 1 / 1,
-    height: 24,
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 999,
-    borderColor: "#FFFFFF",
-    borderWidth: 2,
-    position: "absolute",
-    right: 0,
-    bottom: 0,
-    backgroundColor: "#CB8949",
   },
 
   body: {
