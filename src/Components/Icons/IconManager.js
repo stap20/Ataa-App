@@ -15,8 +15,6 @@ const IconSwitcher = ({
   svgFill,
   pathFill,
 }) => {
-  // width, height, color, svgFill, pathFill
-
   const options = {
     box: Box,
     profile: Profile,
