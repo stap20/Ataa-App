@@ -4,7 +4,7 @@ import IconManager from "./Icons/IconManager";
 export default ShowProfileImage = (props) => {
   const {
     size = 120,
-    src = require(`../../assets/Profile Image Ex.png`),
+    src = require("@assets/profile-img.png"),
     icon = "camera",
   } = props;
 

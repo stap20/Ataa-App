@@ -1,8 +1,8 @@
 import { Text, View } from "react-native";
-import WaitingListScreen from "./../Screens/user/WaitingListScreen";
-import HistoryScreen from "./../Screens/user/HistoryScreen";
-import DonateScreen from "./../Screens/user/DonateScreen";
-import MyProfileScreen from "./../Screens/user/MyProfileScreen";
+import WaitingListScreen from "@screens/user/WaitingListScreen";
+import HistoryScreen from "@screens/user/HistoryScreen";
+import DonateScreen from "@screens/user/DonateScreen";
+import MyProfileScreen from "@screens/user/MyProfileScreen";
 
 function Default({ route }) {
   return (

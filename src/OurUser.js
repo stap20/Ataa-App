@@ -1,4 +1,4 @@
-import Storage from "./Components/Storage";
+import Storage from "@components/Storage";
 
 export default class MyUser {
   static user = {

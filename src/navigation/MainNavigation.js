@@ -1,7 +1,7 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Text, View } from "react-native";
 import bottomTabs from "./TAB_LIST";
-import IconManager from "../Components/Icons/IconManager";
+import IconManager from "@components/Icons/IconManager";
 
 const Tab = createBottomTabNavigator();
 
@@ -13,9 +13,7 @@ export default function MainNavigation({ userType }) {
       screenOptions={{
         headerShown: false,
         tabBarIconStyle: {
-          // height: 40,
           width: 40,
-          // backgroundColor: "orange",
         },
         tabBarActiveTintColor: "#e91e63",
       }}
@@ -47,7 +45,7 @@ export default function MainNavigation({ userType }) {
               );
             },
           }}
-          initialParams={{ labelText: item.label }}
+          initialParams={{ title: item.label }}
         />
       ))}
     </Tab.Navigator>

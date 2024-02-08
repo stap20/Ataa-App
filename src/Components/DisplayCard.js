@@ -96,7 +96,7 @@ export default function DisplayCard({ type = 1 }) {
               }}
             >
               <Image
-                source={require("../../assets/badge.png")}
+                source={require("@assets/badge.png")}
                 style={{ aspectRatio: 1 / 1, height: 24 }}
               />
             </View>

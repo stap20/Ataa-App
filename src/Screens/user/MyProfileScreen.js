@@ -6,11 +6,11 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import convertPxToDp from "./../../Components/ConvertPxToDp";
-import IconManager from "../../Components/Icons/IconManager";
+import convertPxToDp from "@components/ConvertPxToDp";
+import IconManager from "@components/Icons/IconManager";
 import { useState } from "react";
 import MyUser from "./../../OurUser";
-import ShowProfileImage from "../../Components/ShowProfileImage";
+import ShowProfileImage from "@components/ShowProfileImage";
 const path = "#CB8949";
 const bg = "#EAD0B6";
 export default function MyProfileScreen({}) {

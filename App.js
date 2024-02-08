@@ -1,35 +1,25 @@
+import { View, StatusBar, Text } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-// import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, StatusBar } from "react-native";
-import MainNavigation from "./src/navigation/MainNavigation";
-import * as Font from "expo-font";
-import { useEffect } from "react";
-
-// const fetchFonts = async () => {
-//   console.log("Loading fonts...");
-//   await Font.loadAsync({
-//     "Changa-Regular": require("./assets/fonts/Changa-Regular.ttf"),
-//   });
-//   console.log("Fonts loaded!");
-// };
+import LayoutManager from "@src/layout";
+import { useFonts } from "expo-font";
+import { Fonts } from "@utils";
 
 export default function App() {
-  // useEffect(() => {
-  //   fetchFonts();
-  // }, []);
+  let [fontsLoaded] = useFonts(Fonts);
+
+  if (!fontsLoaded) {
+    return <Text>Loading</Text>;
+  }
   return (
-    <View style={styles.container}>
+    <View
+      style={{
+        flex: 1,
+        marginTop: StatusBar.currentHeight,
+      }}
+    >
       <NavigationContainer>
-        <MainNavigation userType={"User"} />
+        <LayoutManager />
       </NavigationContainer>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    marginTop: StatusBar.currentHeight,
-  },
-});

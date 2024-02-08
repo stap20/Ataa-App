@@ -22,11 +22,10 @@ export default function DisplayCardTemp({ type = 1 }) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "red",
+
     padding: 20,
   },
   subContainer: {
-    backgroundColor: "lightgreen",
     height: 50,
     flexDirection: "row-reverse",
   },
@@ -37,7 +36,7 @@ const styles = StyleSheet.create({
   },
   sub2Container: {
     flex: 1,
-    backgroundColor: "yellow",
+    backgroundColor: "#CB894980",
     alignItems: "flex-end",
   },
   subsub2Container: {

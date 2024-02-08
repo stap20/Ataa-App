@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from "react-native";
-import IconManager from "../../Components/Icons/IconManager";
+import IconManager from "@components/Icons/IconManager";
 
 const path = "#CB8949";
 const bg = "#EAD0B6";

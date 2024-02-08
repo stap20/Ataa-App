@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
-import DisplayCard from "../../Components/DisplayCard";
-import DisplayCardTemp from "../../Components/DisplayCardTemp";
+import DisplayCard from "@components/DisplayCard";
+import DisplayCardTemp from "@components/DisplayCardTemp";
 
 const path = "#CB8949";
 const bg = "#EAD0B6";
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     flex: 1,
     // justifyContent: "center",
     // alignItems: "center",
-    backgroundColor: "yellow",
+
     padding: 16,
   },
 });
