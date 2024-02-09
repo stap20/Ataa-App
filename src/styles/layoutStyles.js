@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { Theme } from "@theme/index.js";
+import { Theme } from "@theme";
 
 export default layoutStyles = () => {
   return StyleSheet.create({

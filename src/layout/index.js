@@ -26,7 +26,7 @@ export default function LayoutManager({}) {
         <Header title={screenTitle} />
       </View>
       <View style={styles.mainContainer}>
-        <MainNavigation userType={"User"} />
+        <MainNavigation userType={"user"} />
       </View>
     </View>
   );

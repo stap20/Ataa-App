@@ -1,9 +1,11 @@
 export default Theme = {
   backgroundColors: {
     profileContainer: "#C4C4C4",
+    screenContainer: "#FFFFFF",
   },
   colors: {
     primary: "#CB8949",
+    tabBarborder: "#E6E9EA",
   },
   typographyColors: {
     primary: "#141F1F",

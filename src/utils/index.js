@@ -1,3 +1,4 @@
-import Fonts from "./Fonts";
+import fonts from "./Fonts";
+import iconData from "./IconData";
 
-export { Fonts };
+export { fonts,iconData };
