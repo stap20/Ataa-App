@@ -4,14 +4,6 @@ import HistoryScreen from "@screens/user/HistoryScreen";
 import DonateScreen from "@screens/user/DonateScreen";
 import MyProfileScreen from "@screens/user/MyProfileScreen";
 
-function Default({ route }) {
-  return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>{route.params.labelText}</Text>
-    </View>
-  );
-}
-
 const userTabs = [
   {
     name: "Waiting",

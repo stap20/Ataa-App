@@ -1,11 +1,15 @@
+import { StyleSheet, View } from "react-native";
 import Box from "./Box";
 import Profile from "./Profile";
 import History from "./History";
 import TimeAtack from "./TimeAtack";
 import Camera from "./Camera";
-import { StyleSheet, View } from "react-native";
 import Shirt from "./Shirt";
 import Calendar from "./Calendar";
+import Rafiki from "./Rafiki";
+import Eye from "./Eye";
+import OnBoardHello from "./OnBoardHello";
+import OnBoardPana from "./OnBoardPana";
 
 const IconSwitcher = ({
   name,
@@ -23,6 +27,10 @@ const IconSwitcher = ({
     camera: Camera,
     shirt: Shirt,
     calendar: Calendar,
+    rafiki: Rafiki,
+    eye: Eye,
+    onBoardHello: OnBoardHello,
+    onBoardPana: OnBoardPana,
   };
 
   const CurrentIcon = options[name] !== undefined ? options[name] : null;

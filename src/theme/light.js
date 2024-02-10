@@ -4,9 +4,13 @@ export default Theme = {
   },
   colors: {
     primary: "#CB8949",
+    secondary: "#DDDFDF",
+    third: "#141F1F",
+    fourth: "#A4ACAD",
   },
   typographyColors: {
     primary: "#141F1F",
+    secondary: "#A4ACAD",
   },
   typography: {
     changa_300: "changa-300",

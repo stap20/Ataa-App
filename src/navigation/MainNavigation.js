@@ -1,11 +1,15 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createStackNavigator } from "@react-navigation/stack";
 import { Text, View } from "react-native";
 import bottomTabs from "./TAB_LIST";
 import IconManager from "@components/Icons/IconManager";
+import LoginScreen from "@screens/start/LoginScreen";
+import SignupScreen from "@screens/start/SignupScreen";
 
+const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
-export default function MainNavigation({ userType }) {
+function TabsNavigation(params) {
   return (
     <Tab.Navigator
       backBehavior="none"
@@ -49,5 +53,21 @@ export default function MainNavigation({ userType }) {
         />
       ))}
     </Tab.Navigator>
+  );
+}
+
+export default function MainNavigation(params) {
+  return (
+    <Stack.Navigator
+      initialRouteName="Login"
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
+      {/* <Stack.Screen name="Hello" component={HelloScreen} /> */}
+      <Stack.Screen name="Login" component={LoginScreen} />
+      <Stack.Screen name="Signup" component={SignupScreen} />
+      <Stack.Screen name="Main" component={TabsNavigation} />
+    </Stack.Navigator>
   );
 }

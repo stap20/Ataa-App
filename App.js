@@ -1,3 +1,4 @@
+// import "react-native-gesture-handler";
 import { View, StatusBar, Text } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import LayoutManager from "@src/layout";
@@ -10,6 +11,7 @@ export default function App() {
   if (!fontsLoaded) {
     return <Text>Loading</Text>;
   }
+
   return (
     <View
       style={{

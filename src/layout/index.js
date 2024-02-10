@@ -14,7 +14,7 @@ export default function LayoutManager({}) {
   useEffect(() => {
     const unsubscribe = navigation.addListener("state", () => {
       const currentRoute = navigation.getCurrentRoute();
-      setScreenTitle(currentRoute.params.title);
+      setScreenTitle(currentRoute.params?.title || "ُError");
     });
     // Cleanup the listener
     return unsubscribe;
@@ -22,9 +22,9 @@ export default function LayoutManager({}) {
 
   return (
     <View style={styles.container}>
-      <View style={styles.headerContainer}>
+      {/* <View style={styles.headerContainer}>
         <Header title={screenTitle} />
-      </View>
+      </View> */}
       <View style={styles.mainContainer}>
         <MainNavigation userType={"User"} />
       </View>
