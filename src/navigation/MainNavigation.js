@@ -16,6 +16,7 @@ export default function MainNavigation({ userType }) {
 
   return (
     <Tab.Navigator
+      initialRouteName="waiting"
       backBehavior="none"
       sceneContainerStyle={styles.screenContainer}
       screenOptions={{

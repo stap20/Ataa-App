@@ -3,6 +3,7 @@ import { actionsStyles } from "@styles/components/donateCard";
 
 export default function Actions({
   isAdmin,
+  donationNumber,
   onCancel = () => {},
   onAccept = () => {},
   onDecline = () => {},
@@ -12,7 +13,9 @@ export default function Actions({
   const CancelBtn = () => (
     <TouchableOpacity
       style={[styles.actionBtn, styles.cancelBtn]}
-      onPress={onCancel}
+      onPress={() => {
+        onCancel(donationNumber);
+      }}
     >
       <Text style={styles.btnText}>{"إلغاء"}</Text>
     </TouchableOpacity>
@@ -22,13 +25,17 @@ export default function Actions({
     <>
       <TouchableOpacity
         style={[styles.actionBtn, styles.acceptBtn]}
-        onPress={onAccept}
+        onPress={() => {
+          onAccept(donationNumber);
+        }}
       >
         <Text style={styles.btnText}>{"قبول"}</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={[styles.actionBtn, styles.declineBtn]}
-        onPress={onDecline}
+        onPress={() => {
+          onDecline(donationNumber);
+        }}
       >
         <Text style={styles.btnText}>{"رفض"}</Text>
       </TouchableOpacity>

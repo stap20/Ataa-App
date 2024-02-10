@@ -4,19 +4,27 @@ export default Theme = {
     screenContainer: "#FFFFFF",
     donateCancelBtn: "#DC3545",
     donateAcceptBtn: "#198754",
+    formText: "#f9fafa",
+    mainBtn: "#CB8949",
   },
   colors: {
     primary: "#CB8949",
     tabBarborder: "#E6E9EA",
     cardContainerBorder: "#E6E9EA",
+    textBoxContainerBorder: "#E6E9EA",
     donateCardText: "#0C0C0C",
     statusAcceptedColor: "#198754",
     statusDeclinedColor: "#DC3545",
     statusPendingColor: "#F29B26",
     donateActionBtnText: "#FFFFFF",
+    formTextPlaceHolder: "#A4ACAD",
+    formText: "#141f1f",
+    mainBtn: "#FFFFFF",
   },
   iconColors: {
     calendar: "#0C0C0C",
+    visible: "#C9CECF",
+    camera:'#CB8949'
   },
   typographyColors: {
     primary: "#141F1F",

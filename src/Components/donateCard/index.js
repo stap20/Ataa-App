@@ -7,7 +7,13 @@ import Actions from "./Actions";
 import Icon from "@components/Icon";
 import { formatArabicDate } from "@utils";
 
-export default function DonateCard({ data = {}, style = {} }) {
+export default function DonateCard({
+  data = {},
+  style = {},
+  onCancel = null,
+  onAccept = null,
+  onDecline = null,
+}) {
   const styles = donateCardStyles();
 
   const {
@@ -17,9 +23,6 @@ export default function DonateCard({ data = {}, style = {} }) {
     status = "accepted",
     date = new Date(),
     profileImg = null,
-    onCancel = null,
-    onAccept = null,
-    onDecline = null,
   } = data;
 
   const isAction = onCancel !== null || onAccept !== null || onDecline !== null;
@@ -55,6 +58,10 @@ export default function DonateCard({ data = {}, style = {} }) {
             isAdmin={
               onCancel === null && (onAccept !== null || onDecline !== null)
             }
+            onCancel={onCancel}
+            onAccept={onAccept}
+            onDecline={onDecline}
+            donationNumber={donationNumber}
           />
         </View>
       )}

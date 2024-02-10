@@ -67,6 +67,22 @@ const iconData = {
     height: 16,
     stroke: iconColors.calendar,
   },
+
+  visible: {
+    type: "svg",
+    source: require("@assets/icons/visible.js"),
+    width: 24,
+    height: 24,
+    color: iconColors.visible,
+  },
+
+  camera: {
+    type: "svg",
+    source: require("@assets/icons/camera.js"),
+    width: 28,
+    height: 28,
+    color: iconColors.camera,
+  },
 };
 
 export default iconData;

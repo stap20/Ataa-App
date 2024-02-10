@@ -1,13 +1,20 @@
 import { useState } from "react";
-import { RefreshControl, View } from "react-native";
-import historyStyles from "@styles/screens/historyStyles";
+import { View, RefreshControl } from "react-native";
+import pendingStyles from "@styles/screens/pendingStyles";
 import { FlashList } from "@shopify/flash-list";
 import { DonateCard } from "@components";
 import { Theme } from "@theme";
 
-export default function LayoutManager({ data, refreshFunction }) {
+export default function LayoutManager({
+  data,
+  isAdmin,
+  onCancel,
+  onAccept,
+  onDecline,
+  refreshFunction,
+}) {
   const [refreshing, setRefreshing] = useState(false);
-  const styles = historyStyles();
+  const styles = pendingStyles();
 
   const onRefresh = () => {
     setRefreshing(true);
@@ -23,7 +30,14 @@ export default function LayoutManager({ data, refreshFunction }) {
       <FlashList
         data={data}
         renderItem={({ item }) => (
-          <DonateCard item={item} style={styles.cardContainer} data={item} />
+          <DonateCard
+            item={item}
+            style={styles.cardContainer}
+            data={item}
+            onCancel={!isAdmin ? onCancel : null}
+            onAccept={isAdmin ? onAccept : null}
+            onDecline={isAdmin ? onDecline : null}
+          />
         )}
         estimatedItemSize={142}
         refreshControl={
