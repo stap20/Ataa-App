@@ -1,3 +1,7 @@
+import { Theme } from "@theme";
+
+const iconColors = Theme.iconColors;
+
 const iconData = {
   pending: {
     type: "svg",
@@ -5,7 +9,7 @@ const iconData = {
     width: 24,
     height: 24,
   },
-  'pending-active': {
+  "pending-active": {
     type: "svg",
     source: require("@assets/icons/pending-active.js"),
     width: 24,
@@ -17,7 +21,7 @@ const iconData = {
     width: 24,
     height: 24,
   },
-  'history-active': {
+  "history-active": {
     type: "svg",
     source: require("@assets/icons/history-active.js"),
     width: 24,
@@ -29,7 +33,7 @@ const iconData = {
     width: 24,
     height: 24,
   },
-  'donate-active': {
+  "donate-active": {
     type: "svg",
     source: require("@assets/icons/donate-active.js"),
     width: 24,
@@ -41,11 +45,27 @@ const iconData = {
     width: 24,
     height: 24,
   },
-  'profile-active': {
+  "profile-active": {
     type: "svg",
     source: require("@assets/icons/profile-active.js"),
     width: 24,
     height: 24,
+  },
+
+  cloth: {
+    type: "svg",
+    source: require("@assets/icons/shirt.js"),
+    width: 29,
+    height: 29,
+    stroke: "white",
+  },
+
+  calendar: {
+    type: "svg",
+    source: require("@assets/icons/calendar.js"),
+    width: 16,
+    height: 16,
+    stroke: iconColors.calendar,
   },
 };
 

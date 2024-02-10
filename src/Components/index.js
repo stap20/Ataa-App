@@ -1,3 +1,4 @@
 import Icon from "./Icon";
+import DonateCard from "./donateCard";
 
-export { Icon };
+export { Icon, DonateCard };

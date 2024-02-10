@@ -1,7 +1,4 @@
-import WaitingListScreen from "@screens/user/WaitingListScreen";
-import HistoryScreen from "@screens/user/HistoryScreen";
-import DonateScreen from "@screens/user/DonateScreen";
-import MyProfileScreen from "@screens/user/MyProfileScreen";
+import HistoryScreen from "@screens/history";
 
 export default [
   {
@@ -9,7 +6,7 @@ export default [
     label: "قيد الانتظار",
     icon: "pending",
     activeIcon: "pending-active",
-    screen: WaitingListScreen,
+    screen: HistoryScreen,
   },
   {
     name: "History",
@@ -23,13 +20,13 @@ export default [
     label: "تبرع",
     icon: "donate",
     activeIcon: "donate-active",
-    screen: DonateScreen,
+    screen: HistoryScreen,
   },
   {
     name: "Profile",
     label: "الملف الشخصي",
     icon: "profile",
     activeIcon: "profile-active",
-    screen: MyProfileScreen,
+    screen: HistoryScreen,
   },
 ].reverse();
