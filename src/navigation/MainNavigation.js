@@ -22,7 +22,7 @@ function TabsNavigation(params) {
         tabBarActiveTintColor: "#e91e63",
       }}
     >
-      {bottomTabs(userType).map((item) => (
+      {bottomTabs(params.userType).map((item) => (
         <Tab.Screen
           key={item.name}
           name={item.name}
@@ -59,7 +59,7 @@ function TabsNavigation(params) {
 export default function MainNavigation(params) {
   return (
     <Stack.Navigator
-      initialRouteName="Login"
+      initialRouteName="Main"
       screenOptions={{
         headerShown: false,
       }}
@@ -67,7 +67,11 @@ export default function MainNavigation(params) {
       {/* <Stack.Screen name="Hello" component={HelloScreen} /> */}
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="Signup" component={SignupScreen} />
-      <Stack.Screen name="Main" component={TabsNavigation} />
+      <Stack.Screen
+        name="Main"
+        component={TabsNavigation}
+        initialParams={{ userType: "User" }}
+      />
     </Stack.Navigator>
   );
 }
