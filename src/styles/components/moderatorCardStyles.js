@@ -22,12 +22,8 @@ export default moderatorCardStyles = () => {
     },
 
     moderatorImage: {
-      width: 50,
-      height: 50,
       alignSelf: "center",
       marginLeft: 12,
-      borderRadius: 100,
-      backgroundColor: Theme.backgroundColors.profileContainer,
     },
 
     moderatorDetailsContainer: {

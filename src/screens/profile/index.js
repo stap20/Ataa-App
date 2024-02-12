@@ -11,5 +11,9 @@ export default function ProfileScreen() {
     profileImage: User.profileImage,
   };
 
-  return <LayoutManager data={userData} />;
+  const onSave = (data) => {
+
+  };
+
+  return <LayoutManager data={userData} onSave={onSave} />;
 }

@@ -135,6 +135,13 @@ const iconData = {
     height: 42,
     color: iconColors.camera,
   },
+
+  "profile-image": {
+    type: "svg",
+    source: require("@assets/icons/profile-image.js"),
+    width: 35,
+    height: 35,
+  },
 };
 
 export default iconData;

@@ -1,17 +1,16 @@
-import { Image, Text, View } from "react-native";
+import { Text, View } from "react-native";
 import { donatorStyles } from "@styles/components/donateCard";
+import ProfileImage from "@components/ProfileImage";
 
 export default function Donator({ donatorName, profileImg, donationNumber }) {
   const styles = donatorStyles();
 
-  const profileImageSrc =
-    profileImg == null
-      ? require("@assets/profile-img.png")
-      : { uri: profileImg };
-
   return (
     <View style={styles.container}>
-      <Image source={profileImageSrc} style={styles.donatorImage} />
+      <View style={styles.donatorImage}>
+        <ProfileImage profileImg={profileImg} width={50} height={50} />
+      </View>
+
       <View style={styles.donatorDetailsContainer}>
         <Text style={styles.donatorName}>{donatorName}</Text>
         <Text style={styles.donationNumber}>{donationNumber}</Text>

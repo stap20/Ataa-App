@@ -1,11 +1,16 @@
 // Icon.js
-import React from 'react';
-import {View, Text} from 'react-native';
-import SvgIconWrapper from './SvgIconWrapper'; // Path to SvgIconWrapper
-import IconWrapper from './IconWrapper';
-import {iconData} from '@utils'; // Path to your icon dataset
+import React from "react";
+import { View, Text } from "react-native";
+import SvgIconWrapper from "./SvgIconWrapper"; // Path to SvgIconWrapper
+import IconWrapper from "./IconWrapper";
+import { iconData } from "@utils"; // Path to your icon dataset
 
-const Icon = ({iconName, iconColor = null}) => {
+const Icon = ({
+  iconName,
+  iconColor = null,
+  iconWidth = null,
+  iconHeight = null,
+}) => {
   const iconInfo = iconData[iconName];
 
   if (!iconInfo) {
@@ -17,20 +22,23 @@ const Icon = ({iconName, iconColor = null}) => {
     );
   }
 
-  const {type, name, size, width, height, color, source, stroke, opacity} =
+  const { type, name, size, width, height, color, source, stroke, opacity } =
     iconInfo;
 
   const currentColor = iconColor != null ? iconColor : color;
   const currentStrokeColor = iconColor != null ? iconColor : stroke;
 
-  if (type === 'svg') {
+  const currentWidth = iconWidth != null ? iconWidth : width;
+  const currentStrokeWidth = iconHeight != null ? iconHeight : height;
+
+  if (type === "svg") {
     return (
       <SvgIconWrapper
         svgSource={source}
-        width={width}
-        height={height}
-        color={currentColor ?? 'none'}
-        stroke={currentStrokeColor ?? 'none'}
+        width={currentWidth}
+        height={currentStrokeWidth}
+        color={currentColor ?? "none"}
+        stroke={currentStrokeColor ?? "none"}
         opacity={opacity ?? 1}
       />
     );

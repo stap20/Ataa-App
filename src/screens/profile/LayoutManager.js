@@ -1,7 +1,7 @@
 import { View } from "react-native";
 import { layoutStyles } from "@styles/screens/profile";
-import ProfileView from "./ProfileView";
 import Header from "./Header";
+import { Profile } from "@components";
 
 export default function LayoutManager(props) {
   const styles = layoutStyles();
@@ -11,7 +11,7 @@ export default function LayoutManager(props) {
         <Header />
       </View>
       <View style={styles.mainContainer}>
-        <ProfileView {...props} />
+        <Profile {...props}/>
       </View>
     </View>
   );

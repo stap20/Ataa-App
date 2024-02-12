@@ -1,17 +1,13 @@
 import { Image, Text, View } from "react-native";
 import {headerStyles} from "@styles/screens/history";
+import { ProfileImage } from "@components";
 
 export default function Header({ title, profileImg = null }) {
   const styles = headerStyles();
 
-  const profileImageSrc =
-    profileImg == null
-      ? require("@assets/profile-img.png")
-      : { uri: profileImg };
-
   return (
     <View style={styles.container}>
-      <Image source={profileImageSrc} style={styles.profileImg} />
+      <ProfileImage profileImg={profileImg} width={35} height={35} />
       <View style={styles.titleContainer}>
         <Text style={styles.title}>{"السجل"}</Text>
       </View>

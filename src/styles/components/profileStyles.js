@@ -20,13 +20,6 @@ export default profileStyles = () => {
       position: "absolute",
     },
 
-    profileImage: {
-      width: 180,
-      height: 180,
-      borderRadius: 240,
-      backgroundColor: Theme.backgroundColors.profileContainer,
-    },
-
     formTextContainer: {
       marginBottom: 16,
     },

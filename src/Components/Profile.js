@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
 import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
-import { profileStyles } from "@styles/screens/profile";
+import profileStyles from "@styles/components/profileStyles";
 import FormText from "@components/FormText";
-import { FormText, Icon } from "@components/FormText";
+import Icon from "@components/Icon";
+import ProfileImage from "@components/ProfileImage";
 
-export default function ProfileView({
+export default function Profile({
   data,
   isCreate = false,
   isEditEnabled = true,
   onSave,
+  btnText = "حفظ التغيرات",
 }) {
   const styles = profileStyles();
   const [isRead, setIsRead] = useState(true);
@@ -16,7 +18,7 @@ export default function ProfileView({
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
-  const [profileImage, setProfileImage] = useState("");
+  const [profileImage, setProfileImage] = useState(null);
 
   useEffect(() => {
     if (!isCreate) {
@@ -37,15 +39,12 @@ export default function ProfileView({
       setIsRead(false);
       isEditEnabled = false;
     }
-  });
-
-  const profileImageSrc =
-    profileImage !== null
-      ? { uri: data.profileImage }
-      : require("@assets/profile-img.png");
+  }, []);
 
   const handleSave = () => {
-    setIsRead(true);
+    if (!isCreate && isEditEnabled) {
+      setIsRead(true);
+    }
 
     onSave({
       name,
@@ -54,11 +53,11 @@ export default function ProfileView({
       password,
     });
   };
-  
+
   return (
     <ScrollView style={styles.container}>
       <View style={styles.profileImageContainer}>
-        <Image source={profileImageSrc} style={styles.profileImage} />
+        <ProfileImage profileImage={profileImage} width={120} height={120} />
         {!isRead && (
           <TouchableOpacity style={styles.cameraIcon}>
             <Icon iconName={"camera"} />
@@ -105,13 +104,8 @@ export default function ProfileView({
           <Text style={styles.btnText}>{"تعديل البيانات"}</Text>
         </TouchableOpacity>
       ) : (
-        <TouchableOpacity
-          style={styles.formBtn}
-          onPress={() => {
-            setIsRead(true);
-          }}
-        >
-          <Text style={styles.btnText}>{"حفظ التغيرات"}</Text>
+        <TouchableOpacity style={styles.formBtn} onPress={handleSave}>
+          <Text style={styles.btnText}>{btnText}</Text>
         </TouchableOpacity>
       )}
     </ScrollView>
