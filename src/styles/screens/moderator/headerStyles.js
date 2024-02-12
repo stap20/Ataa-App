@@ -8,13 +8,23 @@ export default headerStyles = () => {
       flexDirection: "row-reverse", // handle arabic
     },
 
-    profileImg: {
+    btn: {
+      height:33,
       position: "absolute",
-      width: 35,
-      height: 35,
-      borderRadius: 60,
+      alignSelf: "flex-start",
+      justifyContent: "center",
+      alignItems: "center",
+      paddingHorizontal: 10,
+      borderRadius: 5,
       zIndex: 5,
-      backgroundColor: Theme.backgroundColors.profileContainer,
+      backgroundColor: Theme.backgroundColors.mainBtn,
+    },
+
+    btnText: {
+      textAlign: "center",
+      fontFamily: Theme.typography.changa_500,
+      fontSize: 12,
+      color: Theme.colors.mainBtn,
     },
 
     titleContainer: {

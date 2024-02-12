@@ -1,6 +1,6 @@
 import { View } from "react-native";
-import { layoutStyles } from "@styles/screens/history";
-import HistoryView from "./HistoryView";
+import { layoutStyles } from "@styles/screens/moderator";
+import ModeratorView from "./ModeratorView";
 import Header from "./Header";
 
 export default function LayoutManager(props) {
@@ -11,7 +11,7 @@ export default function LayoutManager(props) {
         <Header />
       </View>
       <View style={styles.mainContainer}>
-        <HistoryView {...props} />
+        <ModeratorView {...props} />
       </View>
     </View>
   );

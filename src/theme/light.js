@@ -4,6 +4,8 @@ export default Theme = {
     screenContainer: "#FFFFFF",
     donateCancelBtn: "#DC3545",
     donateAcceptBtn: "#198754",
+    moderatorEditBtn: "#007BFF",
+    moderatorDeleteBtn: "#DC3545",
     formText: "#f9fafa",
     mainBtn: "#CB8949",
   },
@@ -24,7 +26,7 @@ export default Theme = {
   iconColors: {
     calendar: "#0C0C0C",
     visible: "#C9CECF",
-    camera:'#CB8949'
+    camera: "#CB8949",
   },
   typographyColors: {
     primary: "#141F1F",

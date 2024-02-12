@@ -1,22 +1,19 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { View } from "react-native";
-import userNavigationList from "./USER_NAVIGATION_LIST";
+
+import navigationList from "./navigationLists";
+
 import tabBarStyles from "@styles/tabBarStyles";
 import { Theme } from "@theme";
 import { Icon } from "@components";
 
 const Tab = createBottomTabNavigator();
 
-const navigationList = {
-  user: userNavigationList,
-};
-
-export default function MainNavigation({ userType }) {
+export default function BottomNavigation({ userType }) {
   const styles = tabBarStyles();
 
   return (
     <Tab.Navigator
-      initialRouteName="waiting"
+      initialRouteName={navigationList[userType].default}
       backBehavior="none"
       sceneContainerStyle={styles.screenContainer}
       screenOptions={{
@@ -27,7 +24,7 @@ export default function MainNavigation({ userType }) {
         tabBarActiveTintColor: Theme.colors.primary,
       }}
     >
-      {navigationList[userType].map((item) => (
+      {navigationList[userType].list.map((item) => (
         <Tab.Screen
           key={item.name}
           name={item.name}

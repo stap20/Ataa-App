@@ -52,6 +52,58 @@ const iconData = {
     height: 24,
   },
 
+  moderator: {
+    type: "svg",
+    source: require("@assets/icons/badge.js"),
+    width: 24,
+    height: 24,
+  },
+  "moderator-active": {
+    type: "svg",
+    source: require("@assets/icons/badge-active.js"),
+    width: 24,
+    height: 24,
+  },
+
+  categories: {
+    type: "svg",
+    source: require("@assets/icons/category.js"),
+    width: 24,
+    height: 24,
+  },
+  "categories-active": {
+    type: "svg",
+    source: require("@assets/icons/category-active.js"),
+    width: 24,
+    height: 24,
+  },
+
+  edit: {
+    type: "svg",
+    source: require("@assets/icons/edit.js"),
+    width: 24,
+    height: 24,
+  },
+  "edit-active": {
+    type: "svg",
+    source: require("@assets/icons/edit-active.js"),
+    width: 24,
+    height: 24,
+  },
+
+  storage: {
+    type: "svg",
+    source: require("@assets/icons/shop.js"),
+    width: 24,
+    height: 24,
+  },
+  "storage-active": {
+    type: "svg",
+    source: require("@assets/icons/shop-active.js"),
+    width: 24,
+    height: 24,
+  },
+
   cloth: {
     type: "svg",
     source: require("@assets/icons/shirt.js"),
@@ -79,8 +131,8 @@ const iconData = {
   camera: {
     type: "svg",
     source: require("@assets/icons/camera.js"),
-    width: 28,
-    height: 28,
+    width: 42,
+    height: 42,
     color: iconColors.camera,
   },
 };

@@ -27,7 +27,6 @@ export default tabBarStyles = () => {
     btnText: {
       fontFamily: Theme.typography.changa_300,
       fontSize: 12,
-      lineHeight: 22.08,
     },
 
     btnIconContainer: {

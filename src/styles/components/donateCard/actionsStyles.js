@@ -10,7 +10,7 @@ export default actionsStyles = () => {
 
     actionBtn: {
       flex: 1,
-      paddingVertical: 12,
+      height:40,
       paddingHorizontal: 30,
       justifyContent: "center",
       alignItems: "center",

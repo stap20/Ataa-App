@@ -21,8 +21,8 @@ export default historyStyles = () => {
     },
 
     profileImage: {
-      width: 120,
-      height: 120,
+      width: 180,
+      height: 180,
       borderRadius: 240,
       backgroundColor: Theme.backgroundColors.profileContainer,
     },
@@ -32,10 +32,11 @@ export default historyStyles = () => {
     },
 
     formBtn: {
-      flex: 1,
+      height: 56,
       justifyContent: "center",
       alignItems: "center",
-      marginTop: 50,
+      marginTop: 80,
+      marginBottom: 50,
       paddingVertical: 16,
       borderRadius: 12,
       backgroundColor: Theme.backgroundColors.mainBtn,
@@ -44,7 +45,6 @@ export default historyStyles = () => {
     btnText: {
       fontFamily: Theme.typography.changa_700,
       fontSize: 15,
-      lineHeight: 22.5,
       color: Theme.colors.mainBtn,
     },
   });
