@@ -24,6 +24,9 @@ export default Theme = {
     formText: "#141f1f",
     mainBtn: "#FFFFFF",
 
+    statusSuccessColor: "#00D566",
+    statusFailedColor: "#DC3545",
+
     activeProgressDot: "#141F1F",
     inActiveProgressDot: "#A4ACAD",
   },
@@ -32,7 +35,7 @@ export default Theme = {
     visible: "#C9CECF",
     camera: "#CB8949",
     inActiveDonateCategory: "#D9D9D9",
-    category:'#888888'
+    category: "#888888",
   },
   typographyColors: {
     primary: "#141F1F",
