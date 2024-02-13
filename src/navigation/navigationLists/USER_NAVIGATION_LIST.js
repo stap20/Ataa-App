@@ -1,6 +1,7 @@
 import HistoryScreen from "@screens/history";
 import PendingScreen from "@screens/pending";
 import ProfileScreen from "@screens/profile";
+import DonateScreen from "@screens/donate";
 
 export default [
   {
@@ -22,7 +23,7 @@ export default [
     label: "تبرع",
     icon: "donate",
     activeIcon: "donate-active",
-    screen: HistoryScreen,
+    screen: DonateScreen,
   },
   {
     name: "profile",

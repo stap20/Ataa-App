@@ -8,6 +8,12 @@ export default headerStyles = () => {
       flexDirection: "row-reverse", // handle arabic
     },
 
+    profileImageContainer: {
+      position: "absolute",
+      zIndex: 5,
+    },
+
+
     titleContainer: {
       flex: 1,
       justifyContent: "center",

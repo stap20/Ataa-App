@@ -7,7 +7,9 @@ export default function Header({ title, profileImg = null }) {
 
   return (
     <View style={styles.container}>
-      <ProfileImage profileImg={profileImg} width={35} height={35} />
+      <View style={styles.profileImageContainer}>
+        <ProfileImage profileImg={profileImg} width={35} height={35} />
+      </View>
       <View style={styles.titleContainer}>
         <Text style={styles.title}>{"قيد الانتظار"}</Text>
       </View>

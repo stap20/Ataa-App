@@ -107,9 +107,49 @@ const iconData = {
   cloth: {
     type: "svg",
     source: require("@assets/icons/shirt.js"),
-    width: 29,
-    height: 29,
+    width: 30,
+    height: 30,
     stroke: "white",
+  },
+
+  "cloth-lg": {
+    type: "svg",
+    source: require("@assets/icons/shirt.js"),
+    width: 42,
+    height: 42,
+    stroke: iconColors.category,
+  },
+
+  "school-tools": {
+    type: "svg",
+    source: require("@assets/icons/ruler-pen.js"),
+    width: 30,
+    height: 30,
+    stroke: "white",
+  },
+
+  "school-tools-lg": {
+    type: "svg",
+    source: require("@assets/icons/ruler-pen.js"),
+    width: 42,
+    height: 42,
+    stroke: iconColors.category,
+  },
+
+  games: {
+    type: "svg",
+    source: require("@assets/icons/games.js"),
+    width: 30,
+    height: 30,
+    stroke: "white",
+  },
+
+  "games-lg": {
+    type: "svg",
+    source: require("@assets/icons/games.js"),
+    width: 42,
+    height: 42,
+    stroke: iconColors.category,
   },
 
   calendar: {
@@ -148,6 +188,43 @@ const iconData = {
     source: require("@assets/icons/trash.js"),
     width: 24,
     height: 24,
+  },
+
+  "login-image": {
+    type: "svg",
+    source: require("@assets/icons/rafiki.js"),
+    width: 214,
+    height: 181,
+  },
+
+  "hello-image": {
+    type: "svg",
+    source: require("@assets/icons/character.js"),
+    width: 184,
+    height: 295,
+  },
+
+  "instruction-image": {
+    type: "svg",
+    source: require("@assets/icons/pana.js"),
+    width: 315,
+    height: 201,
+  },
+
+  "quantity-plus": {
+    type: "svg",
+    source: require("@assets/icons/plus.js"),
+    width: 15.6,
+    height: 15.6,
+    stroke: "white",
+  },
+
+  "quantity-minus": {
+    type: "svg",
+    source: require("@assets/icons/minus.js"),
+    width: 15.6,
+    height: 15.6,
+    stroke: "white",
   },
 };
 

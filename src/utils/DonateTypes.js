@@ -4,6 +4,16 @@ var types = [
     title: "تبرع بالملابس",
     icon: "cloth",
   },
+  {
+    type: "school",
+    title: "تبرع بالملابس",
+    icon: "school-tools",
+  },
+  {
+    type: "games",
+    title: "تبرع بالملابس",
+    icon: "games",
+  },
 ];
 
 donateTypes = {};

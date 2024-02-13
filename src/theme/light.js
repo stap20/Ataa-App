@@ -23,11 +23,16 @@ export default Theme = {
     formTextPlaceHolder: "#A4ACAD",
     formText: "#141f1f",
     mainBtn: "#FFFFFF",
+
+    activeProgressDot: "#141F1F",
+    inActiveProgressDot: "#A4ACAD",
   },
   iconColors: {
     calendar: "#0C0C0C",
     visible: "#C9CECF",
     camera: "#CB8949",
+    inActiveDonateCategory: "#D9D9D9",
+    category:'#888888'
   },
   typographyColors: {
     primary: "#141F1F",

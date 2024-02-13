@@ -8,6 +8,7 @@ import { iconData } from "@utils"; // Path to your icon dataset
 const Icon = ({
   iconName,
   iconColor = null,
+  iconStrokeColor = null,
   iconWidth = null,
   iconHeight = null,
 }) => {
@@ -26,7 +27,7 @@ const Icon = ({
     iconInfo;
 
   const currentColor = iconColor != null ? iconColor : color;
-  const currentStrokeColor = iconColor != null ? iconColor : stroke;
+  const currentStrokeColor = iconStrokeColor != null ? iconStrokeColor : stroke;
 
   const currentWidth = iconWidth != null ? iconWidth : width;
   const currentStrokeWidth = iconHeight != null ? iconHeight : height;
