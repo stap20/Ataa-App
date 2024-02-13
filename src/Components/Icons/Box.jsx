@@ -14,7 +14,6 @@ export default Box = ({
     width={width}
     height={height}
     fill={svgFill || color}
-    {...props}
   >
     <Path
       fill={pathFill || color}

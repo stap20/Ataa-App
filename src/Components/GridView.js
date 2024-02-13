@@ -1,3 +1,4 @@
+import IconManager from "@components/Icons/IconManager";
 import {
   FlatList,
   StyleSheet,
@@ -5,6 +6,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import ImageGroupPicker from "../utils/ImageGroupPicker";
 
 const CardView = (props) => {
   const { size, color, containerStyle } = props;
@@ -33,9 +35,13 @@ const CardView = (props) => {
             width: 16,
             height: 16,
             borderRadius: 99,
+            justifyContent: "center",
+            alignItems: "center",
             backgroundColor: "rgba(0, 0, 0, 0.6)",
           }}
-        />
+        >
+          <IconManager name={"close"} width={15} height={15} />
+        </TouchableOpacity>
       )}
     </View>
   );
@@ -49,8 +55,8 @@ export default GridView = (props) => {
         <CardView
           containerStyle={props.cardContainerStyle}
           id={item.id}
-          size={item.size}
-          color={item.color}
+          size={item?.size || 82}
+          color={item?.color || "red"}
           removeEnable={false}
         >
           <View
@@ -72,13 +78,14 @@ export default GridView = (props) => {
       return (
         <CardView
           containerStyle={props.cardContainerStyle}
-          id={item.id}
           size={item.size}
-          color={"yellow"}
+          color={"#DDDEDF"}
           removeEnable={false}
           onRemove={() => props.onRemove(index)}
         >
-          {children}
+          <TouchableOpacity onPress={props.onAdd}>
+            <IconManager name={"plus"} color={"black"} width={24} height={24} />
+          </TouchableOpacity>
         </CardView>
       );
     }
@@ -87,12 +94,19 @@ export default GridView = (props) => {
       <CardView
         containerStyle={props.cardContainerStyle}
         id={item.id}
-        size={item.size}
-        color={item.color}
+        size={item?.size || 82}
+        color={item?.color || "red"}
         removeEnable={props.removeEnable}
         onRemove={() => props.onRemove(index)}
       >
-        {children}
+        <Image
+          style={{
+            aspectRatio: item.aspectRatio,
+            width: 82,
+            resizeMode: "center",
+          }}
+          source={{ uri: require(item.uri) }}
+        />
       </CardView>
     );
   };
@@ -113,10 +127,10 @@ export default GridView = (props) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    // flex: 1,
     width: 328,
     padding: 4,
-    maxHeight: 191,
+    // maxHeight: 191,
     backgroundColor: "blue",
     borderRadius: 8,
   },

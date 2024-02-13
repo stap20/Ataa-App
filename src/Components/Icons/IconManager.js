@@ -10,15 +10,11 @@ import Rafiki from "./Rafiki";
 import Eye from "./Eye";
 import OnBoardHello from "./OnBoardHello";
 import OnBoardPana from "./OnBoardPana";
+import Plus from "./Plus";
+import Minus from "./Minus";
+import Close from "./Close";
 
-const IconSwitcher = ({
-  name,
-  color,
-  width = 40,
-  height = 40,
-  svgFill,
-  pathFill,
-}) => {
+const IconSwitcher = ({ name, color, width, height, svgFill, pathFill }) => {
   const options = {
     box: Box,
     profile: Profile,
@@ -31,6 +27,9 @@ const IconSwitcher = ({
     eye: Eye,
     onBoardHello: OnBoardHello,
     onBoardPana: OnBoardPana,
+    plus: Plus,
+    minus: Minus,
+    close: Close,
   };
 
   const CurrentIcon = options[name] !== undefined ? options[name] : null;
@@ -58,7 +57,7 @@ export default IconManager = ({
   return (
     <View style={[styles.container, containerStyle]}>
       <IconSwitcher
-        name={name}
+        name={name.toLowerCase()}
         color={color}
         width={width}
         height={height}

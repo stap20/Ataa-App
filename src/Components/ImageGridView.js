@@ -14,8 +14,9 @@ export default ImageGridView = (props) => {
         data.push({ ...props.data[index] });
       }
     }
-    data.push({ id: 0, size: 82, color: "yellow" });
-  }, [props.extraData]);
+
+    // data.push({ size: 82, icon: props.addIcon });
+  }, []);
 
   return (
     <GridView
@@ -23,6 +24,7 @@ export default ImageGridView = (props) => {
       onRemove={(id) => props.onRemove(id)}
       data={data}
       extraData={props.extraData}
+      onAdd={props.onAdd}
     ></GridView>
   );
 };
