@@ -226,6 +226,20 @@ const iconData = {
     height: 15.6,
     stroke: "white",
   },
+
+  "status-success": {
+    type: "svg",
+    source: require("@assets/icons/success.js"),
+    width: 78,
+    height: 78,
+  },
+
+  "status-failed": {
+    type: "svg",
+    source: require("@assets/icons/failed.js"),
+    width: 52,
+    height: 52,
+  },
 };
 
 export default iconData;
