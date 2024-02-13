@@ -1,30 +1,12 @@
 import { StyleSheet } from "react-native";
 import { Theme } from "@theme";
 
-export default profileStyles = () => {
+export default editMessageStyles = () => {
   return StyleSheet.create({
     container: {
       flex: 1,
       paddingHorizontal: 24,
       paddingBottom: 10,
-    },
-
-    profileImageContainer: {
-      alignSelf: "center",
-      justifyContent: "flex-end",
-      marginBottom: 40,
-    },
-
-    cameraIcon: {
-      alignSelf: "flex-end",
-      position: "absolute",
-    },
-
-    profileImage: {
-      width: 180,
-      height: 180,
-      borderRadius: 240,
-      backgroundColor: Theme.backgroundColors.profileContainer,
     },
 
     formTextContainer: {
@@ -35,7 +17,6 @@ export default profileStyles = () => {
       height: 56,
       justifyContent: "center",
       alignItems: "center",
-      marginTop: 80,
       marginBottom: 50,
       paddingVertical: 16,
       borderRadius: 12,

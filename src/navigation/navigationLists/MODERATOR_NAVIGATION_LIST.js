@@ -1,6 +1,7 @@
 import HistoryScreen from "@screens/history";
 import PendingScreen from "@screens/pending";
 import ProfileScreen from "@screens/profile";
+import StorageScreen from "@screens/storage";
 
 export default [
   {
@@ -22,7 +23,7 @@ export default [
     label: "المخزن",
     icon: "storage",
     activeIcon: "storage-active",
-    screen: HistoryScreen,
+    screen: StorageScreen,
   },
   {
     name: "profile",

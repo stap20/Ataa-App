@@ -1,6 +1,7 @@
 import ModeratorScreen from "@screens/moderator";
-import PendingScreen from "@screens/pending";
+import EditMessageScreen from "@screens/editMessage";
 import ProfileScreen from "@screens/profile";
+import CreateProfileScreen from "@screens/createProfile";
 
 export default [
   {
@@ -11,19 +12,20 @@ export default [
     screen: ModeratorScreen,
   },
   {
-    name: "categories",
-    label: "التصنيفات",
-    icon: "categories",
-    activeIcon: "categories-active",
-    screen: PendingScreen,
+    name: "newModerator",
+    label: "مشرف جديد",
+    icon: "profile",
+    activeIcon: "profile-active",
+    screen: CreateProfileScreen,
   },
   {
-    name: "editMessage",
+    name: "edit",
     label: "تعديل الرسالة",
     icon: "edit",
     activeIcon: "edit-active",
-    screen: PendingScreen,
+    screen: EditMessageScreen,
   },
+
   {
     name: "profile",
     label: "الملف الشخصي",

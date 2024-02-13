@@ -16,7 +16,7 @@ export default function Profile({
   const [isRead, setIsRead] = useState(true);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("+974 ");
   const [password, setPassword] = useState("");
   const [profileImage, setProfileImage] = useState(null);
 
@@ -46,68 +46,80 @@ export default function Profile({
       setIsRead(true);
     }
 
-    onSave({
-      name,
-      email,
-      phoneNumber,
-      password,
-    });
+    const data = {
+      name: name,
+      email: email,
+      phoneNumber: phoneNumber,
+      password: password,
+    };
+
+    if (isCreate) {
+      setName("");
+      setEmail("");
+      setPhoneNumber("+974 ");
+      setPassword("");
+      setProfileImage(null);
+    }
+
+    onSave(data);
   };
 
   return (
-    <ScrollView style={styles.container}>
-      <View style={styles.profileImageContainer}>
-        <ProfileImage profileImage={profileImage} width={120} height={120} />
-        {!isRead && (
-          <TouchableOpacity style={styles.cameraIcon}>
-            <Icon iconName={"camera"} />
+    <View style={styles.container}>
+      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+        <View style={styles.profileImageContainer}>
+          <ProfileImage profileImage={profileImage} width={120} height={120} />
+          {!isRead && (
+            <TouchableOpacity style={styles.cameraIcon}>
+              <Icon iconName={"camera"} />
+            </TouchableOpacity>
+          )}
+        </View>
+        <FormText
+          style={styles.formTextContainer}
+          placeHolder={"الاسم بالكامل"}
+          text={name}
+          onChange={setName}
+          isRead={isRead}
+        />
+        <FormText
+          style={styles.formTextContainer}
+          placeHolder={"البريد الإلكتروني"}
+          text={email}
+          onChange={setEmail}
+          isRead={isRead}
+        />
+        <FormText
+          style={styles.formTextContainer}
+          placeHolder={"رقم الهاتف"}
+          text={phoneNumber}
+          onChange={setPhoneNumber}
+          isRead={isRead}
+        />
+        <FormText
+          style={styles.formTextContainer}
+          placeHolder={"كلمة المرور"}
+          text={password}
+          onChange={setPassword}
+          isPassword={true}
+          isRead={isRead}
+        />
+      </ScrollView>
+      {isEditEnabled &&
+        (isRead ? (
+          <TouchableOpacity
+            style={styles.formBtn}
+            onPress={() => {
+              setIsRead(false);
+            }}
+          >
+            <Text style={styles.btnText}>{"تعديل البيانات"}</Text>
           </TouchableOpacity>
-        )}
-      </View>
-      <FormText
-        style={styles.formTextContainer}
-        placeHolder={"الاسم بالكامل"}
-        text={name}
-        onChange={setName}
-        isRead={isRead}
-      />
-      <FormText
-        style={styles.formTextContainer}
-        placeHolder={"البريد الإلكتروني"}
-        text={email}
-        onChange={setEmail}
-        isRead={isRead}
-      />
-      <FormText
-        style={styles.formTextContainer}
-        placeHolder={"رقم الهاتف"}
-        text={"+974 " + phoneNumber}
-        onChange={setPhoneNumber}
-        isRead={isRead}
-      />
-      <FormText
-        style={styles.formTextContainer}
-        placeHolder={"كلمة المرور"}
-        text={password}
-        onChange={setPassword}
-        isPassword={true}
-        isRead={isRead}
-      />
-
-      {isRead ? (
-        <TouchableOpacity
-          style={styles.formBtn}
-          onPress={() => {
-            setIsRead(false);
-          }}
-        >
-          <Text style={styles.btnText}>{"تعديل البيانات"}</Text>
-        </TouchableOpacity>
-      ) : (
-        <TouchableOpacity style={styles.formBtn} onPress={handleSave}>
-          <Text style={styles.btnText}>{btnText}</Text>
-        </TouchableOpacity>
-      )}
-    </ScrollView>
+        ) : (
+          <TouchableOpacity style={styles.formBtn} onPress={handleSave}>
+            <Text style={styles.btnText}>{btnText}</Text>
+          </TouchableOpacity>
+        ))}
+    </View>
   );
 }

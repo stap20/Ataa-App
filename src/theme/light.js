@@ -8,6 +8,7 @@ export default Theme = {
     moderatorDeleteBtn: "#DC3545",
     formText: "#f9fafa",
     mainBtn: "#CB8949",
+    trashBtn: "#DC3545",
   },
   colors: {
     primary: "#CB8949",

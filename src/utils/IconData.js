@@ -142,6 +142,13 @@ const iconData = {
     width: 35,
     height: 35,
   },
+
+  "delete-storage": {
+    type: "svg",
+    source: require("@assets/icons/trash.js"),
+    width: 24,
+    height: 24,
+  },
 };
 
 export default iconData;

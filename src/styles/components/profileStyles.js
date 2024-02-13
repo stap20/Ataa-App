@@ -28,7 +28,6 @@ export default profileStyles = () => {
       height: 56,
       justifyContent: "center",
       alignItems: "center",
-      marginTop: 80,
       marginBottom: 50,
       paddingVertical: 16,
       borderRadius: 12,

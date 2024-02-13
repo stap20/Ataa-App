@@ -1,5 +1,5 @@
 import LayoutManager from "./LayoutManager";
-import { pendingHandler } from "@services";
+import { profileHandler } from "@services";
 import { User } from "@utils";
 
 export default function ProfileScreen() {
@@ -12,7 +12,7 @@ export default function ProfileScreen() {
   };
 
   const onSave = (data) => {
-
+    profileHandler.editProfile(data);
   };
 
   return <LayoutManager data={userData} onSave={onSave} />;
