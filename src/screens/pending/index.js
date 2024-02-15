@@ -35,7 +35,7 @@ export default function PendingScreen() {
   return (
     <LayoutManager
       data={donationData}
-      isAdmin={true}
+      isAdmin={false}
       onCancel={onCancel}
       onAccept={onAccept}
       onDecline={onDecline}

@@ -1,4 +1,4 @@
-import { Text, View } from "react-native";
+import { Text, Touchable, TouchableOpacity, View } from "react-native";
 import { donateCardStyles } from "@styles/components/donateCard";
 import Donator from "./Donator";
 import Donation from "./Donation";
@@ -13,9 +13,9 @@ export default function DonateCard({
   onCancel = null,
   onAccept = null,
   onDecline = null,
+  onCard = null,
 }) {
   const styles = donateCardStyles();
-
   const {
     donatorName = "أحمد صالح",
     donationNumber = "#123456",
@@ -28,7 +28,10 @@ export default function DonateCard({
   const isAction = onCancel !== null || onAccept !== null || onDecline !== null;
 
   return (
-    <View style={[styles.container, style]}>
+    <TouchableOpacity
+      onPress={() => onCard()}
+      style={[styles.container, style]}
+    >
       <View style={styles.rowContainer}>
         <Donator
           donatorName={donatorName}
@@ -65,6 +68,6 @@ export default function DonateCard({
           />
         </View>
       )}
-    </View>
+    </TouchableOpacity>
   );
 }

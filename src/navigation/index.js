@@ -10,7 +10,7 @@ function BottomNav() {
 }
 export default function Navigation() {
   return (
-    <Stack.Navigator initialRouteName="login">
+    <Stack.Navigator initialRouteName="main">
       <Stack.Screen
         name="login"
         component={LoginScreen}
