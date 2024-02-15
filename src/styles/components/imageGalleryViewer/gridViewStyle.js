@@ -5,9 +5,9 @@ export default function gridViewStyle() {
   return StyleSheet.create({
     container: {
       width: 328,
-      padding: 4,
-      backgroundColor: "blue",
+      backgroundColor: "#FFFFFF",
       borderRadius: 8,
+      overflow: "hidden",
     },
     moreBackgroundContainer: {
       position: "absolute",

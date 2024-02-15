@@ -1,56 +1,97 @@
-import { FlatList, View } from "react-native";
+import { FlatList, View, TouchableOpacity } from "react-native";
 
 import { gridViewStyle } from "@styles/components/imageGalleryViewer";
 import Icon from "@components/Icon";
 import ImageCard from "./imageCard";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { useState } from "react";
+
+const filterItems = (items, limit) => {
+  const out = [];
+  for (let index = 0; index < items.length; index++) {
+    const element = items[index];
+    if (element.hasOwnProperty("size")) {
+      out.push(element);
+    }
+    if (index >= limit - 1) {
+      out.push({
+        type: "more",
+        data: element,
+      });
+      break;
+    } else {
+      out.push({
+        type: "normal",
+        data: element,
+      });
+    }
+  }
+  return out;
+};
 
 export default GridView = ({
-  removeEnable,
+  isRemoveEnable,
   onRemove,
   data,
   extraData,
   onAdd,
+  onShowImage,
 }) => {
-  const styles = gridViewStyle();
-  const loadItems = ({ item, index }, children) => {
-    if (index == data.length - 2 && extraData - 5 > 0) {
-      return <ImageCard />;
-    }
+  const [isShowMore, setIsShowMore] = useState(false);
+  const styles = gridViewStyle(isShowMore);
+  const filteredData = [
+    ...data.slice(0, isShowMore ? extraData : 5),
+    { size: 82 },
+  ];
 
-    if (index == data.length - 1) {
+  const loadItems = ({ item, index }) => {
+    // console.log("item");
+    if (index == filteredData.length - 1) {
       return (
-        <TouchableOpacity style={{ height:80,backgroundColor:'red' }} onPress={onAdd}>
-          {/* <IconManager name={"plus"} color={"black"} width={24} height={24} /> */}
-        </TouchableOpacity>
+        <ImageCard
+          key={index}
+          type={"plus"}
+          size={82}
+          isRemoveEnable={false}
+          onAdd={() => onAdd()}
+        />
       );
     }
-
-    return (
-      // <CardView
-      //   containerStyle={cardContainerStyle}
-      //   id={item.id}
-      //   size={item?.size || 82}
-      //   color={item?.color || "red"}
-      //   removeEnable={removeEnable}
-      //   onRemove={() => onRemove(index)}
-      // >
-      //   {children}
-      // </CardView>
-
-      <ImageCard />
-    );
+    if (index == filteredData.length - 2 && index >= 4 && !isShowMore) {
+      return (
+        <ImageCard
+          key={index}
+          type={"more"}
+          size={82}
+          uri={item.image}
+          onShowMore={() => setIsShowMore(true)}
+          isRemoveEnable={false}
+          extraData={extraData}
+        />
+      );
+    } else {
+      return (
+        <ImageCard
+          key={index}
+          type={"normal"}
+          size={82}
+          uri={item.image}
+          onShowLess={() => setIsShowMore(false)}
+          onShowImage={() => onShowImage(item)}
+          isRemoveEnable={isRemoveEnable}
+          onRemove={() => onRemove(index)}
+        />
+      );
+    }
   };
 
   return (
     <View style={styles.container}>
       <FlatList
-        data={data}
+        data={filteredData}
         extraData={extraData}
         renderItem={(item) => loadItems(item)}
         keyExtractor={(item) => item.id}
         numColumns={3}
-        // contentContainerStyle={contentContainerStyle}
       />
     </View>
   );

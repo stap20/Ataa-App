@@ -29,6 +29,8 @@ export default Theme = {
 
     activeProgressDot: "#141F1F",
     inActiveProgressDot: "#A4ACAD",
+
+    addImageColor: "#DDDEDF",
   },
   iconColors: {
     calendar: "#0C0C0C",

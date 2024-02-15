@@ -48,6 +48,11 @@ export default signupStyle = (agreed) => {
 
       paddingHorizontal: 16,
     },
+    inputTextContainer: {
+      paddingTop: 0,
+      paddingBottom: 0,
+      marginVertical: 12,
+    },
     inputsText: {
       flex: 1,
       fontFamily: Theme.typography.changa_500,

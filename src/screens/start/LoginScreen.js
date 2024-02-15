@@ -7,12 +7,12 @@ import {
   View,
 } from "react-native";
 import PhoneInput from "react-native-phone-number-input";
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation } from "@react-navigation/native";
 import { loginStyle } from "@styles/screens/start";
 import OnBoardScreen from "./OnBoardScreen";
 import { Icon } from "@components";
 import { Theme } from "@theme";
-import { Storage } from "@utils"
+import { Storage } from "@utils";
 
 export default LoginScreen = () => {
   const [intro, setIntro] = useState(true);
@@ -36,7 +36,7 @@ export default LoginScreen = () => {
   };
 
   const onLogin = () => {
-    navigation.navigate("main")
+    navigation.navigate("main");
     console.log(`login: ${phoneNumber}, ${password}`);
   };
 
@@ -66,6 +66,7 @@ export default LoginScreen = () => {
                 containerStyle={styles.countryFlagsContainer}
                 placeholder={"رقم الهاتف"}
                 textInputStyle={styles.inputsText}
+                textContainerStyle={styles.inputTextContainer}
                 onChangeFormattedText={setPhoneNumber}
                 value={phoneNumber}
               />
@@ -113,10 +114,13 @@ export default LoginScreen = () => {
           </View>
         </View>
       </View>
-      <OnBoardScreen status={intro} onClose={() => {
-        Storage.storeData('isIntro', false);
-        setIntro(Storage.getData('isIntro'))
-      }} />
+      <OnBoardScreen
+        status={intro}
+        onClose={() => {
+          Storage.storeData("isIntro", false);
+          setIntro(Storage.getData("isIntro"));
+        }}
+      />
     </>
   );
 };

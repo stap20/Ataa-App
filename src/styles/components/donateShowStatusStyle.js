@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 import { Theme } from "@theme";
 
-export default donateCategoryStyles = (status) => {
+export default donateShowStatusStyle = (status) => {
   return StyleSheet.create({
     contentContainer: {
       flex: 1,

@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import PhoneInput from "react-native-phone-number-input";
 import { Theme } from "@theme/index.js";
-import {signupStyle} from "@styles/screens/start";
+import { signupStyle } from "@styles/screens/start";
 import { useEffect } from "react";
 
 import { Icon } from "@components";
@@ -80,6 +80,7 @@ export default SignupScreen = (props) => {
               containerStyle={styles.countryFlagsContainer}
               placeholder={"رقم الهاتف"}
               textInputStyle={styles.inputsText}
+              textContainerStyle={styles.inputTextContainer}
               onChangeFormattedText={setPhoneNumber}
               value={phoneNumber}
             />

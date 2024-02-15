@@ -21,7 +21,9 @@ export default DonateCategory = ({
       <View style={styles.categoryIconContainer}>
         <Icon
           iconName={data.icon}
-          iconStrokeColor={!selected ? Theme.iconColors.inActiveDonateCategory : null}
+          iconStrokeColor={
+            !selected ? Theme.iconColors.inActiveDonateCategory : null
+          }
         />
       </View>
       <Text style={styles.categoryText}>{data.title}</Text>

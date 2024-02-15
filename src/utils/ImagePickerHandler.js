@@ -4,7 +4,6 @@ import { useState } from "react";
 const options = {
   mediaTypes: ImagePicker.MediaTypeOptions.All,
   quality: 1,
-  allowsMultipleSelection: true,
 };
 
 const filterResults = (images) => {
@@ -19,32 +18,31 @@ const filterResults = (images) => {
       image: element.uri,
     });
   }
-  console.log(out);
+  console.log(`${out.length} image uploaded`);
   return out;
 };
 
 const ImagePickerHandler = {
-  pickImages: async (isMulti = true) => {
+  pickImages: async (isMulti = true, newOptions) => {
     const permissions = await ImagePicker.requestMediaLibraryPermissionsAsync();
 
-    console.log(permissions);
     if (permissions.status == ImagePicker.PermissionStatus.GRANTED) {
-      let result = await ImagePicker.launchImageLibraryAsync([
+      let result = await ImagePicker.launchImageLibraryAsync({
         ...options,
-        { allowsMultipleSelection: isMulti },
-      ]);
-
+        allowsMultipleSelection: isMulti,
+        ...newOptions,
+      });
       if (!result.canceled) {
-        console.log(`------------------------------------`);
-        console.log(result.assets);
-        console.log(`------------------------------------`);
+        // console.log(`------------------------------------`);
+        // console.log(result.assets);
+        // console.log(`------------------------------------`);
 
         return filterResults(result.assets);
       }
     }
   },
 
-  takeImages: async (isMulti = true) => {
+  takeImages: async (isMulti = true, newOptions) => {
     const permissions = await ImagePicker.requestCameraPermissionsAsync();
     while (permissions.canAskAgain) {
       if (!(await ImagePicker.getCameraPermissionsAsync()).granted) {
@@ -55,15 +53,16 @@ const ImagePickerHandler = {
     }
 
     if ((await ImagePicker.getCameraPermissionsAsync()).granted) {
-      let result = await ImagePicker.launchCameraAsync([
+      let result = await ImagePicker.launchCameraAsync({
         ...options,
-        { allowsMultipleSelection: isMulti },
-      ]);
+        allowsMultipleSelection: isMulti,
+        ...newOptions,
+      });
 
       if (!result.canceled) {
-        console.log(`------------------------------------`);
-        console.log(result.assets.uri);
-        console.log(`------------------------------------`);
+        // console.log(`------------------------------------`);
+        // console.log(result.assets.uri);
+        // console.log(`------------------------------------`);
 
         return filterResults(result.assets);
       }

@@ -10,7 +10,7 @@ export default helloStyle = () => {
       alignItems: "center",
     },
     welcomeContaienr: {
-      marginTop: 95,
+      marginTop: 50,
       // backgroundColor: "yellow",
       marginHorizontal: 50,
       justifyContent: "center",

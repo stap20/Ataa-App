@@ -77,12 +77,31 @@ export default donateStyles = () => {
       textAlign: "right",
     },
 
-    descriptionTextContainer:{
-      maxHeight: 150, marginBottom: 34
+    descriptionTextContainer: {
+      maxHeight: 150,
+      marginBottom: 34,
     },
 
-    imageGalleryContainer:{
-      flex:1,
-    }
+    imageGalleryContainer: {
+      flex: 1,
+    },
+
+    donateBtnContainer: {
+      position: "absolute",
+      height: 56,
+      // width: 312,
+      bottom: 16,
+      left: 24,
+      right: 24,
+      borderRadius: 12,
+      justifyContent: "center",
+      alignItems: "center",
+      backgroundColor: Theme.colors.primary,
+    },
+    donateBtnText: {
+      fontFamily: Theme.typography.changa_700,
+      fontSize: 18,
+      color: "#FFFFFF",
+    },
   });
 };

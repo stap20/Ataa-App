@@ -6,11 +6,10 @@ export default loginStyle = () => {
     container: {
       flex: 1,
       paddingHorizontal: 16,
-      paddingTop: 16,
+      paddingTop: 16 + 50,
       backgroundColor: "white",
     },
     header: {
-      // flex: 1,
       justifyContent: "flex-start",
       alignItems: "center",
     },
@@ -19,7 +18,6 @@ export default loginStyle = () => {
       width: 212,
     },
     body: {
-      // flex: 2,
       marginTop: 22,
       paddingHorizontal: 8,
     },
@@ -52,7 +50,14 @@ export default loginStyle = () => {
       flex: 1,
       fontFamily: Theme.typography.changa_500,
       fontSize: 15,
+      textAlignVertical: "center",
       color: Theme.typographyColors.primary,
+    },
+    inputTextContainer: {
+      // backgroundColor: "green",
+      paddingTop: 0,
+      paddingBottom: 0,
+      marginVertical: 12,
     },
     countryFlagsContainer: {
       flexDirection: "row-reverse",

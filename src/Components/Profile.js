@@ -4,6 +4,7 @@ import profileStyles from "@styles/components/profileStyles";
 import FormText from "@components/FormText";
 import Icon from "@components/Icon";
 import ProfileImage from "@components/ProfileImage";
+import { ImagePickerHandler } from "@utils";
 
 export default function Profile({
   data,
@@ -24,7 +25,7 @@ export default function Profile({
     if (!isCreate) {
       const {
         name = "احمد",
-        email = "koko@mail.com",
+        email = "Ahmed@mail.com",
         phoneNumber = "123456879",
         password = "tioplk",
         profileImage = null,
@@ -41,6 +42,11 @@ export default function Profile({
     }
   }, []);
 
+  const onSetProfileImage = async () => {
+    const img = await ImagePickerHandler.pickImages(false);
+    // console.log(img[0].image);
+    setProfileImage(img[0].image);
+  };
   const handleSave = () => {
     if (!isCreate && isEditEnabled) {
       setIsRead(true);
@@ -51,6 +57,7 @@ export default function Profile({
       email: email,
       phoneNumber: phoneNumber,
       password: password,
+      profileImage: profileImage,
     };
 
     if (isCreate) {
@@ -70,7 +77,10 @@ export default function Profile({
         <View style={styles.profileImageContainer}>
           <ProfileImage profileImage={profileImage} width={120} height={120} />
           {!isRead && (
-            <TouchableOpacity style={styles.cameraIcon}>
+            <TouchableOpacity
+              onPress={() => onSetProfileImage()}
+              style={styles.cameraIcon}
+            >
               <Icon iconName={"camera"} />
             </TouchableOpacity>
           )}

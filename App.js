@@ -13,8 +13,8 @@ export default function App() {
 
   User.login(
     "احمد صالح",
-    "toto@gmail.com",
-    "123 456 78",
+    "AhmedSaleh@gmail.com",
+    "+97412345678",
     null,
     "tyyyuyuyuyuy",
     false

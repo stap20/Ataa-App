@@ -10,10 +10,12 @@ import {
 import { ImageGalleryViewer, DonateCategory, Icon } from "@components";
 import { donateStyles } from "@styles/screens/donate";
 import { ImagePickerHandler } from "@utils";
+import DonateShowStatus from "@components/DonateShowStatus";
 
 const categoriesData = ["cloth", "school", "games"];
 
 export default function DonateView({}) {
+  const [showDonateStatus, setShowDonateStatus] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(0);
   const [selectedQuantity, setSelectedQuantity] = useState(10);
   const [images, setImages] = useState([]);
@@ -32,7 +34,16 @@ export default function DonateView({}) {
   };
 
   const addImages = async () => {
-    setImages([...images, await ImagePickerHandler.pickImages()]);
+    const newImages = await ImagePickerHandler.pickImages();
+    setImages([...images, ...newImages]);
+  };
+  const removeImage = (id) => {
+    setImages([...images.slice(0, id), ...images.slice(id + 1)]);
+  };
+
+  const onDonate = () => {
+    // API
+    setShowDonateStatus(true);
   };
 
   return (
@@ -90,15 +101,25 @@ export default function DonateView({}) {
           </View>
           <View style={styles.imageGalleryContainer}>
             <ImageGalleryViewer
-              onRemove={(id) => console.log(id)}
+              onRemove={(id) => removeImage(id)}
               isRemoveEnable={true}
               imagesList={images}
-              extraData={images.length}
               onAdd={() => addImages()}
             />
           </View>
         </View>
       </View>
+      <TouchableOpacity
+        onPress={() => onDonate()}
+        style={styles.donateBtnContainer}
+      >
+        <Text style={styles.donateBtnText}>{`تبرع`}</Text>
+      </TouchableOpacity>
+      <DonateShowStatus
+        showStatus={showDonateStatus}
+        reqClose={() => setShowDonateStatus(false)}
+        status={"success"}
+      />
     </View>
   );
 }

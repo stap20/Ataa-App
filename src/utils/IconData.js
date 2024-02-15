@@ -240,6 +240,30 @@ const iconData = {
     width: 52,
     height: 52,
   },
+
+  "donate-plus": {
+    type: "svg",
+    source: require("@assets/icons/plus.js"),
+    width: 24,
+    height: 24,
+    stroke: "black",
+  },
+
+  "donate-cancel": {
+    type: "svg",
+    source: require("@assets/icons/cancel.js"),
+    width: 11,
+    height: 11,
+    stroke: "white",
+  },
+
+  "modal-close": {
+    type: "svg",
+    source: require("@assets/icons/cancel.js"),
+    width: 40,
+    height: 40,
+    stroke: "white",
+  },
 };
 
 export default iconData;

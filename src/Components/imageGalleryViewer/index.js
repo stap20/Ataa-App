@@ -1,35 +1,35 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import GridView from "./GridView";
+import ImageShowModal from "@components/ImageShowModal";
 
 export default function ImageGalleryViewer({
-  removeEnable,
+  isRemoveEnable,
   onRemove,
-  imageList,
-  extraData,
+  imagesList = [],
   onAdd,
 }) {
-  let data = [];
-  useEffect(() => {
-    for (let index = 0; index < imageList.length; index++) {
-      if (index + 1 > 5) {
-        data.pop();
-        data.push({ ...imageList[index] });
-        break;
-      } else {
-        data.push({ ...imageList[index] });
-      }
-    }
-
-    // data.push({ size: 82, icon: props.addIcon });
-  }, []);
+  const [showImageModal, setShowImageModal] = useState(false);
+  const [img, setImg] = useState({});
+  let data = [...imagesList];
 
   return (
-    <GridView
-      removeEnable={removeEnable}
-      onRemove={(id) => onRemove(id)}
-      data={data}
-      extraData={extraData}
-      onAdd={onAdd}
-    />
+    <>
+      <GridView
+        isRemoveEnable={isRemoveEnable}
+        onRemove={(id) => onRemove(id)}
+        data={data}
+        extraData={data.length}
+        onAdd={onAdd}
+        onShowImage={(img) => {
+          setImg(img);
+          setShowImageModal(true);
+        }}
+      />
+      <ImageShowModal
+        status={showImageModal}
+        image={img}
+        onCancel={() => setShowImageModal(false)}
+      />
+    </>
   );
 }

@@ -3,10 +3,11 @@ import navigationList from "./navigationLists";
 import tabBarStyles from "@styles/tabBarStyles";
 import { Theme } from "@theme";
 import { Icon } from "@components";
+import { useEffect } from "react";
 
 const Tab = createBottomTabNavigator();
 
-export default function BottomNavigation({ userType }) {
+export default function BottomNavigation({ userType, navigation }) {
   const styles = tabBarStyles();
 
   return (

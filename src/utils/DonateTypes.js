@@ -6,12 +6,12 @@ var types = [
   },
   {
     type: "school",
-    title: "تبرع بالملابس",
+    title: "تبرع بالادوات المدرسية",
     icon: "school-tools",
   },
   {
     type: "games",
-    title: "تبرع بالملابس",
+    title: "تبرع بالالعاب",
     icon: "games",
   },
 ];

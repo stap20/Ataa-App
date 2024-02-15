@@ -1,4 +1,4 @@
-import { Modal, Text, View } from "react-native";
+import { Modal, Pressable, Text, View } from "react-native";
 import donateShowStatusStyle from "@styles/components/donateShowStatusStyle";
 import Icon from "@components/Icon";
 
@@ -25,7 +25,10 @@ export default DonateShowStatus = (props) => {
       transparent={true}
       onRequestClose={() => props.reqClose()}
     >
-      <View style={styles.contentContainer}>
+      <Pressable
+        onPress={() => props.reqClose()}
+        style={styles.contentContainer}
+      >
         <View style={styles.container}>
           <View style={styles.iconContainer}>
             <Icon iconName={`status-${props.status}`} />
@@ -35,7 +38,7 @@ export default DonateShowStatus = (props) => {
             {texts[props.status].description}
           </Text>
         </View>
-      </View>
+      </Pressable>
     </Modal>
   );
 };

@@ -7,7 +7,7 @@ export default imageGalleryViewerStyle = () =>
       flex: 1,
       width: 328,
       padding: 4,
-      maxHeight: 191,
+      // maxHeight: 191,
       backgroundColor: "blue",
       borderRadius: 8,
     },
