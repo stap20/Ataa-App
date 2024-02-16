@@ -4,23 +4,16 @@ export default class User {
   static phoneNumber = "";
   static password = "";
   static profileImage = null;
-  static isAdmin = false;
+  static role = "moderator";
   static isLoggedIn = false;
 
-  static login(
-    name,
-    email,
-    phoneNumber,
-    profileImage,
-    password,
-    isAdmin = false
-  ) {
+  static login(name, email, phoneNumber, profileImage, password, role) {
     User.name = name;
     User.email = email;
     User.password = password;
     User.phoneNumber = phoneNumber;
     User.profileImage = profileImage;
-    User.isAdmin = isAdmin;
+    User.role = role;
     User.isLoggedIn = true;
 
     console.log(`${User.name} logged in.`);
@@ -30,7 +23,7 @@ export default class User {
     console.log(`${User.username} logged out.`);
     User.username = "";
     User.email = "";
-    User.isAdmin = false;
+    User.role = "user";
     User.isLoggedIn = false;
 
     User.name = "";
@@ -38,7 +31,7 @@ export default class User {
     User.password = "";
     User.phoneNumber = "";
     User.profileImage = "";
-    User.isAdmin = false;
+    User.role = "user";
     User.isLoggedIn = false;
   }
 

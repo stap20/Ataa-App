@@ -11,6 +11,10 @@ const texts = {
     title: "فشلت العملية",
     description: "انتهت هذه الفترة يمكنك التبرع في الفترة القادمة!",
   },
+  failed_storage: {
+    title: "فشلت العملية",
+    description: "لا توجد مساحة كافية في المخزن!",
+  },
 };
 
 export default DonateShowStatus = (props) => {

@@ -7,6 +7,7 @@ export default function StatusChip({ status = "accepted" }) {
   const statusTitles = {
     accepted: "مقبول",
     declined: "مرفوض",
+    canceled: "ملغي",
     pending: "قيد الانتظار",
   };
 

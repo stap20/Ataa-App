@@ -10,6 +10,7 @@ export default function HistoryView({ data, refreshFunction }) {
   const [refreshing, setRefreshing] = useState(false);
   const [showFullView, setShowFullView] = useState(false);
   const [images, setImages] = useState([]);
+  const [selectedDescription, setSelectedDescription] = useState("0");
   const styles = historyStyles();
 
   const onRefresh = () => {
@@ -21,7 +22,8 @@ export default function HistoryView({ data, refreshFunction }) {
     });
   };
 
-  const onCard = () => {
+  const onCard = (index) => {
+    setSelectedDescription(data[index].donationDescription);
     setShowFullView(true);
   };
 
@@ -44,9 +46,9 @@ export default function HistoryView({ data, refreshFunction }) {
     <View style={styles.container}>
       <FlashList
         data={data}
-        renderItem={({ item }) => (
+        renderItem={({ item, index }) => (
           <DonateCard
-            onCard={() => onCard()}
+            onCard={() => onCard(index)}
             style={styles.cardContainer}
             data={item}
           />
@@ -66,7 +68,7 @@ export default function HistoryView({ data, refreshFunction }) {
           setShowFullView(false);
         }}
         images={images}
-        description={"شسيشسيس"} // API
+        description={selectedDescription} // API
       />
     </View>
   );

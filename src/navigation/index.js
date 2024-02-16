@@ -2,11 +2,12 @@ import { createStackNavigator } from "@react-navigation/stack";
 import BottomNavigation from "./BottomNavigation";
 import LoginScreen from "@screens/start/LoginScreen";
 import SignupScreen from "@screens/start/SignupScreen";
+import { User } from "@utils";
 
 const Stack = createStackNavigator();
 
 function BottomNav() {
-  return <BottomNavigation userType={"user"} />;
+  return <BottomNavigation userType={User.role} />;
 }
 export default function Navigation() {
   return (

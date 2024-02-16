@@ -13,10 +13,11 @@ export default function DonateCard({
   onCancel = null,
   onAccept = null,
   onDecline = null,
-  onCard = null,
+  onCard = () => {},
 }) {
   const styles = donateCardStyles();
   const {
+    id="2342342342342",
     donatorName = "أحمد صالح",
     donationNumber = "#123456",
     quantity = 10,
@@ -28,10 +29,7 @@ export default function DonateCard({
   const isAction = onCancel !== null || onAccept !== null || onDecline !== null;
 
   return (
-    <TouchableOpacity
-      onPress={() => onCard()}
-      style={[styles.container, style]}
-    >
+    <TouchableOpacity onPress={onCard} style={[styles.container, style]}>
       <View style={styles.rowContainer}>
         <Donator
           donatorName={donatorName}
@@ -64,7 +62,7 @@ export default function DonateCard({
             onCancel={onCancel}
             onAccept={onAccept}
             onDecline={onDecline}
-            donationNumber={donationNumber}
+            id={id}
           />
         </View>
       )}

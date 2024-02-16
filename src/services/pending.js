@@ -1,63 +1,97 @@
-export default {
-  getPendingDonations: () => {
-    return [
-      {
-        donatorName: "أحمد صالح",
-        donationNumber: "#123456",
-        quantity: 10,
-        status: "pending",
-        date: new Date(),
-        profileImg: null,
-      },
-      {
-        donatorName: "أحمد صالح",
-        donationNumber: "#123457",
-        quantity: 10,
-        status: "pending",
-        date: new Date(),
-        profileImg: null,
-      },
-      {
-        donatorName: "أحمد صالح",
-        donationNumber: "#123458",
-        quantity: 10,
-        status: "pending",
-        date: new Date(),
-        profileImg: null,
-      },
-      {
-        donatorName: "أحمد صالح",
-        donationNumber: "#123459",
-        quantity: 10,
-        status: "pending",
-        date: new Date(),
-        profileImg: null,
-      },
-      {
-        donatorName: "أحمد صالح",
-        donationNumber: "#123460",
-        quantity: 10,
-        status: "pending",
-        date: new Date(),
-        profileImg: null,
-      },
-      {
-        donatorName: "أحمد صالح",
-        donationNumber: "#123461",
-        quantity: 10,
-        status: "pending",
-        date: new Date(),
-        profileImg: null,
-      },
-    ];
-  },
-  cancelPendingDonation: ()=>{
+import axios from "axios";
+import { formatDonationNumber } from "@utils";
+import API_URL from "./API_URL";
 
+export default {
+  getPendingDonations: async () => {
+    try {
+      const response = await axios.post(
+        API_URL + "donation/getPendingDonations"
+      );
+
+      if (response.data.success) {
+        return response.data.data.map((item) => {
+          const { date, donationNumber, name, _id, ...other } = item;
+
+          return {
+            date: new Date(date),
+            donationNumber: formatDonationNumber(donationNumber),
+            donatorName: name,
+            id: _id,
+            ...other,
+          };
+        });
+      } else {
+        return [];
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      return [];
+    }
   },
-  acceptPendingDonation: ()=>{
-    
+
+  cancelPendingDonation: async (id) => {
+    try {
+      console.log(id);
+      const data = { id };
+      const response = await axios.post(
+        API_URL + "donation/cancelDonation",
+        data,
+        {
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+        }
+      );
+
+      console.log(response.data);
+
+      return response.data.success;
+    } catch (error) {
+      console.error("Error:", error);
+      return false;
+    }
   },
-  declinePendingDonation: ()=>{
-    
-  }
+  acceptPendingDonation: async (id) => {
+    try {
+      const data = { id };
+      const response = await axios.post(
+        API_URL + "donation/acceptDonation",
+        data,
+        {
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+        }
+      );
+
+      if (response.data.success) {
+        return true;
+      }
+
+      return response.data.isSpaceIssue;
+    } catch (error) {
+      console.error("Error:", error);
+      return false;
+    }
+  },
+  declinePendingDonation: async (id) => {
+    try {
+      const data = { id };
+      const response = await axios.post(
+        API_URL + "donation/declineDonation",
+        data,
+        {
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+        }
+      );
+
+      return response.data.success;
+    } catch (error) {
+      console.error("Error:", error);
+      return false;
+    }
+  },
 };

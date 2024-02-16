@@ -17,7 +17,7 @@ const categoriesData = ["cloth", "school", "games"];
 export default function DonateView({}) {
   const [showDonateStatus, setShowDonateStatus] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(0);
-  const [selectedQuantity, setSelectedQuantity] = useState(10);
+  const [selectedQuantity, setSelectedQuantity] = useState(1);
   const [images, setImages] = useState([]);
   const [description, setDescription] = useState("");
   const styles = donateStyles();

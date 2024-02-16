@@ -11,6 +11,10 @@ export default statusChipStyles = (status) => {
       color: Theme.colors.statusDeclinedColor,
       backgroundColorDegree: "1A",
     },
+    canceled: {
+      color: Theme.colors.statusDeclinedColor,
+      backgroundColorDegree: "1A",
+    },
     pending: {
       color: Theme.colors.statusPendingColor,
       backgroundColorDegree: "33",

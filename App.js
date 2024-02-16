@@ -17,7 +17,7 @@ export default function App() {
     "+97412345678",
     null,
     "tyyyuyuyuyuy",
-    false
+    'user'
   );
 
   return (

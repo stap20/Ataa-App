@@ -1,41 +1,55 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import LayoutManager from "./LayoutManager";
 import { pendingHandler } from "@services";
-const data = pendingHandler.getPendingDonations();
+import { User } from "@utils";
 
 export default function PendingScreen() {
-  const [donationData, setDonationData] = useState(data);
+  const [donationData, setDonationData] = useState([]);
 
-  const filterData = (number) => {
-    const updatedData = donationData.filter(
-      (item) => item.donationNumber !== number
-    );
-    setDonationData(updatedData);
+  useEffect(() => {
+    pendingHandler.getPendingDonations().then((result) => {
+      setDonationData(result);
+    });
+  }, []);
+
+  const filterData = (id) => {
+    refreshFunction();
   };
 
-  const onCancel = (number) => {
-    filterData(number);
-    pendingHandler.cancelPendingDonation();
+  const onCancel = (id) => {
+    pendingHandler.cancelPendingDonation(id).then((result) => {
+      if (result) {
+        filterData(id);
+      }
+    });
   };
 
-  const onAccept = (number) => {
-    filterData(number);
-    pendingHandler.acceptPendingDonation();
+  const onAccept = (id) => {
+    pendingHandler.acceptPendingDonation(id).then((result) => {
+      if (result) {
+        filterData(id);
+      }
+    });
   };
 
-  const onDecline = (number) => {
-    filterData(number);
-    pendingHandler.declinePendingDonation();
+  const onDecline = (id) => {
+    pendingHandler.declinePendingDonation(id).then((result) => {
+      if (result) {
+        filterData(id);
+      }
+    });
   };
 
   const refreshFunction = async () => {
-    setDonationData(pendingHandler.getPendingDonations());
+    pendingHandler.getPendingDonations().then((result) => {
+      setDonationData(result);
+    });
   };
 
   return (
     <LayoutManager
       data={donationData}
-      isAdmin={false}
+      isAdmin={User.role != "user"}
       onCancel={onCancel}
       onAccept={onAccept}
       onDecline={onDecline}

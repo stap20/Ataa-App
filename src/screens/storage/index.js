@@ -1,18 +1,28 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import LayoutManager from "./LayoutManager";
 import { storageHnadler } from "@services";
-const data = storageHnadler.getStorageData();
 
 export default function StorageScreen() {
-  const [storageData, setStorageData] = useState(data);
+  const [storageData, setStorageData] = useState([]);
+
+  useEffect(() => {
+    storageHnadler.getStorageData().then((result) => {
+      setStorageData(result);
+    });
+  }, []);
 
   const refreshFunction = async () => {
-    setStorageData(storageHnadler.getStorageData());
+    storageHnadler.getStorageData().then((result) => {
+      setStorageData(result);
+    });
   };
 
   const onDelete = () => {
-    storageHnadler.emptyStorage();
-    setStorageData([]);
+    storageHnadler.emptyStorage().then((result) => {
+      if (result) {
+        refreshFunction();
+      }
+    });
   };
   return (
     <LayoutManager
