@@ -3,6 +3,7 @@ import BottomNavigation from "./BottomNavigation";
 import LoginScreen from "@screens/start/LoginScreen";
 import SignupScreen from "@screens/start/SignupScreen";
 import { User } from "@utils";
+import { View } from "react-native";
 
 const Stack = createStackNavigator();
 

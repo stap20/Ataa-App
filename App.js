@@ -36,14 +36,14 @@ export default function App() {
     return <Text>Loading</Text>;
   }
 
-  User.login(
-    "احمد صالح",
-    "AhmedSaleh@gmail.com",
-    "+97412345678",
-    null,
-    "tyyyuyuyuyuy",
-    "user"
-  );
+  // User.login(
+  //   "احمد صالح",
+  //   "AhmedSaleh@gmail.com",
+  //   "+97412345678",
+  //   null,
+  //   "tyyyuyuyuyuy",
+  //   "user"
+  // );
 
   return (
     <View
