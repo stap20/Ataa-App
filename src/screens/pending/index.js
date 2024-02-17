@@ -13,6 +13,7 @@ export default function PendingScreen() {
       setShowLoading(false);
       setDonationData(result);
     });
+    // s
   }, []);
 
   const filterData = (id) => {

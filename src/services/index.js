@@ -5,6 +5,7 @@ import editMessageHandler from "./editMessage";
 import storageHnadler from "./storage";
 import userHandler from "./user";
 import moderatorHandler from "./moderator";
+import donationHandler from "./donation";
 
 export {
   historyHandler,
@@ -14,4 +15,5 @@ export {
   storageHnadler,
   userHandler,
   moderatorHandler,
+  donationHandler,
 };

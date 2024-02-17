@@ -1,4 +1,4 @@
-import { formatDonationNumber } from "@utils";
+import { formatDonationNumber, ToastHandler } from "@utils";
 import API from "./API";
 
 export default {
@@ -30,7 +30,7 @@ export default {
   emptyStorage: async () => {
     try {
       const response = await API.post("/donation/emptyStorageDonations");
-
+      ToastHandler.showToast(response.data.message);
       return response.data.success;
     } catch (error) {
       console.error("Error:", error);

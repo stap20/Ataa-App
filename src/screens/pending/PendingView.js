@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { View, RefreshControl } from "react-native";
 import { pendingStyles } from "@styles/screens/pending";
 import { FlashList } from "@shopify/flash-list";
 import { DonateCard } from "@components";
 import { Theme } from "@theme";
 import EmptyPageHandler from "@components/EmptyPageHandler";
+import DonationViewModal from "@components/DonationViewModal";
 
 export default function PendingView({
   data,
@@ -15,6 +16,9 @@ export default function PendingView({
   refreshFunction,
 }) {
   const [refreshing, setRefreshing] = useState(false);
+  const [showFullView, setShowFullView] = useState(false);
+  const [images, setImages] = useState([]);
+  const [selectedDescription, setSelectedDescription] = useState("0");
   const styles = pendingStyles();
 
   const onRefresh = () => {
@@ -25,15 +29,27 @@ export default function PendingView({
       setRefreshing(false);
     });
   };
+
+  const onCard = (index) => {
+    setSelectedDescription(data[index].donationDescription);
+    setImages(data[index].imagesList);
+    setShowFullView(true);
+  };
+
+  useEffect(() => {
+    onRefresh();
+  }, []);
+
   return (
     <View style={styles.container}>
-      {!!data ? (
+      {data.length == 0 ? (
         <EmptyPageHandler />
       ) : (
         <FlashList
           data={data}
-          renderItem={({ item }) => (
+          renderItem={({ item, index }) => (
             <DonateCard
+              onCard={() => onCard(index)}
               style={styles.cardContainer}
               data={item}
               onCancel={!isAdmin ? onCancel : null}
@@ -51,6 +67,14 @@ export default function PendingView({
           }
         />
       )}
+      <DonationViewModal
+        status={showFullView}
+        onCancel={() => {
+          setShowFullView(false);
+        }}
+        images={images} // uri
+        description={selectedDescription} // API
+      />
     </View>
   );
 }

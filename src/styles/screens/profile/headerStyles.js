@@ -5,7 +5,7 @@ export default headerStyles = () => {
   return StyleSheet.create({
     container: {
       flex: 1,
-      flexDirection: "row-reverse", // handle arabic
+      flexDirection: "row", // handle arabic
     },
 
     profileImg: {
@@ -15,6 +15,20 @@ export default headerStyles = () => {
       borderRadius: 60,
       zIndex: 5,
       backgroundColor: Theme.backgroundColors.profileContainer,
+    },
+
+    logOutIconContainer: {
+      position: "absolute",
+      // width: 35,
+      height: 35,
+      justifyContent: "center",
+      zIndex: 5,
+      // backgroundColor: "red",
+    },
+
+    logOutText: {
+      fontFamily: Theme.typography.changa_500,
+      color: Theme.colors.primary,
     },
 
     titleContainer: {

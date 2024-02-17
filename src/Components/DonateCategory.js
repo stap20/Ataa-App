@@ -1,5 +1,5 @@
 import { Text, TouchableOpacity, View } from "react-native";
-import { donateTypes } from "@utils";
+import { User } from "@utils";
 import { Theme } from "@theme";
 import Icon from "@components/Icon";
 import donateCategoryStyles from "@styles/components/donateCategoryStyles";
@@ -10,12 +10,12 @@ export default DonateCategory = ({
   onSelect,
   selected = false,
 }) => {
-  const data = donateTypes[type];
+  const data = User.donationTypes[type];
   const styles = donateCategoryStyles(selected);
 
   return (
     <TouchableOpacity
-      onPress={() => onSelect(index)}
+      onPress={() => onSelect({ index: index, data: data._id })}
       style={styles.categoryContainer}
     >
       <View style={styles.categoryIconContainer}>

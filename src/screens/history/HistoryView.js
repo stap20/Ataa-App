@@ -25,27 +25,17 @@ export default function HistoryView({ data, refreshFunction }) {
 
   const onCard = (index) => {
     setSelectedDescription(data[index].donationDescription);
+    setImages(data[index].imagesList);
     setShowFullView(true);
   };
 
   useEffect(() => {
-    const x = async () => {
-      let out = [];
-      const imgs = [{ image: uri }]; // API
-      for (let index = 0; index < imgs.length; index++) {
-        const img = imgs[index];
-        out.push(img.image);
-      }
-
-      setImages(out);
-    };
-
-    x();
+    onRefresh();
   }, []);
 
   return (
     <View style={styles.container}>
-      {!!data ? (
+      {data.length == 0 ? (
         <EmptyPageHandler />
       ) : (
         <FlashList
@@ -72,7 +62,7 @@ export default function HistoryView({ data, refreshFunction }) {
         onCancel={() => {
           setShowFullView(false);
         }}
-        images={images}
+        images={images} // uri
         description={selectedDescription} // API
       />
     </View>

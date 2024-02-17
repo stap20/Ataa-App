@@ -241,6 +241,13 @@ const iconData = {
     height: 52,
   },
 
+  "status-failed_storage": {
+    type: "svg",
+    source: require("@assets/icons/failed.js"),
+    width: 52,
+    height: 52,
+  },
+
   "donate-plus": {
     type: "svg",
     source: require("@assets/icons/plus.js"),

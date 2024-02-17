@@ -8,6 +8,7 @@ export default class User {
   static profileImage = null;
   static role = "";
   static isLoggedIn = false;
+  static donationTypes = [];
 
   static login({ name, email, phoneNumber, profileImage, password, role }) {
     User.name = name;
@@ -29,6 +30,16 @@ export default class User {
     User.profileImage = profileImage;
   }
 
+  static setDonationTypes(types) {
+    var donationTypes = {};
+    types.map((item) => {
+      const { type, ...other } = item;
+      donationTypes[type] = other;
+    });
+    User.donationTypes = donationTypes;
+    // console.log(User.donationTypes);
+  }
+
   static getData() {
     const userData = {
       name: User.name,
@@ -42,11 +53,7 @@ export default class User {
   }
 
   static logout() {
-    console.log(`${User.username} logged out.`);
-    User.username = "";
-    User.email = "";
-    User.role = "";
-    User.isLoggedIn = false;
+    console.log(`${User.name} logged out.`);
 
     User.name = "";
     User.email = "";

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { RefreshControl, View } from "react-native";
 import { storageStyles } from "@styles/screens/storage";
 import { FlashList } from "@shopify/flash-list";
@@ -8,6 +8,9 @@ import EmptyPageHandler from "@components/EmptyPageHandler";
 
 export default function StorageView({ data, refreshFunction }) {
   const [refreshing, setRefreshing] = useState(false);
+  const [showFullView, setShowFullView] = useState(false);
+  const [images, setImages] = useState([]);
+  const [selectedDescription, setSelectedDescription] = useState("0");
   const styles = storageStyles();
 
   const onRefresh = () => {
@@ -18,16 +21,28 @@ export default function StorageView({ data, refreshFunction }) {
       setRefreshing(false);
     });
   };
+  const onCard = (index) => {
+    setSelectedDescription(data[index].donationDescription);
+    setImages(data[index].imagesList);
+    setShowFullView(true);
+  };
+  useEffect(() => {
+    onRefresh();
+  }, []);
 
   return (
     <View style={styles.container}>
-      {!!data ? (
+      {data.length == 0 ? (
         <EmptyPageHandler />
       ) : (
         <FlashList
           data={data}
-          renderItem={({ item }) => (
-            <DonateCard style={styles.cardContainer} data={item} />
+          renderItem={({ item, index }) => (
+            <DonateCard
+              style={styles.cardContainer}
+              onCard={() => onCard(index)}
+              data={item}
+            />
           )}
           estimatedItemSize={142}
           refreshControl={
@@ -39,6 +54,14 @@ export default function StorageView({ data, refreshFunction }) {
           }
         />
       )}
+      <DonationViewModal
+        status={showFullView}
+        onCancel={() => {
+          setShowFullView(false);
+        }}
+        images={images} // uri
+        description={selectedDescription} // API
+      />
     </View>
   );
 }

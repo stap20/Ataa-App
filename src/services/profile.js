@@ -2,7 +2,7 @@ import API_URL from "./API_URL";
 import API from "./API";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Platform } from "react-native";
-import { User } from "@utils";
+import { User, ToastHandler } from "@utils";
 
 export default {
   editProfile: async ({
@@ -61,7 +61,7 @@ export default {
         await AsyncStorage.setItem("user", JSON.stringify(response.data.data));
         User.updateData(response.data.data);
       }
-
+      ToastHandler.showToast(response.data.message);
       return response.data.success;
     } catch (error) {
       console.error("Upload failed:", error);
@@ -104,7 +104,7 @@ export default {
           type: `image/${extension}`,
         });
       }
-      
+
       Object.keys(data).forEach((key) => {
         formData.append(key, data[key]);
       });
@@ -114,7 +114,7 @@ export default {
           "Content-Type": "multipart/form-data",
         },
       });
-
+      ToastHandler.showToast(response.data.message);
       return response.data.success;
     } catch (error) {
       console.error("Upload failed:", error);

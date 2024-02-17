@@ -9,14 +9,15 @@ import {
 } from "react-native";
 import { ImageGalleryViewer, DonateCategory, Icon } from "@components";
 import { donateStyles } from "@styles/screens/donate";
-import { ImagePickerHandler } from "@utils";
-import DonateShowStatus from "@components/DonateShowStatus";
+import { ImagePickerHandler, User } from "@utils";
 
 const categoriesData = ["cloth", "school", "games"];
 
-export default function DonateView({}) {
-  const [showDonateStatus, setShowDonateStatus] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState(0);
+export default function DonateView({ onSave }) {
+  const [selectedCategory, setSelectedCategory] = useState({
+    index: 0,
+    data: User.donationTypes["cloth"]._id,
+  });
   const [selectedQuantity, setSelectedQuantity] = useState(1);
   const [images, setImages] = useState([]);
   const [description, setDescription] = useState("");
@@ -29,7 +30,7 @@ export default function DonateView({}) {
         type={item}
         index={index}
         onSelect={setSelectedCategory}
-        selected={index === selectedCategory}
+        selected={index === selectedCategory.index}
       />
     );
   };
@@ -48,8 +49,21 @@ export default function DonateView({}) {
   };
 
   const onDonate = () => {
-    // API
-    setShowDonateStatus(true);
+    console.log(selectedCategory.data);
+    const data = {
+      imagesList: images,
+      donationDescription: description,
+      quantity: selectedQuantity,
+      donationTypeId: selectedCategory.data,
+    };
+    onSave(data);
+    setSelectedCategory({
+      index: 0,
+      data: null,
+    });
+    setSelectedQuantity(1);
+    setImages([]);
+    setDescription("");
   };
 
   return (
@@ -132,11 +146,6 @@ export default function DonateView({}) {
           <Text style={styles.donateBtnText}>{`تبرع`}</Text>
         </TouchableOpacity>
       </View>
-      <DonateShowStatus
-        showStatus={showDonateStatus}
-        reqClose={() => setShowDonateStatus(false)}
-        status={"success"}
-      />
     </View>
   );
 }

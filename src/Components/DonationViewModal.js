@@ -3,6 +3,7 @@ import donationViewModalStyle from "@styles/components/donationViewModalStyle";
 import Icon from "@components/Icon";
 import Swiper from "react-native-swiper";
 import { useEffect, useState } from "react";
+import API_URL from "@services/API_URL";
 
 export default DonationViewModal = ({
   status,
@@ -11,6 +12,7 @@ export default DonationViewModal = ({
   description,
 }) => {
   const styles = donationViewModalStyle();
+  const apiPrefix = API_URL + "/download/";
 
   return (
     <Modal
@@ -26,16 +28,21 @@ export default DonationViewModal = ({
           <Text style={styles.descriptionText}>{description}</Text>
         </View>
         <View style={styles.imageSwiperContainer}>
-          <Swiper containerStyle={styles.wrapper} showsButtons={true}>
-            {images.map((image, index) => {
-              console.log(image);
-              return (
-                <View key={index} style={styles.slide}>
-                  <Image style={styles.image} source={{ uri: image }} />
-                </View>
-              );
-            })}
-          </Swiper>
+          {images.length > 0 && (
+            <Swiper containerStyle={styles.wrapper} showsButtons={true}>
+              {images.map((image, index) => {
+                // console.log(image);
+                return (
+                  <View key={index} style={styles.slide}>
+                    <Image
+                      style={styles.image}
+                      source={{ uri: apiPrefix + image }}
+                    />
+                  </View>
+                );
+              })}
+            </Swiper>
+          )}
         </View>
         <TouchableOpacity
           style={styles.closeButtonContainer}

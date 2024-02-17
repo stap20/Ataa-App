@@ -7,8 +7,10 @@ import { signupStyle } from "@styles/screens/start";
 import { FormText } from "@components";
 
 import { userHandler } from "@services";
-
+import { LoadingContextHandler } from "@utils";
 export default SignupScreen = () => {
+  const { showLoading, setShowLoading } =
+    LoadingContextHandler.useLoadingContext();
   const [agreed, setAgreed] = useState(false);
 
   const styles = signupStyle(agreed);
@@ -37,6 +39,8 @@ export default SignupScreen = () => {
   };
   const onSignup = () => {
     if (isBtnEnable()) {
+      setShowLoading(true);
+
       const data = {
         name: fullname,
         phoneNumber: phoneNumber,
@@ -44,8 +48,8 @@ export default SignupScreen = () => {
         email: email,
         password: password,
       };
-
       userHandler.signup(data).then((res) => {
+        setShowLoading(false);
         if (res) {
           onLogin();
         }

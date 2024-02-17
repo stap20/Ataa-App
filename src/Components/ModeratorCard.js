@@ -15,7 +15,7 @@ export default function ModeratorCard({
     id,
     moderatorName = "أحمد صالح",
     moderatorNumber = "+974 8911 567 234",
-    profileImg = null,
+    profileImage = null,
   } = data;
 
   return (
@@ -23,7 +23,7 @@ export default function ModeratorCard({
       <View style={styles.moderatorDataRow}>
         <View style={styles.moderatorContainer}>
           <View style={styles.moderatorImage}>
-            <ProfileImage profileImg={profileImg} width={50} height={50} />
+            <ProfileImage profileImage={profileImage} width={50} height={50} />
           </View>
 
           <View style={styles.moderatorDetailsContainer}>
@@ -37,11 +37,7 @@ export default function ModeratorCard({
         <TouchableOpacity
           style={[styles.actionBtn, styles.editBtn]}
           onPress={() => {
-            onEdit(id, {
-              moderatorName,
-              moderatorNumber,
-              profileImg,
-            });
+            onEdit(id);
           }}
         >
           <Text style={styles.btnText}>{"تعديل"}</Text>

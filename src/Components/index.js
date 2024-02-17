@@ -7,6 +7,7 @@ import ProfileImage from "./ProfileImage";
 import ImageGalleryViewer from "./imageGalleryViewer";
 import DonateCategory from "./DonateCategory";
 import DonationViewModal from "./DonationViewModal";
+import ProfileEditModal from "./ProfileEditModal";
 
 export {
   Icon,
@@ -18,4 +19,5 @@ export {
   ImageGalleryViewer,
   DonationViewModal,
   DonateCategory,
+  ProfileEditModal,
 };

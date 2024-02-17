@@ -9,7 +9,7 @@ export default function ProfileImage({
   height = 35,
 }) {
   const styles = profileImageStyles();
-
+  // console.log(profileImage);
   const isLocal = profileImage !== null && profileImage.includes("file://");
   const apiPrefix = API_URL + "/download/";
 

@@ -1,17 +1,16 @@
 import { useEffect, useState } from "react";
 import LayoutManager from "./LayoutManager";
 import { moderatorHandler } from "@services";
-import { LoadingContextHandler } from "@utils";
+import { ProfileEditModal } from "@components";
+
 export default function ModeratorScreen() {
   const [moderatorsData, setModeratorData] = useState([]);
-  const { showLoading, setShowLoading } =
-    LoadingContextHandler.useLoadingContext();
+  const [isEdit, setIsEdit] = useState(false);
+  const [currentId, setCurrentId] = useState(null);
 
   useEffect(() => {
-    setShowLoading(true);
     moderatorHandler.getModerators().then((result) => {
       setModeratorData(result);
-      setShowLoading(false);
     });
   }, []);
 
@@ -22,25 +21,32 @@ export default function ModeratorScreen() {
   };
 
   const onDelete = (id) => {
-    setShowLoading(true);
     moderatorHandler.deleteModerator(id).then((result) => {
-      setShowLoading(false);
       if (result) {
         refreshFunction();
       }
     });
   };
 
-  // const onEdit = (id) => {
-  //   console.log("onEdit");
-  // };
+  const showEdit = (id) => {
+    console.log(id);
+    setCurrentId(id);
+    setIsEdit(true);
+  };
 
   return (
-    <LayoutManager
-      data={moderatorsData}
-      refreshFunction={refreshFunction}
-      onDelete={onDelete}
-      // onEdit={onEdit}
-    />
+    <>
+      <LayoutManager
+        data={moderatorsData}
+        refreshFunction={refreshFunction}
+        onDelete={onDelete}
+        onEdit={showEdit}
+      />
+      <ProfileEditModal
+        status={isEdit}
+        id={currentId}
+        onCancel={() => setIsEdit(false)}
+      />
+    </>
   );
 }

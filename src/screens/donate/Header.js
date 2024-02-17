@@ -1,6 +1,7 @@
 import { Text, View } from "react-native";
 import { headerStyles } from "@styles/screens/donate";
 import { ProfileImage } from "@components";
+
 export default function Header({ title, profileImage = null }) {
   const styles = headerStyles();
 

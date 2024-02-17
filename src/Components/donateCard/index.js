@@ -24,6 +24,7 @@ export default function DonateCard({
     status = "accepted",
     date = new Date(),
     profileImage = null,
+    type = "cloth",
   } = data;
 
   const isAction = onCancel !== null || onAccept !== null || onDecline !== null;
@@ -36,7 +37,7 @@ export default function DonateCard({
           donationNumber={donationNumber}
           profileImage={profileImage}
         />
-        <Donation quantity={quantity} type={"cloth"} />
+        <Donation quantity={quantity} type={type} />
       </View>
       <View
         style={[styles.statusRowContainer, { marginBottom: isAction ? 16 : 0 }]}

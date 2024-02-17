@@ -1,26 +1,41 @@
 import { useEffect, useState } from "react";
 import LayoutManager from "./LayoutManager";
-import { historyHandler } from "@services";
-import { LoadingContextHandler } from "@utils";
-export default function DonateScreen() {
-  const [donationData, setDonationData] = useState([]);
-  const { showLoading, setShowLoading } =
-    LoadingContextHandler.useLoadingContext();
-  useEffect(() => {
-    setShowLoading(true);
-    historyHandler.getHistoryDonations().then((result) => {
-      setShowLoading(false);
-      setDonationData(result);
-    });
-  }, []);
+import { donationHandler } from "@services";
+import { useNavigation } from "@react-navigation/native";
+import DonateShowStatus from "@components/DonateShowStatus";
 
-  const refreshFunction = async () => {
-    historyHandler.getHistoryDonations().then((result) => {
-      setDonationData(result);
+export default function DonateScreen() {
+  const [showDonateStatus, setShowDonateStatus] = useState(false);
+  const [status, setStatus] = useState(null);
+
+  const navigation = useNavigation();
+  const onSave = (data) => {
+    // console.log(data);
+    donationHandler.createDonation(data).then((isIssue) => {
+      // console.log(isIssue);
+
+      if (!isIssue) {
+        setStatus("success");
+      } else {
+        setStatus("failed_storage");
+      }
+      setShowDonateStatus(true);
     });
   };
 
   return (
-    <LayoutManager data={donationData} refreshFunction={refreshFunction} />
+    <>
+      <LayoutManager onSave={onSave} />
+      {showDonateStatus && (
+        <DonateShowStatus
+          showStatus={showDonateStatus}
+          reqClose={() => {
+            setShowDonateStatus(false);
+            navigation.navigate("waiting");
+          }}
+          status={status}
+        />
+      )}
+    </>
   );
 }

@@ -7,13 +7,18 @@ import OnBoardScreen from "./OnBoardScreen";
 import { Icon, FormText } from "@components";
 import { Storage } from "@utils";
 import { userHandler } from "@services";
+import { LoadingContextHandler } from "@utils";
 
 export default LoginScreen = () => {
+  const { showLoading, setShowLoading } =
+    LoadingContextHandler.useLoadingContext();
+
   const [intro, setIntro] = useState(true);
   const [unlockBtn, setUnlockBtn] = useState(false);
   const styles = loginStyle();
   const phonenumberInput = useRef(PhoneInput);
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [resetInputs, setResetInputs] = useState(0);
   const [password, setPassword] = useState("");
   const navigation = useNavigation();
 
@@ -25,17 +30,26 @@ export default LoginScreen = () => {
     }
   });
 
+  useEffect(() => {
+    setResetInputs(0);
+  }, []);
+
   const onSignup = () => {
     navigation.navigate("signup");
   };
 
   const onLogin = () => {
+    setShowLoading(true);
+    setResetInputs(1);
+    setPassword("");
+    setPhoneNumber("");
     const data = {
       phoneNumber: phoneNumber,
       countryCode: phonenumberInput.current.getCallingCode(),
       password: password,
     };
     userHandler.login(data).then((result) => {
+      setShowLoading(false);
       if (result) {
         navigation.navigate("main");
       }
@@ -62,6 +76,7 @@ export default LoginScreen = () => {
           <View style={styles.inputs}>
             <View style={[styles.inputContainer, styles.formTextContaine]}>
               <PhoneInput
+                key={resetInputs}
                 maxLength={8}
                 ref={phonenumberInput}
                 defaultCode={"QA"}
@@ -70,6 +85,7 @@ export default LoginScreen = () => {
                 textInputStyle={styles.inputsText}
                 textContainerStyle={styles.inputTextContainer}
                 onChangeText={setPhoneNumber}
+                defaultValue={phoneNumber}
                 value={phoneNumber}
               />
             </View>

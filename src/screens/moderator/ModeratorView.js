@@ -4,8 +4,7 @@ import { moderatorStyles } from "@styles/screens/moderator";
 import { FlashList } from "@shopify/flash-list";
 import { ModeratorCard } from "@components";
 import { Theme } from "@theme";
-import ProfileEditModal from "@components/ProfileEditModal";
-import EmptyPageHandler from "@components/EmptyPageHandler";
+import ProfileEditModal from "../../components/ProfileEditModal";
 
 export default function ModeratorView({
   data,
@@ -14,8 +13,6 @@ export default function ModeratorView({
   onEdit,
 }) {
   const [refreshing, setRefreshing] = useState(false);
-  const [isEdit, setIsEdit] = useState(false);
-  const [currentEdit, setCurrentEdit] = useState(null);
   const styles = moderatorStyles();
 
   const onRefresh = () => {
@@ -29,36 +26,24 @@ export default function ModeratorView({
 
   return (
     <View style={styles.container}>
-      {!!data ? (
-        <EmptyPageHandler />
-      ) : (
-        <FlashList
-          data={data}
-          renderItem={({ item }) => (
-            <ModeratorCard
-              style={styles.cardContainer}
-              data={item}
-              onDelete={(id) => onDelete(id)}
-              onEdit={(id, data) => {
-                setIsEdit(true);
-                setCurrentEdit(data);
-              }}
-            />
-          )}
-          estimatedItemSize={142}
-          refreshControl={
-            <RefreshControl
-              refreshing={refreshing}
-              onRefresh={onRefresh}
-              colors={[Theme.colors.primary]}
-            />
-          }
-        />
-      )}
-      <ProfileEditModal
-        status={isEdit}
-        currentEdit={currentEdit}
-        onCancel={() => setIsEdit(false)}
+      <FlashList
+        data={data}
+        renderItem={({ item }) => (
+          <ModeratorCard
+            style={styles.cardContainer}
+            data={item}
+            onDelete={onDelete}
+            onEdit={onEdit}
+          />
+        )}
+        estimatedItemSize={142}
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+            colors={[Theme.colors.primary]}
+          />
+        }
       />
     </View>
   );

@@ -1,4 +1,4 @@
-import { formatDonationNumber } from "@utils";
+import { formatDonationNumber, ToastHandler } from "@utils";
 import API from "./API";
 
 export default {
@@ -37,7 +37,7 @@ export default {
 
       const data = { id };
       const response = await API.post("/donation/cancelDonation", data, config);
-
+      ToastHandler.showToast(response.data.message);
       return response.data.success;
     } catch (error) {
       console.error("Error:", error);
@@ -56,9 +56,10 @@ export default {
       const response = await API.post("/donation/acceptDonation", data, config);
 
       if (response.data.success) {
+        ToastHandler.showToast(response.data.message);
         return true;
       }
-
+      ToastHandler.showToast(response.data.message);
       return response.data.isSpaceIssue;
     } catch (error) {
       console.error("Error:", error);
@@ -79,7 +80,7 @@ export default {
         data,
         config
       );
-
+      ToastHandler.showToast(response.data.message);
       return response.data.success;
     } catch (error) {
       console.error("Error:", error);
