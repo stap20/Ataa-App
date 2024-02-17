@@ -1,8 +1,9 @@
-import { View, StatusBar, Text } from "react-native";
+import { View, StatusBar, Text, TouchableOpacity } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import Navigation from "@src/navigation";
 import { useFonts } from "expo-font";
 import { fonts, User } from "@utils";
+import ToastHandler from "./src/utils/ToastHandler";
 
 export default function App() {
   let [fontsLoaded] = useFonts(fonts);
@@ -17,7 +18,7 @@ export default function App() {
     "+97412345678",
     null,
     "tyyyuyuyuyuy",
-    'user'
+    "user"
   );
 
   return (
