@@ -10,15 +10,14 @@ export default function ImageGalleryViewer({
 }) {
   const [showImageModal, setShowImageModal] = useState(false);
   const [img, setImg] = useState({});
-  let data = [...imagesList];
 
   return (
     <>
       <GridView
         isRemoveEnable={isRemoveEnable}
         onRemove={(id) => onRemove(id)}
-        data={data}
-        extraData={data.length}
+        data={imagesList}
+        extraData={imagesList.length}
         onAdd={onAdd}
         onShowImage={(img) => {
           setImg(img);

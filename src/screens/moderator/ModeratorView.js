@@ -4,7 +4,8 @@ import { moderatorStyles } from "@styles/screens/moderator";
 import { FlashList } from "@shopify/flash-list";
 import { ModeratorCard } from "@components";
 import { Theme } from "@theme";
-import ProfileEditModal from "../../components/ProfileEditModal";
+import ProfileEditModal from "@components/ProfileEditModal";
+import EmptyPageHandler from "@components/EmptyPageHandler";
 
 export default function ModeratorView({
   data,
@@ -28,28 +29,32 @@ export default function ModeratorView({
 
   return (
     <View style={styles.container}>
-      <FlashList
-        data={data}
-        renderItem={({ item }) => (
-          <ModeratorCard
-            style={styles.cardContainer}
-            data={item}
-            onDelete={(id) => onDelete(id)}
-            onEdit={(id, data) => {
-              setIsEdit(true);
-              setCurrentEdit(data);
-            }}
-          />
-        )}
-        estimatedItemSize={142}
-        refreshControl={
-          <RefreshControl
-            refreshing={refreshing}
-            onRefresh={onRefresh}
-            colors={[Theme.colors.primary]}
-          />
-        }
-      />
+      {!!data ? (
+        <EmptyPageHandler />
+      ) : (
+        <FlashList
+          data={data}
+          renderItem={({ item }) => (
+            <ModeratorCard
+              style={styles.cardContainer}
+              data={item}
+              onDelete={(id) => onDelete(id)}
+              onEdit={(id, data) => {
+                setIsEdit(true);
+                setCurrentEdit(data);
+              }}
+            />
+          )}
+          estimatedItemSize={142}
+          refreshControl={
+            <RefreshControl
+              refreshing={refreshing}
+              onRefresh={onRefresh}
+              colors={[Theme.colors.primary]}
+            />
+          }
+        />
+      )}
       <ProfileEditModal
         status={isEdit}
         currentEdit={currentEdit}

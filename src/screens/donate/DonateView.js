@@ -20,7 +20,8 @@ export default function DonateView({}) {
   const [selectedQuantity, setSelectedQuantity] = useState(1);
   const [images, setImages] = useState([]);
   const [description, setDescription] = useState("");
-  const styles = donateStyles();
+  const isEnable = !description || !images;
+  const styles = donateStyles(isEnable);
 
   const renderCategoryItem = ({ item, index }) => {
     return (
@@ -33,10 +34,15 @@ export default function DonateView({}) {
     );
   };
 
-  const addImages = async () => {
+  const onCamera = async () => {
+    const newImages = await ImagePickerHandler.takeImages();
+    setImages([...images, ...newImages]);
+  };
+  const onGallery = async () => {
     const newImages = await ImagePickerHandler.pickImages();
     setImages([...images, ...newImages]);
   };
+
   const removeImage = (id) => {
     setImages([...images.slice(0, id), ...images.slice(id + 1)]);
   };
@@ -106,15 +112,26 @@ export default function DonateView({}) {
               imagesList={images}
               onAdd={() => addImages()}
             />
+            <View style={styles.iconUploaderContainer}>
+              <TouchableOpacity onPress={() => onCamera()}>
+                <Icon iconName={"donate-camera"} />
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => onGallery()}>
+                <Icon iconName={"donate-gallery"} />
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
       </View>
-      <TouchableOpacity
-        onPress={() => onDonate()}
-        style={styles.donateBtnContainer}
-      >
-        <Text style={styles.donateBtnText}>{`تبرع`}</Text>
-      </TouchableOpacity>
+      <View style={styles.donateBtnWrapper}>
+        <TouchableOpacity
+          onPress={() => onDonate()}
+          style={styles.donateBtnContainer}
+          disabled={isEnable}
+        >
+          <Text style={styles.donateBtnText}>{`تبرع`}</Text>
+        </TouchableOpacity>
+      </View>
       <DonateShowStatus
         showStatus={showDonateStatus}
         reqClose={() => setShowDonateStatus(false)}

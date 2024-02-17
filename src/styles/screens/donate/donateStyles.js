@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 import { Theme } from "@theme";
 
-export default donateStyles = () => {
+export default donateStyles = (isEnable) => {
   return StyleSheet.create({
     container: {
       flex: 1,
@@ -84,19 +84,28 @@ export default donateStyles = () => {
 
     imageGalleryContainer: {
       flex: 1,
+      justifyContent: "space-between",
+    },
+    iconUploaderContainer: {
+      justifyContent: "flex-end",
+      flexDirection: "row",
+      height: 30,
+      gap: 10,
     },
 
+    donateBtnWrapper: {
+      backgroundColor: "#D9D9D966",
+      paddingHorizontal: 24,
+      paddingBottom: 16,
+    },
     donateBtnContainer: {
-      position: "absolute",
       height: 56,
-      // width: 312,
-      bottom: 16,
-      left: 24,
-      right: 24,
       borderRadius: 12,
       justifyContent: "center",
       alignItems: "center",
-      backgroundColor: Theme.colors.primary,
+      backgroundColor: !isEnable
+        ? Theme.colors.primary
+        : Theme.colors.primary + "80",
     },
     donateBtnText: {
       fontFamily: Theme.typography.changa_700,

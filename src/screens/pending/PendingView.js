@@ -4,6 +4,7 @@ import { pendingStyles } from "@styles/screens/pending";
 import { FlashList } from "@shopify/flash-list";
 import { DonateCard } from "@components";
 import { Theme } from "@theme";
+import EmptyPageHandler from "@components/EmptyPageHandler";
 
 export default function PendingView({
   data,
@@ -24,29 +25,32 @@ export default function PendingView({
       setRefreshing(false);
     });
   };
-
   return (
     <View style={styles.container}>
-      <FlashList
-        data={data}
-        renderItem={({ item }) => (
-          <DonateCard
-            style={styles.cardContainer}
-            data={item}
-            onCancel={!isAdmin ? onCancel : null}
-            onAccept={isAdmin ? onAccept : null}
-            onDecline={isAdmin ? onDecline : null}
-          />
-        )}
-        estimatedItemSize={142}
-        refreshControl={
-          <RefreshControl
-            refreshing={refreshing}
-            onRefresh={onRefresh}
-            colors={[Theme.colors.primary]}
-          />
-        }
-      />
+      {!!data ? (
+        <EmptyPageHandler />
+      ) : (
+        <FlashList
+          data={data}
+          renderItem={({ item }) => (
+            <DonateCard
+              style={styles.cardContainer}
+              data={item}
+              onCancel={!isAdmin ? onCancel : null}
+              onAccept={isAdmin ? onAccept : null}
+              onDecline={isAdmin ? onDecline : null}
+            />
+          )}
+          estimatedItemSize={142}
+          refreshControl={
+            <RefreshControl
+              refreshing={refreshing}
+              onRefresh={onRefresh}
+              colors={[Theme.colors.primary]}
+            />
+          }
+        />
+      )}
     </View>
   );
 }

@@ -41,6 +41,8 @@ export default Theme = {
   },
   typographyColors: {
     primary: "#141F1F",
+
+    noDataColor: "#888888",
   },
   typography: {
     changa_300: "changa-300",

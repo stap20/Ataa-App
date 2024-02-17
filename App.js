@@ -1,5 +1,5 @@
 import React, { useEffect, createContext, useContext, useState } from "react";
-import { View, StatusBar, Text } from "react-native";
+import { View, StatusBar, Text, TouchableOpacity } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import NavigationService from "@navigation/NavigationService";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -9,6 +9,7 @@ import { fonts, User, LoadingContextHandler } from "@utils";
 import LoadingHandler from "@components/LoadingHandler";
 
 const ShowLoadingModalContext = LoadingContextHandler.ShowLoadingModalContext;
+import ToastHandler from "./src/utils/ToastHandler";
 
 export default function App() {
   let [fontsLoaded] = useFonts(fonts);
@@ -34,6 +35,15 @@ export default function App() {
   if (!fontsLoaded) {
     return <Text>Loading</Text>;
   }
+
+  User.login(
+    "احمد صالح",
+    "AhmedSaleh@gmail.com",
+    "+97412345678",
+    null,
+    "tyyyuyuyuyuy",
+    "user"
+  );
 
   return (
     <View

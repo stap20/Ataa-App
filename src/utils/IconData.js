@@ -264,7 +264,7 @@ const iconData = {
     height: 40,
     stroke: "white",
   },
-  
+
   "donate-camera": {
     type: "svg",
     source: require("@assets/icons/donate-camera.js"),
