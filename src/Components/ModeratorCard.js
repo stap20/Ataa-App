@@ -37,7 +37,11 @@ export default function ModeratorCard({
         <TouchableOpacity
           style={[styles.actionBtn, styles.editBtn]}
           onPress={() => {
-            onEdit(id);
+            onEdit(id, {
+              moderatorName,
+              moderatorNumber,
+              profileImg,
+            });
           }}
         >
           <Text style={styles.btnText}>{"تعديل"}</Text>

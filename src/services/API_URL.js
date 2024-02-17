@@ -1,1 +1,1 @@
-export default "http://192.168.1.8:5000";
+export default "https://bf62-41-40-196-89.ngrok-free.app/";

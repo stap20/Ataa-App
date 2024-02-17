@@ -13,7 +13,6 @@ export default function Profile({
   onSave,
   btnText = "حفظ التغيرات",
 }) {
-
   const styles = profileStyles();
   const [isRead, setIsRead] = useState(true);
   const [name, setName] = useState("");
@@ -31,7 +30,6 @@ export default function Profile({
         password = "tioplk",
         profileImage = null,
       } = data;
-
 
       setName(name);
       setEmail(email);

@@ -25,11 +25,16 @@ export default function ModeratorScreen() {
     });
   };
 
+  // const onEdit = (id) => {
+  //   console.log("onEdit");
+  // };
+
   return (
     <LayoutManager
       data={moderatorsData}
       refreshFunction={refreshFunction}
       onDelete={onDelete}
+      // onEdit={onEdit}
     />
   );
 }

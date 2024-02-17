@@ -4,9 +4,17 @@ import { moderatorStyles } from "@styles/screens/moderator";
 import { FlashList } from "@shopify/flash-list";
 import { ModeratorCard } from "@components";
 import { Theme } from "@theme";
+import ProfileEditModal from "../../components/ProfileEditModal";
 
-export default function ModeratorView({ data, refreshFunction, onDelete }) {
+export default function ModeratorView({
+  data,
+  refreshFunction,
+  onDelete,
+  onEdit,
+}) {
   const [refreshing, setRefreshing] = useState(false);
+  const [isEdit, setIsEdit] = useState(false);
+  const [currentEdit, setCurrentEdit] = useState(null);
   const styles = moderatorStyles();
 
   const onRefresh = () => {
@@ -26,7 +34,11 @@ export default function ModeratorView({ data, refreshFunction, onDelete }) {
           <ModeratorCard
             style={styles.cardContainer}
             data={item}
-            onDelete={onDelete}
+            onDelete={(id) => onDelete(id)}
+            onEdit={(id, data) => {
+              setIsEdit(true);
+              setCurrentEdit(data);
+            }}
           />
         )}
         estimatedItemSize={142}
@@ -37,6 +49,11 @@ export default function ModeratorView({ data, refreshFunction, onDelete }) {
             colors={[Theme.colors.primary]}
           />
         }
+      />
+      <ProfileEditModal
+        status={isEdit}
+        currentEdit={currentEdit}
+        onCancel={() => setIsEdit(false)}
       />
     </View>
   );
