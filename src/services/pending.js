@@ -1,13 +1,10 @@
-import axios from "axios";
 import { formatDonationNumber } from "@utils";
-import API_URL from "./API_URL";
+import API from "./API";
 
 export default {
   getPendingDonations: async () => {
     try {
-      const response = await axios.post(
-        API_URL + "donation/getPendingDonations"
-      );
+      const response = await API.post("/donation/getPendingDonations");
 
       if (response.data.success) {
         return response.data.data.map((item) => {
@@ -32,19 +29,14 @@ export default {
 
   cancelPendingDonation: async (id) => {
     try {
-      console.log(id);
-      const data = { id };
-      const response = await axios.post(
-        API_URL + "donation/cancelDonation",
-        data,
-        {
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-          },
-        }
-      );
+      const config = {
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+      };
 
-      console.log(response.data);
+      const data = { id };
+      const response = await API.post("/donation/cancelDonation", data, config);
 
       return response.data.success;
     } catch (error) {
@@ -54,16 +46,14 @@ export default {
   },
   acceptPendingDonation: async (id) => {
     try {
+      const config = {
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+      };
+
       const data = { id };
-      const response = await axios.post(
-        API_URL + "donation/acceptDonation",
-        data,
-        {
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-          },
-        }
-      );
+      const response = await API.post("/donation/acceptDonation", data, config);
 
       if (response.data.success) {
         return true;
@@ -77,15 +67,17 @@ export default {
   },
   declinePendingDonation: async (id) => {
     try {
+      const config = {
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+      };
+
       const data = { id };
-      const response = await axios.post(
-        API_URL + "donation/declineDonation",
+      const response = await API.post(
+        "/donation/declineDonation",
         data,
-        {
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-          },
-        }
+        config
       );
 
       return response.data.success;

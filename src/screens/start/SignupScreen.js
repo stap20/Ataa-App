@@ -1,21 +1,15 @@
 import { useRef, useState } from "react";
-import {
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import PhoneInput from "react-native-phone-number-input";
 import { Theme } from "@theme/index.js";
 import { signupStyle } from "@styles/screens/start";
-import { useEffect } from "react";
+import { FormText } from "@components";
 
-import { Icon } from "@components";
+import { userHandler } from "@services";
 
-export default SignupScreen = (props) => {
+export default SignupScreen = () => {
   const [agreed, setAgreed] = useState(false);
-  const [unlockBtn, setUnlockBtn] = useState(false);
 
   const styles = signupStyle(agreed);
 
@@ -25,54 +19,62 @@ export default SignupScreen = (props) => {
   const [confirmationPassword, setConfirmationPassword] = useState("");
   const [email, setEmail] = useState("");
   const [fullname, setFullname] = useState("");
+  const navigation = useNavigation();
 
-  useEffect(() => {
-    if (
+  const isBtnEnable = () => {
+    return (
       phoneNumber &&
       password &&
       confirmationPassword &&
       email &&
       fullname &&
-      agreed
-    ) {
-      setUnlockBtn(true);
-    } else {
-      setUnlockBtn(false);
-    }
-  });
-
+      agreed &&
+      password === confirmationPassword
+    );
+  };
   const onLogin = () => {
-    props.navigation.popToTop();
+    navigation.popToTop();
   };
   const onSignup = () => {
-    if (agreed) {
-      console.log(
-        `Signup: ${phoneNumber}, ${password}, ${confirmationPassword}, ${email}, ${fullname}`
-      );
+    if (isBtnEnable()) {
+      const data = {
+        name: fullname,
+        phoneNumber: phoneNumber,
+        countryCode: phonenumberInput.current.getCallingCode(),
+        email: email,
+        password: password,
+      };
+
+      userHandler.signup(data).then((res) => {
+        if (res) {
+          onLogin();
+        }
+      });
     }
   };
+
   const onCheckBox = () => {
     setAgreed(!agreed);
   };
   const onEye = (id) => {};
 
   return (
-    <View style={styles.container}>
-      <View style={styles.body}>
+    <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+      <View style={styles.container}>
         <View style={styles.signupTextContainer}>
           <Text style={styles.signupText}>{"حساب جديد"}</Text>
         </View>
 
         <View style={styles.inputs}>
-          <View style={styles.inputContainer}>
-            <TextInput
-              placeholder={"الاسم الكامل"}
-              style={[styles.inputsText, { textAlign: "auto" }]}
-              onChangeText={setFullname}
-              value={fullname}
-            />
-          </View>
-          <View style={styles.inputContainer}>
+          <FormText
+            style={styles.formTextContainer}
+            textStyle={styles.inputsText}
+            placeHolder={"الاسم بالكامل"}
+            text={fullname}
+            onChange={setFullname}
+            isRead={false}
+          />
+          <View style={[styles.inputContainer, styles.formTextContainer]}>
             <PhoneInput
               maxLength={8}
               ref={phonenumberInput}
@@ -81,48 +83,38 @@ export default SignupScreen = (props) => {
               placeholder={"رقم الهاتف"}
               textInputStyle={styles.inputsText}
               textContainerStyle={styles.inputTextContainer}
-              onChangeFormattedText={setPhoneNumber}
+              onChangeText={setPhoneNumber}
               value={phoneNumber}
             />
           </View>
-          <View style={styles.inputContainer}>
-            <TextInput
-              placeholder={"البريد الالكتروني"}
-              style={[styles.inputsText]}
-              onChangeText={setEmail}
-              value={email}
-            />
-          </View>
-          <View style={[styles.inputContainer, { flexDirection: "row" }]}>
-            <TouchableOpacity
-              onPress={() => onEye(1)}
-              style={{ justifyContent: "center", alignItems: "center" }}
-            >
-              <Icon iconName={"visible"} />
-            </TouchableOpacity>
-            <TextInput
-              placeholder={"كلمة المرور"}
-              secureTextEntry
-              style={[styles.inputsText, { textAlign: "right" }]}
-              onChangeText={setPassword}
-              value={password}
-            />
-          </View>
-          <View style={[styles.inputContainer, { flexDirection: "row" }]}>
-            <TouchableOpacity
-              onPress={() => onEye(2)}
-              style={{ justifyContent: "center", alignItems: "center" }}
-            >
-              <Icon iconName={"visible"} />
-            </TouchableOpacity>
-            <TextInput
-              placeholder={"تأكيد كلمة المرور"}
-              secureTextEntry
-              style={[styles.inputsText, { textAlign: "right" }]}
-              onChangeText={setConfirmationPassword}
-              value={confirmationPassword}
-            />
-          </View>
+          <FormText
+            style={styles.formTextContainer}
+            textStyle={styles.inputsText}
+            placeHolder={"البريد الالكتروني"}
+            text={email}
+            onChange={setEmail}
+            isRead={false}
+          />
+
+          <FormText
+            style={styles.formTextContainer}
+            textStyle={styles.inputsText}
+            placeHolder={"كلمة المرور"}
+            text={password}
+            onChange={setPassword}
+            isRead={false}
+            isPassword={true}
+          />
+
+          <FormText
+            style={styles.formTextContainer}
+            textStyle={styles.inputsText}
+            placeHolder={"تأكيد كلمة المرور"}
+            text={confirmationPassword}
+            onChange={setConfirmationPassword}
+            isRead={false}
+            isPassword={true}
+          />
         </View>
 
         <View style={styles.actions}>
@@ -152,10 +144,10 @@ export default SignupScreen = (props) => {
           </View>
           <TouchableOpacity
             onPress={() => onSignup()}
-            disabled={!unlockBtn}
+            disabled={!isBtnEnable()}
             style={[
               styles.signupBtnContainer,
-              { opacity: !unlockBtn ? 0.5 : 1 },
+              { opacity: !isBtnEnable() ? 0.5 : 1 },
             ]}
           >
             <Text style={styles.signupBtnText}>{"إنشاء حساب جديد"}</Text>
@@ -169,6 +161,6 @@ export default SignupScreen = (props) => {
           </View>
         </View>
       </View>
-    </View>
+    </ScrollView>
   );
 };

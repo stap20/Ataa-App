@@ -1,18 +1,12 @@
 import { useEffect, useRef, useState } from "react";
-import {
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 import PhoneInput from "react-native-phone-number-input";
 import { useNavigation } from "@react-navigation/native";
 import { loginStyle } from "@styles/screens/start";
 import OnBoardScreen from "./OnBoardScreen";
-import { Icon } from "@components";
-import { Theme } from "@theme";
+import { Icon, FormText } from "@components";
 import { Storage } from "@utils";
+import { userHandler } from "@services";
 
 export default LoginScreen = () => {
   const [intro, setIntro] = useState(true);
@@ -36,8 +30,16 @@ export default LoginScreen = () => {
   };
 
   const onLogin = () => {
-    navigation.navigate("main");
-    console.log(`login: ${phoneNumber}, ${password}`);
+    const data = {
+      phoneNumber: phoneNumber,
+      countryCode: phonenumberInput.current.getCallingCode(),
+      password: password,
+    };
+    userHandler.login(data).then((result) => {
+      if (result) {
+        navigation.navigate("main");
+      }
+    });
   };
 
   const onForgetPassword = () => {
@@ -58,7 +60,7 @@ export default LoginScreen = () => {
           </View>
 
           <View style={styles.inputs}>
-            <View style={styles.inputContainer}>
+            <View style={[styles.inputContainer, styles.formTextContaine]}>
               <PhoneInput
                 maxLength={8}
                 ref={phonenumberInput}
@@ -67,25 +69,20 @@ export default LoginScreen = () => {
                 placeholder={"رقم الهاتف"}
                 textInputStyle={styles.inputsText}
                 textContainerStyle={styles.inputTextContainer}
-                onChangeFormattedText={setPhoneNumber}
+                onChangeText={setPhoneNumber}
                 value={phoneNumber}
               />
             </View>
-            <View style={[styles.inputContainer, { flexDirection: "row" }]}>
-              <TouchableOpacity
-                style={{ justifyContent: "center", alignItems: "center" }}
-              >
-                <Icon iconName={"visible"} />
-              </TouchableOpacity>
-              <TextInput
-                placeholder={"كلمة المرور"}
-                secureTextEntry
-                style={[styles.inputsText, { textAlign: "right" }]}
-                onChangeText={setPassword}
-                value={password}
-                placeholderTextColor={Theme.colors.formTextPlaceHolder}
-              />
-            </View>
+
+            <FormText
+              style={styles.formTextContainer}
+              textStyle={styles.inputsText}
+              placeHolder={"كلمة المرور"}
+              text={password}
+              onChange={setPassword}
+              isRead={false}
+              isPassword={true}
+            />
           </View>
 
           <View style={styles.actions}>
@@ -96,7 +93,7 @@ export default LoginScreen = () => {
               <Text style={styles.forgotText}>{"نسيت كلمة المرور؟"}</Text>
             </TouchableOpacity> */}
             <TouchableOpacity
-              onPress={() => onLogin()}
+              onPress={onLogin}
               style={[
                 styles.loginBtnContainer,
                 { opacity: !unlockBtn ? 0.5 : 1 },

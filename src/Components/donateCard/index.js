@@ -17,13 +17,13 @@ export default function DonateCard({
 }) {
   const styles = donateCardStyles();
   const {
-    id="2342342342342",
+    id = "2342342342342",
     donatorName = "أحمد صالح",
     donationNumber = "#123456",
     quantity = 10,
     status = "accepted",
     date = new Date(),
-    profileImg = null,
+    profileImage = null,
   } = data;
 
   const isAction = onCancel !== null || onAccept !== null || onDecline !== null;
@@ -34,7 +34,7 @@ export default function DonateCard({
         <Donator
           donatorName={donatorName}
           donationNumber={donationNumber}
-          profileImg={profileImg}
+          profileImage={profileImage}
         />
         <Donation quantity={quantity} type={"cloth"} />
       </View>

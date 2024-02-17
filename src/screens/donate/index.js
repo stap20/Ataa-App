@@ -1,13 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import LayoutManager from "./LayoutManager";
 import { historyHandler } from "@services";
-const data = historyHandler.getHistoryDonations();
 
 export default function DonateScreen() {
-  const [donationData, setDonationData] = useState(data);
+  const [donationData, setDonationData] = useState([]);
+
+  useEffect(() => {
+    historyHandler.getHistoryDonations().then((result) => {
+      setDonationData(result);
+    });
+  }, []);
 
   const refreshFunction = async () => {
-    setDonationData(historyHandler.getHistoryDonations());
+    historyHandler.getHistoryDonations().then((result) => {
+      setDonationData(result);
+    });
   };
 
   return (

@@ -5,6 +5,7 @@ import { Profile } from "@components";
 
 export default function LayoutManager(props) {
   const styles = layoutStyles();
+
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>

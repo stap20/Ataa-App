@@ -115,5 +115,9 @@ export default signupStyle = (agreed) => {
       fontSize: 15,
       color: Theme.colors.formTextPlaceHolder,
     },
+
+    formTextContainer: {
+      marginBottom: 16,
+    },
   });
 };

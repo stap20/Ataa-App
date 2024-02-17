@@ -10,6 +10,7 @@ export default function FormText({
   isPassword = false,
   isRTL = true,
   style = {},
+  textStyle = {},
   onChange = () => {},
 }) {
   const [isVisible, setIsVisible] = useState(false); // State to track visibility
@@ -22,15 +23,16 @@ export default function FormText({
   return (
     <View style={[styles.container, style]}>
       <View style={styles.textContainer}>
-        <Text style={styles.placeHolder}>{placeHolder}</Text>
+        {isRead && <Text style={styles.placeHolder}>{placeHolder}</Text>}
 
         {!isRead ? (
           <TextInput
-            style={isPassword ? styles.secureText : styles.text}
+            style={[isPassword ? styles.secureText : styles.text, textStyle]}
             value={text}
             onChangeText={onChange}
             secureTextEntry={!isVisible && isPassword}
             textAlign={isRTL ? "right" : "left"}
+            placeholder={placeHolder}
           />
         ) : (
           <Text style={[styles.text, { textAlign: isRTL ? "right" : "left" }]}>

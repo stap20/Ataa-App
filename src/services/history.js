@@ -1,13 +1,10 @@
-import axios from "axios";
 import { formatDonationNumber } from "@utils";
-import API_URL from "./API_URL";
+import API from "./API";
 
 export default {
   getHistoryDonations: async () => {
     try {
-      const response = await axios.post(
-        API_URL + "donation/getHistoryDonations"
-      );
+      const response = await API.post("/donation/getHistoryDonations");
 
       if (response.data.success) {
         return response.data.data.map((item) => {

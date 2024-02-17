@@ -3,17 +3,20 @@ import moderatorCardStyles from "@styles/components/moderatorCardStyles";
 import Icon from "@components/Icon";
 import ProfileImage from "@components/ProfileImage";
 
-export default function ModeratorCard({ data = {}, style = {} }) {
+export default function ModeratorCard({
+  data = {},
+  style = {},
+  onEdit = () => {},
+  onDelete = () => {},
+}) {
   const styles = moderatorCardStyles();
 
   const {
+    id,
     moderatorName = "أحمد صالح",
     moderatorNumber = "+974 8911 567 234",
     profileImg = null,
   } = data;
-
-  const onEdit = () => {};
-  const onDelete = () => {};
 
   return (
     <View style={[styles.container, style]}>
@@ -33,13 +36,17 @@ export default function ModeratorCard({ data = {}, style = {} }) {
       <View style={styles.actionBtnRow}>
         <TouchableOpacity
           style={[styles.actionBtn, styles.editBtn]}
-          onPress={onEdit}
+          onPress={() => {
+            onEdit(id);
+          }}
         >
           <Text style={styles.btnText}>{"تعديل"}</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={[styles.actionBtn, styles.deleteBtn]}
-          onPress={onDelete}
+          onPress={() => {
+            onDelete(id);
+          }}
         >
           <Text style={styles.btnText}>{"حذف"}</Text>
         </TouchableOpacity>

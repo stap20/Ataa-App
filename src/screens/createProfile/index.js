@@ -6,7 +6,7 @@ export default function CreateProfileScreen() {
   const navigation = useNavigation();
 
   const onSave = (data) => {
-    profileHandler.editProfile(data);
+    profileHandler.createProfile(data);
     navigation.navigate("moderators");
   };
 

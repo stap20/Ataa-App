@@ -105,5 +105,8 @@ export default loginStyle = () => {
       fontSize: 15,
       color: Theme.colors.formTextPlaceHolder,
     },
+    formTextContainer: {
+      marginBottom: 16,
+    },
   });
 };

@@ -5,7 +5,7 @@ import { FlashList } from "@shopify/flash-list";
 import { ModeratorCard } from "@components";
 import { Theme } from "@theme";
 
-export default function ModeratorView({ data, refreshFunction }) {
+export default function ModeratorView({ data, refreshFunction, onDelete }) {
   const [refreshing, setRefreshing] = useState(false);
   const styles = moderatorStyles();
 
@@ -23,7 +23,11 @@ export default function ModeratorView({ data, refreshFunction }) {
       <FlashList
         data={data}
         renderItem={({ item }) => (
-          <ModeratorCard style={styles.cardContainer} data={item} />
+          <ModeratorCard
+            style={styles.cardContainer}
+            data={item}
+            onDelete={onDelete}
+          />
         )}
         estimatedItemSize={142}
         refreshControl={

@@ -1,16 +1,35 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import LayoutManager from "./LayoutManager";
-import { historyHandler } from "@services";
-const data = historyHandler.getHistoryDonations();
+import { moderatorHandler } from "@services";
 
 export default function ModeratorScreen() {
-  const [donationData, setDonationData] = useState(data);
+  const [moderatorsData, setModeratorData] = useState([]);
+
+  useEffect(() => {
+    moderatorHandler.getModerators().then((result) => {
+      setModeratorData(result);
+    });
+  }, []);
 
   const refreshFunction = async () => {
-    setDonationData(historyHandler.getHistoryDonations());
+    moderatorHandler.getModerators().then((result) => {
+      setModeratorData(result);
+    });
+  };
+
+  const onDelete = (id) => {
+    moderatorHandler.deleteModerator(id).then((result) => {
+      if (result) {
+        refreshFunction();
+      }
+    });
   };
 
   return (
-    <LayoutManager data={donationData} refreshFunction={refreshFunction} />
+    <LayoutManager
+      data={moderatorsData}
+      refreshFunction={refreshFunction}
+      onDelete={onDelete}
+    />
   );
 }

@@ -6,9 +6,9 @@ export default formTextStyles = () => {
     container: {
       width: "100%",
       flexDirection: "row-reverse",
-      alignItems:'center',
+      alignItems: "center",
       paddingTop: 12,
-      paddingBottom:5,
+      paddingBottom:12,
       paddingHorizontal: 20,
       borderWidth: 1,
       borderColor: Theme.colors.textBoxContainerBorder,
@@ -24,7 +24,6 @@ export default formTextStyles = () => {
       fontFamily: Theme.typography.changa_500,
       fontSize: 11,
       color: Theme.colors.formTextPlaceHolder,
-      lineHeight: 14,
       textAlign: "right",
     },
 
@@ -33,7 +32,7 @@ export default formTextStyles = () => {
       fontFamily: Theme.typography.changa_400,
       fontSize: 14,
       color: Theme.colors.formText,
-      lineHeight: 22.4,
+      verticalAlign: "middle",
     },
 
     secureText: {
@@ -41,7 +40,6 @@ export default formTextStyles = () => {
       fontFamily: Theme.typography.changa_700,
       fontSize: 16,
       color: Theme.colors.formText,
-      lineHeight: 22.4,
     },
 
     visibleIcon: {

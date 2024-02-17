@@ -13,6 +13,7 @@ export default function Profile({
   onSave,
   btnText = "حفظ التغيرات",
 }) {
+
   const styles = profileStyles();
   const [isRead, setIsRead] = useState(true);
   const [name, setName] = useState("");
@@ -31,6 +32,7 @@ export default function Profile({
         profileImage = null,
       } = data;
 
+
       setName(name);
       setEmail(email);
       setPhoneNumber(phoneNumber);
@@ -40,7 +42,7 @@ export default function Profile({
       setIsRead(false);
       isEditEnabled = false;
     }
-  }, []);
+  }, [data]);
 
   const onSetProfileImage = async () => {
     const img = await ImagePickerHandler.pickImages(false);
@@ -67,7 +69,6 @@ export default function Profile({
       setPassword("");
       setProfileImage(null);
     }
-
     onSave(data);
   };
 
@@ -78,7 +79,7 @@ export default function Profile({
           <ProfileImage profileImage={profileImage} width={120} height={120} />
           {!isRead && (
             <TouchableOpacity
-              onPress={() => onSetProfileImage()}
+              onPress={onSetProfileImage}
               style={styles.cameraIcon}
             >
               <Icon iconName={"camera"} />

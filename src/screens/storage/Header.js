@@ -2,12 +2,12 @@ import { Image, Text, TouchableOpacity, View } from "react-native";
 import { headerStyles } from "@styles/screens/storage";
 import { ProfileImage, Icon } from "@components";
 
-export default function Header({ title, profileImg = null, onDelete }) {
+export default function Header({ title, profileImage = null, onDelete }) {
   const styles = headerStyles();
 
   return (
     <View style={styles.container}>
-      <ProfileImage profileImg={profileImg} width={35} height={35} />
+      <ProfileImage profileImage={profileImage} width={35} height={35} />
       <View style={styles.titleContainer}>
         <Text style={styles.title}>{"المخزن"}</Text>
       </View>

@@ -264,6 +264,19 @@ const iconData = {
     height: 40,
     stroke: "white",
   },
+  
+  "donate-camera": {
+    type: "svg",
+    source: require("@assets/icons/donate-camera.js"),
+    width: 30,
+    height: 30,
+  },
+  "donate-gallery": {
+    type: "svg",
+    source: require("@assets/icons/gallery.js"),
+    width: 30,
+    height: 30,
+  },
 };
 
 export default iconData;
