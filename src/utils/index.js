@@ -6,6 +6,7 @@ import formatDonationNumber from "./FormatDonationNumber";
 import User from "./User";
 import ImagePickerHandler from "./ImagePickerHandler";
 import Storage from "./Storage";
+import LoadingContextHandler from "./LoadingContextHandler";
 
 export {
   fonts,
@@ -16,4 +17,5 @@ export {
   User,
   ImagePickerHandler,
   Storage,
+  LoadingContextHandler,
 };

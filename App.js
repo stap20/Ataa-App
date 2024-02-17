@@ -1,14 +1,18 @@
-import React, { useEffect } from "react";
+import React, { useEffect, createContext, useContext, useState } from "react";
 import { View, StatusBar, Text } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import NavigationService from "@navigation/NavigationService";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Navigation from "@src/navigation";
 import { useFonts } from "expo-font";
-import { fonts, User } from "@utils";
+import { fonts, User, LoadingContextHandler } from "@utils";
+import LoadingHandler from "@components/LoadingHandler";
+
+const ShowLoadingModalContext = LoadingContextHandler.ShowLoadingModalContext;
 
 export default function App() {
   let [fontsLoaded] = useFonts(fonts);
+  const [showLoading, setShowLoading] = useState(false);
 
   useEffect(() => {
     // Load user data from AsyncStorage when the component mounts
@@ -38,9 +42,20 @@ export default function App() {
         marginTop: StatusBar.currentHeight,
       }}
     >
-      <NavigationContainer ref={NavigationService.setTopLevelNavigator}>
-        <Navigation />
-      </NavigationContainer>
+      <ShowLoadingModalContext.Provider
+        value={{
+          showLoading,
+          setShowLoading,
+        }}
+      >
+        <NavigationContainer ref={NavigationService.setTopLevelNavigator}>
+          <Navigation />
+        </NavigationContainer>
+      </ShowLoadingModalContext.Provider>
+      <LoadingHandler
+        status={showLoading}
+        onImmediateBreak={() => setShowLoading(false)}
+      />
     </View>
   );
 }

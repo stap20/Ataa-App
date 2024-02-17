@@ -4,7 +4,6 @@ import { historyStyles } from "@styles/screens/history";
 import { FlashList } from "@shopify/flash-list";
 import { DonateCard, DonationViewModal } from "@components";
 import { Theme } from "@theme";
-import { ImagePickerHandler } from "@utils";
 
 export default function HistoryView({ data, refreshFunction }) {
   const [refreshing, setRefreshing] = useState(false);

@@ -2,12 +2,15 @@ import { useEffect, useState } from "react";
 import LayoutManager from "./LayoutManager";
 import { pendingHandler } from "@services";
 import { User } from "@utils";
-
+import { LoadingContextHandler } from "@utils";
 export default function PendingScreen() {
   const [donationData, setDonationData] = useState([]);
-
+  const { showLoading, setShowLoading } =
+    LoadingContextHandler.useLoadingContext();
   useEffect(() => {
+    setShowLoading(true);
     pendingHandler.getPendingDonations().then((result) => {
+      setShowLoading(false);
       setDonationData(result);
     });
   }, []);
@@ -17,7 +20,9 @@ export default function PendingScreen() {
   };
 
   const onCancel = (id) => {
+    setShowLoading(true);
     pendingHandler.cancelPendingDonation(id).then((result) => {
+      setShowLoading(false);
       if (result) {
         filterData(id);
       }
@@ -25,7 +30,9 @@ export default function PendingScreen() {
   };
 
   const onAccept = (id) => {
+    setShowLoading(true);
     pendingHandler.acceptPendingDonation(id).then((result) => {
+      setShowLoading(false);
       if (result) {
         filterData(id);
       }
@@ -33,7 +40,9 @@ export default function PendingScreen() {
   };
 
   const onDecline = (id) => {
+    setShowLoading(true);
     pendingHandler.declinePendingDonation(id).then((result) => {
+      setShowLoading(false);
       if (result) {
         filterData(id);
       }
