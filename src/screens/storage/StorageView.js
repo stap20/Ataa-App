@@ -4,6 +4,7 @@ import { storageStyles } from "@styles/screens/storage";
 import { FlashList } from "@shopify/flash-list";
 import { DonateCard } from "@components";
 import { Theme } from "@theme";
+import EmptyPageHandler from "@components/EmptyPageHandler";
 
 export default function StorageView({ data, refreshFunction }) {
   const [refreshing, setRefreshing] = useState(false);
@@ -20,20 +21,24 @@ export default function StorageView({ data, refreshFunction }) {
 
   return (
     <View style={styles.container}>
-      <FlashList
-        data={data}
-        renderItem={({ item }) => (
-          <DonateCard style={styles.cardContainer} data={item} />
-        )}
-        estimatedItemSize={142}
-        refreshControl={
-          <RefreshControl
-            refreshing={refreshing}
-            onRefresh={onRefresh}
-            colors={[Theme.colors.primary]}
-          />
-        }
-      />
+      {!!data ? (
+        <EmptyPageHandler />
+      ) : (
+        <FlashList
+          data={data}
+          renderItem={({ item }) => (
+            <DonateCard style={styles.cardContainer} data={item} />
+          )}
+          estimatedItemSize={142}
+          refreshControl={
+            <RefreshControl
+              refreshing={refreshing}
+              onRefresh={onRefresh}
+              colors={[Theme.colors.primary]}
+            />
+          }
+        />
+      )}
     </View>
   );
 }

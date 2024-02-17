@@ -5,6 +5,7 @@ import { FlashList } from "@shopify/flash-list";
 import { DonateCard, DonationViewModal } from "@components";
 import { Theme } from "@theme";
 import { ImagePickerHandler } from "@utils";
+import EmptyPageHandler from "@components/EmptyPageHandler";
 
 export default function HistoryView({ data, refreshFunction }) {
   const [refreshing, setRefreshing] = useState(false);
@@ -44,24 +45,28 @@ export default function HistoryView({ data, refreshFunction }) {
 
   return (
     <View style={styles.container}>
-      <FlashList
-        data={data}
-        renderItem={({ item, index }) => (
-          <DonateCard
-            onCard={() => onCard(index)}
-            style={styles.cardContainer}
-            data={item}
-          />
-        )}
-        estimatedItemSize={142}
-        refreshControl={
-          <RefreshControl
-            refreshing={refreshing}
-            onRefresh={onRefresh}
-            colors={[Theme.colors.primary]}
-          />
-        }
-      />
+      {!!data ? (
+        <EmptyPageHandler />
+      ) : (
+        <FlashList
+          data={data}
+          renderItem={({ item, index }) => (
+            <DonateCard
+              onCard={() => onCard(index)}
+              style={styles.cardContainer}
+              data={item}
+            />
+          )}
+          estimatedItemSize={142}
+          refreshControl={
+            <RefreshControl
+              refreshing={refreshing}
+              onRefresh={onRefresh}
+              colors={[Theme.colors.primary]}
+            />
+          }
+        />
+      )}
       <DonationViewModal
         status={showFullView}
         onCancel={() => {
