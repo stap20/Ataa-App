@@ -24,8 +24,8 @@ export default function App() {
         let response = await axios.get(
           "https://raw.githubusercontent.com/Ryzentx16/temp-Apiurl/main/apiurl.txt"
         );
-        const apiUrl = response.data;
-        console.log(apiUrl);
+        const apiUrl = "https://792d-156-192-131-91.ngrok-free.app";
+        // console.log(apiUrl);
         User.setApiUrl(apiUrl);
         // setApiUrl(apiUrl);
       } catch (error) {
@@ -63,7 +63,7 @@ export default function App() {
     <View
       style={{
         flex: 1,
-        marginTop: StatusBar.currentHeight,
+        // marginTop: StatusBar.currentHeight,
       }}
     >
       <ShowLoadingModalContext.Provider
