@@ -6,6 +6,7 @@ export default function HistoryScreen() {
   const [donationData, setDonationData] = useState([]);
   const { showLoading, setShowLoading } =
     LoadingContextHandler.useLoadingContext();
+
   useEffect(() => {
     setShowLoading(true);
     historyHandler.getHistoryDonations().then((result) => {

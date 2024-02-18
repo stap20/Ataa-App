@@ -1,5 +1,11 @@
 import React, { useEffect, createContext, useContext, useState } from "react";
-import { View, StatusBar, Text, TouchableOpacity } from "react-native";
+import {
+  View,
+  StatusBar,
+  Text,
+  TouchableOpacity,
+  I18nManager,
+} from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import NavigationService from "@navigation/NavigationService";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -7,6 +13,9 @@ import Navigation from "@src/navigation";
 import { useFonts } from "expo-font";
 import { fonts, User, LoadingContextHandler } from "@utils";
 import LoadingHandler from "@components/LoadingHandler";
+
+I18nManager.forceRTL(false);
+I18nManager.allowRTL(false);
 
 const ShowLoadingModalContext = LoadingContextHandler.ShowLoadingModalContext;
 import axios from "axios";

@@ -1,8 +1,11 @@
 import { ToastAndroid } from "react-native";
 
 export default {
-  showToast: (text) => {
-    ToastAndroid.show(!!text ? text : "No Given Text", ToastAndroid.SHORT);
+  showToast: (text, isLong = false) => {
+    ToastAndroid.show(
+      !!text ? text : "No Given Text",
+      isLong ? ToastAndroid.LONG : ToastAndroid.SHORT
+    );
   },
 
   showToastWithGravity: (text) => {

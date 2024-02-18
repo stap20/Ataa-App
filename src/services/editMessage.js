@@ -5,20 +5,21 @@ export default {
   getEditMessages: async () => {
     try {
       const response = await API.post("/message/getMessages");
+      ToastHandler.showToast(response.data.message);
 
       if (response.data.success) {
-        ToastHandler.showToast(response.data.message);
         return response.data.data;
       }
 
-      ToastHandler.showToast(response.data.message);
       return {
         acceptMessage: "",
         rejectMessage: "",
         rejectStorageMessage: "",
       };
     } catch (error) {
-      console.error("Error:", error);
+      ToastHandler.showToast(`Get Edit Error: ${error.message}`, true);
+
+      console.error("Get Edit Error:", error);
       return {
         acceptMessage: "",
         rejectMessage: "",
@@ -51,7 +52,9 @@ export default {
 
       return response.data.success;
     } catch (error) {
-      console.error("Upload failed:", error);
+      ToastHandler.showToast(`Update Edit Error: ${error.message}`, true);
+
+      console.error("Update Edit Error:", error);
       return false;
     }
   },

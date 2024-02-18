@@ -10,12 +10,15 @@ export default helloStyle = () => {
       alignItems: "center",
     },
     welcomeContaienr: {
+      // flex: 3,
       marginTop: 50,
+      marginBottom: "auto",
       // backgroundColor: "yellow",
       marginHorizontal: 50,
       justifyContent: "center",
       alignItems: "center",
       alignSelf: "center",
+      maxHeight: 340,
       gap: 12,
     },
     welcomeText: {
@@ -34,8 +37,10 @@ export default helloStyle = () => {
     },
 
     footer: {
-      position: "absolute",
-      bottom: 30,
+      // flex: 1,
+      // position: "absolute",
+      // bottom: 30,
+      // backgroundColor: "red",
       justifyContent: "center",
       alignItems: "center",
       alignSelf: "center",
@@ -43,7 +48,8 @@ export default helloStyle = () => {
     progressContainer: {
       flexDirection: "row",
       width: "100%",
-      justifyContent: "center",
+      // backgroundColor: "red",
+      // justifyContent: "center",
       alignItems: "center",
       marginBottom: 31,
       gap: 8,

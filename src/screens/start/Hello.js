@@ -1,4 +1,10 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { Icon } from "@components";
 import { Theme } from "@theme/index.js";
 import { useState } from "react";
@@ -38,14 +44,16 @@ export default HelloScreen = (props) => {
         <Text style={styles.welcomeText}>
           {lvl == 1 ? texts.first.title : texts.sec.title}{" "}
         </Text>
-        <Text
-          style={[
-            styles.descriptionText,
-            { textAlign: lvl == 1 ? "center" : "right" },
-          ]}
-        >
-          {lvl == 1 ? texts.first.description : texts.sec.description}
-        </Text>
+        <ScrollView>
+          <Text
+            style={[
+              styles.descriptionText,
+              { textAlign: lvl == 1 ? "center" : "right" },
+            ]}
+          >
+            {lvl == 1 ? texts.first.description : texts.sec.description}
+          </Text>
+        </ScrollView>
       </View>
 
       <View style={styles.footer}>

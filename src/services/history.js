@@ -1,10 +1,11 @@
-import { formatDonationNumber } from "@utils";
+import { formatDonationNumber, ToastHandler } from "@utils";
 import API from "./API";
 
 export default {
   getHistoryDonations: async () => {
     try {
       const response = await API.post("/donation/getHistoryDonations");
+      ToastHandler.showToast(response.data.message);
 
       if (response.data.success) {
         return response.data.data.map((item) => {
@@ -22,7 +23,9 @@ export default {
         return [];
       }
     } catch (error) {
-      console.error("Error:", error);
+      ToastHandler.showToast(`Get History Error: ${error.message}`, true);
+
+      console.error("Get History Error:", error);
       return [];
     }
   },

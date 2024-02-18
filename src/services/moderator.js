@@ -1,10 +1,12 @@
 import API from "./API";
 import { Platform } from "react-native";
+import { ToastHandler } from "@utils";
 
 export default {
   getModerators: async () => {
     try {
       const response = await API.post("/user/getAllModerators");
+      ToastHandler.showToast(response.data.message);
 
       if (response.data.success) {
         return response.data.data.map((item) => {
@@ -37,7 +39,9 @@ export default {
       ToastHandler.showToast(response.data.message);
       return response.data.success;
     } catch (error) {
-      console.error("Error:", error);
+      ToastHandler.showToast(`Delete Moderator Error: ${error.message}`, true);
+
+      console.error("Delete Moderator Error:", error);
       return false;
     }
   },
@@ -52,10 +56,12 @@ export default {
 
       const data = { id };
       const response = await API.post("/user/getModerator", data, config);
-
+      ToastHandler.showToast(response.data.message);
       return response.data;
     } catch (error) {
-      console.error("Error:", error);
+      ToastHandler.showToast(`Get Moderator Error: ${error.message}`, true);
+
+      console.error("Get Moderator Error:", error);
       return false;
     }
   },
@@ -119,7 +125,9 @@ export default {
       ToastHandler.showToast(response.data.message);
       return response.data;
     } catch (error) {
-      console.error("Upload failed:", error);
+      ToastHandler.showToast(`Edit Moderator Error: ${error.message}`, true);
+
+      console.error("Edit Moderator Error:", error);
       return false;
     }
   },

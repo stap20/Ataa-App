@@ -46,15 +46,16 @@ export default {
           "Content-Type": "multipart/form-data",
         },
       });
+      ToastHandler.showToast(response.data.message);
 
       if (response.data.success) {
-        ToastHandler.showToast(response.data.message);
         return response.data.isSpaceIssue;
       }
-      ToastHandler.showToast(response.data.message);
       return true;
     } catch (error) {
-      console.error("Create Donation failed:", error);
+      ToastHandler.showToast(`Create Donation Error: ${error.message}`, true);
+
+      console.error("Create Donation Error:", error);
       return true;
     }
   },

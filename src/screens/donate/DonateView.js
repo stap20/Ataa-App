@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import {
   FlatList,
+  ScrollView,
   Text,
   TextInput,
   TouchableOpacity,
@@ -110,7 +111,7 @@ export default function DonateView({ onSave }) {
           </View>
         </View>
         <View style={styles.descriptionContainer}>
-          <View style={styles.descriptionTextContainer}>
+          <ScrollView contentContainerStyle={styles.descriptionTextContainer}>
             <TextInput
               style={styles.descriptionInput}
               placeholder="أتبرع بفوض لصالح المحتاجين"
@@ -118,7 +119,7 @@ export default function DonateView({ onSave }) {
               onChangeText={setDescription}
               value={description}
             />
-          </View>
+          </ScrollView>
           <View style={styles.imageGalleryContainer}>
             <ImageGalleryViewer
               onRemove={(id) => removeImage(id)}

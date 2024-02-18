@@ -1,5 +1,12 @@
 import { useEffect, useRef, useState } from "react";
-import { Text, TouchableOpacity, View } from "react-native";
+import {
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import PhoneInput from "react-native-phone-number-input";
 import { useNavigation } from "@react-navigation/native";
 import { loginStyle } from "@styles/screens/start";
@@ -56,13 +63,9 @@ export default LoginScreen = () => {
     });
   };
 
-  const onForgetPassword = () => {
-    console.log("Forget Password Pressed");
-  };
-
   return (
-    <>
-      <View style={styles.container}>
+    <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+      <ScrollView contentContainerStyle={styles.container}>
         <View style={styles.header}>
           <View style={styles.imageFrameContainer}>
             <Icon iconName={"logo"} />
@@ -127,14 +130,16 @@ export default LoginScreen = () => {
             </View>
           </View>
         </View>
-      </View>
-      <OnBoardScreen
-        status={intro}
-        onClose={() => {
-          Storage.storeData("isIntro", false);
-          setIntro(Storage.getData("isIntro"));
-        }}
-      />
-    </>
+      </ScrollView>
+      {Storage.getData("isIntro") && (
+        <OnBoardScreen
+          status={intro}
+          onClose={() => {
+            Storage.storeData("isIntro", false);
+            setIntro(Storage.getData("isIntro"));
+          }}
+        />
+      )}
+    </ScrollView>
   );
 };

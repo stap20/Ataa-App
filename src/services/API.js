@@ -1,9 +1,9 @@
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import NavigationService from "@navigation/NavigationService";
-import API_URL from "./API_URL";
+import API_URL, { getIdCode } from "./API_URL";
+import { ToastHandler } from "@utils";
 
-console.log("ssssss" + API_URL);
 const API = axios.create({
   baseURL: API_URL,
 });
@@ -37,4 +37,20 @@ API.interceptors.response.use(
   }
 );
 
-export default API;
+const testConnection = async () => {
+  try {
+    const response = await API.post("/");
+
+    if (!response) {
+      throw new Error(`the response is ${response}`);
+    }
+
+    ToastHandler.showToast(`Connected To ${getIdCode()}`, true);
+    return API;
+  } catch (error) {
+    ToastHandler.showToast(`Connecttion Error: ${error.message}`, true);
+    return API;
+  }
+};
+
+export default testConnection();

@@ -1,5 +1,17 @@
-import { User } from "@utils";
+import { User, ToastHandler } from "@utils";
 
-console.log("ssss0" + User.apiUrl);
+const url = "https://792d-156-192-131-91.ngrok-free.app";
+const desiredPart = url
+  .split("https://")[1]
+  .split(".ngrok-free.app")[0]
+  .split("-")
+  .slice(0, 5)
+  .join("-");
 
-export default "https://792d-156-192-131-91.ngrok-free.app";
+export const getIdCode = () => {
+  return desiredPart;
+};
+
+ToastHandler.showToast(`Connectting To ${getIdCode()}`, true);
+
+export default url;

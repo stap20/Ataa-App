@@ -11,7 +11,8 @@ export default {
       ToastHandler.showToast(response.data.message);
       return response.data.success;
     } catch (error) {
-      console.error("Error:", error);
+      ToastHandler.showToast(`Signup Error: ${error.message}`, true);
+      console.error("Signup Error:", error);
       return false;
     }
   },
@@ -47,7 +48,9 @@ export default {
 
       return response.data.success;
     } catch (error) {
-      console.error("Error:", error);
+      ToastHandler.showToast(`Login Error: ${error.message}`, true);
+
+      console.error("Login Error:", error);
       return false;
     }
   },
@@ -69,7 +72,9 @@ export default {
 
       return response.data.success;
     } catch (error) {
-      console.error("Error:", error);
+      ToastHandler.showToast(`Logout Error: ${error.message}`, true);
+
+      console.error("Logout Error:", error);
       return false;
     }
   },

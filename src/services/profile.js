@@ -56,15 +56,17 @@ export default {
           "Content-Type": "multipart/form-data",
         },
       });
+      ToastHandler.showToast(response.data.message);
 
       if (response.data.success) {
         await AsyncStorage.setItem("user", JSON.stringify(response.data.data));
         User.updateData(response.data.data);
       }
-      ToastHandler.showToast(response.data.message);
       return response.data.success;
     } catch (error) {
-      console.error("Upload failed:", error);
+      ToastHandler.showToast(`Edit Profile Error: ${error.message}`, true);
+
+      console.error("Edit Profile Error:", error);
       return false;
     }
   },
@@ -117,7 +119,9 @@ export default {
       ToastHandler.showToast(response.data.message);
       return response.data.success;
     } catch (error) {
-      console.error("Upload failed:", error);
+      ToastHandler.showToast(`Create Profile Error: ${error.message}`, true);
+
+      console.error("Create Profile Error:", error);
       return false;
     }
   },
