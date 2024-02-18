@@ -10,7 +10,7 @@ export default helloStyle = () => {
       alignItems: "center",
     },
     welcomeContaienr: {
-      // flex: 3,
+      flex: 2,
       marginTop: 50,
       marginBottom: "auto",
       // backgroundColor: "yellow",
@@ -18,7 +18,8 @@ export default helloStyle = () => {
       justifyContent: "center",
       alignItems: "center",
       alignSelf: "center",
-      maxHeight: 340,
+      // maxHeight: 400,
+      // height: "auto",
       gap: 12,
     },
     welcomeText: {
@@ -37,10 +38,7 @@ export default helloStyle = () => {
     },
 
     footer: {
-      // flex: 1,
-      // position: "absolute",
-      // bottom: 30,
-      // backgroundColor: "red",
+      flex: 1,
       justifyContent: "center",
       alignItems: "center",
       alignSelf: "center",

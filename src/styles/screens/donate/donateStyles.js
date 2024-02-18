@@ -66,6 +66,9 @@ export default donateStyles = (isEnable) => {
       borderTopLeftRadius: 12,
       borderTopRightRadius: 12,
       backgroundColor: "#D9D9D966",
+      // backgroundColor: "blue",
+      // justifyContent: "center",
+      // alignItems: "flex-start",
       padding: 16,
     },
     descriptionInput: {
@@ -80,11 +83,13 @@ export default donateStyles = (isEnable) => {
     descriptionTextContainer: {
       maxHeight: 150,
       marginBottom: 34,
+      // backgroundColor: "yellow",
     },
 
     imageGalleryContainer: {
       flex: 1,
       justifyContent: "space-between",
+      // backgroundColor: "red",
     },
     iconUploaderContainer: {
       justifyContent: "flex-end",

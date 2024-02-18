@@ -3,6 +3,12 @@ import { FlatList, View, TouchableOpacity } from "react-native";
 import { gridViewStyle } from "@styles/components/imageGalleryViewer";
 import ImageCard from "./imageCard";
 import { useState } from "react";
+const limit = 6;
+
+const filter = (data, isShowMore) => {
+  const endIndex = isShowMore ? data.length : Math.min(limit, data.length);
+  return data.slice(0, endIndex);
+};
 
 export default GridView = ({
   isRemoveEnable,
@@ -14,10 +20,16 @@ export default GridView = ({
 }) => {
   const [isShowMore, setIsShowMore] = useState(false);
   const styles = gridViewStyle(isShowMore);
-  const filteredData = [...data.slice(0, isShowMore ? extraData : 5)];
+  const filteredData = filter(data, isShowMore);
+  // console.log(data.length);
 
   const loadItems = ({ item, index }) => {
-    if (index == filteredData.length - 2 && index >= 4 && !isShowMore) {
+    // console.log(index + 1);
+    if (
+      !isShowMore &&
+      index == filteredData.length - 1 &&
+      data.length > limit
+    ) {
       return (
         <ImageCard
           key={index}
@@ -26,7 +38,7 @@ export default GridView = ({
           uri={item.image}
           onShowMore={() => setIsShowMore(true)}
           isRemoveEnable={false}
-          extraData={extraData}
+          moreNum={data.length - filteredData.length + 1}
         />
       );
     } else {

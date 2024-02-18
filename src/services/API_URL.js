@@ -1,6 +1,6 @@
 import { User, ToastHandler } from "@utils";
 
-const url = "https://792d-156-192-131-91.ngrok-free.app";
+const url = process.env.EXPO_PUBLIC_API_URL;
 const desiredPart = url
   .split("https://")[1]
   .split(".ngrok-free.app")[0]

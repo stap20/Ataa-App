@@ -69,84 +69,88 @@ export default function DonateView({ onSave }) {
 
   return (
     <View style={styles.container}>
-      <View style={styles.inputContainer}>
-        <View style={styles.categoriesContainer}>
-          <FlatList
-            data={categoriesData}
-            extraData={categoriesData.length}
-            horizontal
-            inverted
-            renderItem={renderCategoryItem}
-            contentContainerStyle={{ gap: 14 }}
-          />
-        </View>
-        <View style={styles.quantityContainer}>
-          <Text style={styles.quantityTitle}>الكمية :</Text>
-          <View style={styles.counterContainer}>
-            <TouchableOpacity
-              onPress={() => {
-                if (selectedQuantity > 1) {
-                  setSelectedQuantity(selectedQuantity - 1);
-                }
-              }}
-              style={styles.counter}
-            >
-              <Icon iconName={"quantity-minus"} />
-            </TouchableOpacity>
-            <View style={{ justifyContent: "center" }}>
-              <Text style={styles.selectedQuantityText}>
-                {selectedQuantity}
-              </Text>
-            </View>
-            <TouchableOpacity
-              onPress={() => {
-                if (selectedQuantity < 999) {
-                  setSelectedQuantity(selectedQuantity + 1);
-                }
-              }}
-              style={styles.counter}
-            >
-              <Icon iconName={"quantity-plus"} />
-            </TouchableOpacity>
+      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+        <View style={styles.inputContainer}>
+          <View style={styles.categoriesContainer}>
+            <FlatList
+              data={categoriesData}
+              extraData={categoriesData.length}
+              horizontal
+              inverted
+              renderItem={renderCategoryItem}
+              contentContainerStyle={{ gap: 14 }}
+            />
           </View>
-        </View>
-        <View style={styles.descriptionContainer}>
-          <ScrollView contentContainerStyle={styles.descriptionTextContainer}>
-            <TextInput
-              style={styles.descriptionInput}
-              placeholder="أتبرع بفوض لصالح المحتاجين"
-              multiline={true}
-              onChangeText={setDescription}
-              value={description}
-            />
-          </ScrollView>
-          <View style={styles.imageGalleryContainer}>
-            <ImageGalleryViewer
-              onRemove={(id) => removeImage(id)}
-              isRemoveEnable={true}
-              imagesList={images}
-              onAdd={() => addImages()}
-            />
-            <View style={styles.iconUploaderContainer}>
-              <TouchableOpacity onPress={() => onCamera()}>
-                <Icon iconName={"donate-camera"} />
+          <View style={styles.quantityContainer}>
+            <Text style={styles.quantityTitle}>الكمية :</Text>
+            <View style={styles.counterContainer}>
+              <TouchableOpacity
+                onPress={() => {
+                  if (selectedQuantity > 1) {
+                    setSelectedQuantity(selectedQuantity - 1);
+                  }
+                }}
+                style={styles.counter}
+              >
+                <Icon iconName={"quantity-minus"} />
               </TouchableOpacity>
-              <TouchableOpacity onPress={() => onGallery()}>
-                <Icon iconName={"donate-gallery"} />
+              <View style={{ justifyContent: "center" }}>
+                <Text style={styles.selectedQuantityText}>
+                  {selectedQuantity}
+                </Text>
+              </View>
+              <TouchableOpacity
+                onPress={() => {
+                  if (selectedQuantity < 999) {
+                    setSelectedQuantity(selectedQuantity + 1);
+                  }
+                }}
+                style={styles.counter}
+              >
+                <Icon iconName={"quantity-plus"} />
               </TouchableOpacity>
             </View>
           </View>
+          <View style={styles.descriptionContainer}>
+            {images.length > 0 && (
+              <View style={styles.descriptionTextContainer}>
+                <ImageGalleryViewer
+                  onRemove={(id) => removeImage(id)}
+                  isRemoveEnable={true}
+                  imagesList={images}
+                  onAdd={() => addImages()}
+                />
+              </View>
+            )}
+            <View style={styles.imageGalleryContainer}>
+              <TextInput
+                style={styles.descriptionInput}
+                placeholder="أتبرع بفوض لصالح المحتاجين"
+                multiline={true}
+                onChangeText={setDescription}
+                value={description}
+              />
+              <View style={styles.iconUploaderContainer}>
+                <TouchableOpacity onPress={() => onCamera()}>
+                  <Icon iconName={"donate-camera"} />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => onGallery()}>
+                  <Icon iconName={"donate-gallery"} />
+                </TouchableOpacity>
+              </View>
+            </View>
+          </View>
         </View>
-      </View>
-      <View style={styles.donateBtnWrapper}>
-        <TouchableOpacity
-          onPress={() => onDonate()}
-          style={styles.donateBtnContainer}
-          disabled={isEnable}
-        >
-          <Text style={styles.donateBtnText}>{`تبرع`}</Text>
-        </TouchableOpacity>
-      </View>
+        <View style={styles.donateBtnWrapper}>
+          <TouchableOpacity
+            onPress={() => onDonate()}
+            style={styles.donateBtnContainer}
+            disabled={isEnable}
+          >
+            <Text style={styles.donateBtnText}>{`تبرع`}</Text>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
     </View>
   );
 }

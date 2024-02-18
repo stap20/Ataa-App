@@ -14,11 +14,11 @@ import { useFonts } from "expo-font";
 import { fonts, User, LoadingContextHandler } from "@utils";
 import LoadingHandler from "@components/LoadingHandler";
 
-I18nManager.forceRTL(false);
-I18nManager.allowRTL(false);
-
 const ShowLoadingModalContext = LoadingContextHandler.ShowLoadingModalContext;
 import axios from "axios";
+
+I18nManager.forceRTL(false);
+I18nManager.allowRTL(false);
 
 export default function App() {
   let [fontsLoaded] = useFonts(fonts);

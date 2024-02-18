@@ -19,9 +19,11 @@ export default donatorStyles = () => {
 
     donatorName: {
       fontFamily: Theme.typography.changa_700,
-      fontSize: 16,
+      fontSize: 14,
       textAlign: "right",
       color: Theme.colors.donateCardText,
+      // backgroundColor: "red",
+      maxWidth: 100,
     },
 
     donationNumber: {

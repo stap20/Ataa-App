@@ -9,7 +9,7 @@ const MainContent = ({
   onShowMore,
   onShowLess,
   onAdd,
-  extraData,
+  moreNum,
   onShowImage,
 }) => {
   switch (type) {
@@ -33,9 +33,7 @@ const MainContent = ({
         >
           {!!uri && <Image style={styles.imageStyle} source={{ uri: uri }} />}
           <View style={styles.moreCard}>
-            <Text style={styles.moreCardText}>{`أكثر من ${
-              extraData - 4
-            }`}</Text>
+            <Text style={styles.moreCardText}>{`أكثر من ${moreNum}`}</Text>
           </View>
         </TouchableOpacity>
       );
@@ -61,7 +59,7 @@ export default function ImageCard({
   onRemove,
   uri,
   isRemoveEnable,
-  extraData,
+  moreNum,
   onShowMore,
   onShowLess,
   onShowImage,
@@ -78,7 +76,7 @@ export default function ImageCard({
         onShowMore={onShowMore}
         onShowLess={onShowLess}
         onShowImage={onShowImage}
-        extraData={extraData}
+        moreNum={moreNum}
       />
       {isRemoveEnable && (
         <TouchableOpacity

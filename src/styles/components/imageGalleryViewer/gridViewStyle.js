@@ -6,6 +6,7 @@ export default function gridViewStyle() {
     container: {
       width: 328,
       backgroundColor: "#FFFFFF",
+      maxHeight: 82 * 2,
       borderRadius: 8,
       overflow: "hidden",
     },

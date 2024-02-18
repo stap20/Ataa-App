@@ -39,7 +39,7 @@ API.interceptors.response.use(
 
 const testConnection = async () => {
   try {
-    const response = await API.post("/");
+    await API.get("/");
 
     if (!response) {
       throw new Error(`the response is ${response}`);
@@ -48,9 +48,20 @@ const testConnection = async () => {
     ToastHandler.showToast(`Connected To ${getIdCode()}`, true);
     return API;
   } catch (error) {
-    ToastHandler.showToast(`Connecttion Error: ${error.message}`, true);
+    if (error.response.status != 401) {
+      ToastHandler.showToast(`Connection Error: ${error.message}`, true);
+
+      console.error("Connection Error: ", error);
+    } else {
+      ToastHandler.showToast(`Connected To ${getIdCode()}`, true);
+    }
+
     return API;
   }
 };
 
-export default testConnection();
+testConnection().catch(() => {
+  return;
+});
+
+export default API;

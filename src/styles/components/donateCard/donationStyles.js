@@ -33,6 +33,7 @@ export default donationStyles = () => {
       fontFamily: Theme.typography.changa_700,
       fontSize: 10,
       textAlign: "right",
+      maxWidth: 80,
     },
 
     quantityTitle: {
