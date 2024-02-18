@@ -32,28 +32,34 @@ export default function StorageView({ data, refreshFunction }) {
 
   return (
     <View style={styles.container}>
-      {data.length == 0 ? (
-        <EmptyPageHandler />
-      ) : (
-        <FlashList
-          data={data}
-          renderItem={({ item, index }) => (
-            <DonateCard
-              style={styles.cardContainer}
-              onCard={() => onCard(index)}
-              data={item}
-            />
-          )}
-          estimatedItemSize={142}
-          refreshControl={
-            <RefreshControl
-              refreshing={refreshing}
-              onRefresh={onRefresh}
-              colors={[Theme.colors.primary]}
-            />
-          }
+      {data.length == 0 && (
+        <EmptyPageHandler
+          style={{
+            alignSelf: "center",
+            position: "absolute",
+            width: "100%",
+            height: "100%",
+          }}
         />
       )}
+      <FlashList
+        data={data}
+        renderItem={({ item, index }) => (
+          <DonateCard
+            style={styles.cardContainer}
+            onCard={() => onCard(index)}
+            data={item}
+          />
+        )}
+        estimatedItemSize={142}
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+            colors={[Theme.colors.primary]}
+          />
+        }
+      />
       <DonationViewModal
         status={showFullView}
         onCancel={() => {

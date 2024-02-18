@@ -284,6 +284,13 @@ const iconData = {
     width: 30,
     height: 30,
   },
+
+  logo: {
+    type: "svg",
+    source: require("@assets/icons/logo.js"),
+    width: 162,
+    height: 227,
+  },
 };
 
 export default iconData;

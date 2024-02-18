@@ -9,13 +9,31 @@ import { fonts, User, LoadingContextHandler } from "@utils";
 import LoadingHandler from "@components/LoadingHandler";
 
 const ShowLoadingModalContext = LoadingContextHandler.ShowLoadingModalContext;
-import ToastHandler from "./src/utils/ToastHandler";
+import axios from "axios";
 
 export default function App() {
   let [fontsLoaded] = useFonts(fonts);
   const [showLoading, setShowLoading] = useState(false);
+  // const [apiUrl, setApiUrl] = useState("");
 
   useEffect(() => {
+    const fetchApiUrl = async () => {
+      try {
+        // console.log("234567");
+        // Fetch content of the publicly accessible text file from Google Drive
+        let response = await axios.get(
+          "https://raw.githubusercontent.com/Ryzentx16/temp-Apiurl/main/apiurl.txt"
+        );
+        const apiUrl = response.data;
+        console.log(apiUrl);
+        User.setApiUrl(apiUrl);
+        // setApiUrl(apiUrl);
+      } catch (error) {
+        console.error("Error fetching API URL:", error);
+      }
+    };
+    fetchApiUrl();
+
     // Load user data from AsyncStorage when the component mounts
     const loadUserData = async () => {
       try {
@@ -30,21 +48,17 @@ export default function App() {
     };
 
     loadUserData();
+
+    // Set up interval to fetch API URL every 60 seconds
+    const interval = setInterval(fetchApiUrl, 5 * 1000);
+
+    // Clear interval on component unmount to avoid memory leaks
+    return () => clearInterval(interval);
   }, []); // Empty dependency array to run only once when the component mounts
 
   if (!fontsLoaded) {
     return <Text>Loading</Text>;
   }
-
-  // User.login(
-  //   "احمد صالح",
-  //   "AhmedSaleh@gmail.com",
-  //   "+97412345678",
-  //   null,
-  //   "tyyyuyuyuyuy",
-  //   "user"
-  // );
-
   return (
     <View
       style={{

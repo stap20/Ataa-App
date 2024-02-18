@@ -1,24 +1,28 @@
 import { Modal, Pressable, Text, View } from "react-native";
 import donateShowStatusStyle from "@styles/components/donateShowStatusStyle";
 import Icon from "@components/Icon";
-
-const texts = {
-  success: {
-    title: "تمت العملية بنجاح",
-    description: "شكراً لعطائك!",
-  },
-  failed: {
-    title: "فشلت العملية",
-    description: "انتهت هذه الفترة يمكنك التبرع في الفترة القادمة!",
-  },
-  failed_storage: {
-    title: "فشلت العملية",
-    description: "لا توجد مساحة كافية في المخزن!",
-  },
-};
+import { editMessageHandler } from "@services";
+import User from "@utils/User";
 
 export default DonateShowStatus = (props) => {
   const styles = donateShowStatusStyle(props.status);
+
+  const descriptions = User.statusMessages;
+
+  const texts = {
+    success: {
+      title: "تمت العملية بنجاح",
+      description: descriptions.acceptMessage,
+    },
+    failed: {
+      title: "فشلت العملية",
+      description: descriptions.rejectMessage,
+    },
+    failed_storage: {
+      title: "فشلت العملية",
+      description: descriptions.rejectStorageMessage,
+    },
+  };
 
   return (
     <Modal

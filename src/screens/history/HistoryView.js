@@ -34,29 +34,36 @@ export default function HistoryView({ data, refreshFunction }) {
   }, []);
 
   return (
-    <View style={styles.container}>
-      {data.length == 0 ? (
-        <EmptyPageHandler />
-      ) : (
-        <FlashList
-          data={data}
-          renderItem={({ item, index }) => (
-            <DonateCard
-              onCard={() => onCard(index)}
-              style={styles.cardContainer}
-              data={item}
-            />
-          )}
-          estimatedItemSize={142}
-          refreshControl={
-            <RefreshControl
-              refreshing={refreshing}
-              onRefresh={onRefresh}
-              colors={[Theme.colors.primary]}
-            />
-          }
+    <View style={[styles.container]}>
+      {data.length == 0 && (
+        <EmptyPageHandler
+          style={{
+            alignSelf: "center",
+            position: "absolute",
+            width: "100%",
+            height: "100%",
+          }}
         />
       )}
+      <FlashList
+        data={data}
+        renderItem={({ item, index }) => (
+          <DonateCard
+            onCard={() => onCard(index)}
+            style={styles.cardContainer}
+            data={item}
+          />
+        )}
+        estimatedItemSize={142}
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+            colors={[Theme.colors.primary]}
+          />
+        }
+      />
+
       <DonationViewModal
         status={showFullView}
         onCancel={() => {

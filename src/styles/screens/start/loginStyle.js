@@ -14,8 +14,8 @@ export default loginStyle = () => {
       alignItems: "center",
     },
     imageFrameContainer: {
-      aspectRatio: 214 / 181,
-      width: 212,
+      // aspectRatio: 162 / 227,
+      // width: 212,
     },
     body: {
       marginTop: 22,

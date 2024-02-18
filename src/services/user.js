@@ -18,8 +18,8 @@ export default {
   login: async ({ phoneNumber, countryCode, password }) => {
     try {
       const data = { phoneNumber, countryCode, password };
-
       const response = await API.post("/login", data);
+      console.log(response);
       if (response.data.success) {
         User.login({ ...response.data.user });
 
@@ -33,6 +33,13 @@ export default {
 
         if (categoriesResponse.data.success) {
           User.setDonationTypes(categoriesResponse.data.data);
+        }
+
+        const messagesRes = await API.post("/message/getMessages");
+
+        console.log(messagesRes);
+        if (messagesRes.data.success) {
+          User.setStatusMessages(messagesRes.data.data);
         }
       }
 

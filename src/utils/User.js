@@ -1,5 +1,3 @@
-import API_URL from "@services/API_URL";
-
 export default class User {
   static name = "";
   static email = "";
@@ -9,6 +7,12 @@ export default class User {
   static role = "";
   static isLoggedIn = false;
   static donationTypes = [];
+  static statusMessages = {
+    acceptMessage: "",
+    rejectMessage: "",
+    rejectStorageMessage: "",
+  };
+  static apiUrl = "";
 
   static login({ name, email, phoneNumber, profileImage, password, role }) {
     User.name = name;
@@ -38,6 +42,14 @@ export default class User {
     });
     User.donationTypes = donationTypes;
     // console.log(User.donationTypes);
+  }
+
+  static setApiUrl(url) {
+    User.apiUrl = url;
+  }
+
+  static setStatusMessages(messages) {
+    User.statusMessages = messages;
   }
 
   static getData() {

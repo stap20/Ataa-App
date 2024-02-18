@@ -42,31 +42,37 @@ export default function PendingView({
 
   return (
     <View style={styles.container}>
-      {data.length == 0 ? (
-        <EmptyPageHandler />
-      ) : (
-        <FlashList
-          data={data}
-          renderItem={({ item, index }) => (
-            <DonateCard
-              onCard={() => onCard(index)}
-              style={styles.cardContainer}
-              data={item}
-              onCancel={!isAdmin ? onCancel : null}
-              onAccept={isAdmin ? onAccept : null}
-              onDecline={isAdmin ? onDecline : null}
-            />
-          )}
-          estimatedItemSize={142}
-          refreshControl={
-            <RefreshControl
-              refreshing={refreshing}
-              onRefresh={onRefresh}
-              colors={[Theme.colors.primary]}
-            />
-          }
+      {data.length == 0 && (
+        <EmptyPageHandler
+          style={{
+            alignSelf: "center",
+            position: "absolute",
+            width: "100%",
+            height: "100%",
+          }}
         />
       )}
+      <FlashList
+        data={data}
+        renderItem={({ item, index }) => (
+          <DonateCard
+            onCard={() => onCard(index)}
+            style={styles.cardContainer}
+            data={item}
+            onCancel={!isAdmin ? onCancel : null}
+            onAccept={isAdmin ? onAccept : null}
+            onDecline={isAdmin ? onDecline : null}
+          />
+        )}
+        estimatedItemSize={142}
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+            colors={[Theme.colors.primary]}
+          />
+        }
+      />
       <DonationViewModal
         status={showFullView}
         onCancel={() => {

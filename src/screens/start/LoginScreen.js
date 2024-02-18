@@ -65,7 +65,7 @@ export default LoginScreen = () => {
       <View style={styles.container}>
         <View style={styles.header}>
           <View style={styles.imageFrameContainer}>
-            <Icon iconName={"login-image"} />
+            <Icon iconName={"logo"} />
           </View>
         </View>
         <View style={styles.body}>
@@ -110,6 +110,7 @@ export default LoginScreen = () => {
             </TouchableOpacity> */}
             <TouchableOpacity
               onPress={onLogin}
+              disabled={!unlockBtn}
               style={[
                 styles.loginBtnContainer,
                 { opacity: !unlockBtn ? 0.5 : 1 },

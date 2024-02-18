@@ -12,26 +12,31 @@ export default function EditScreen({
   const [isRead, setIsRead] = useState(true);
   const [acceptMessage, setAcceptMessage] = useState("");
   const [rejectMessage, setRejectMessage] = useState("");
+  const [rejectStorageMessage, setRejectStorageMessage] = useState("");
 
   useEffect(() => {
     const {
-      acceptMessage = "شكراً لتبرعك!",
+      acceptMessage = "شكرا لعطائك",
       rejectMessage = "حاول مرة أخرى!",
+      rejectStorageMessage = "المخزن ممتلئ",
     } = data;
 
     setAcceptMessage(acceptMessage);
     setRejectMessage(rejectMessage);
-  }, []);
+    setRejectStorageMessage(rejectStorageMessage);
+  }, [data]);
 
   const handleSave = () => {
     setIsRead(true);
 
-    const data = {
+    const newData = {
+      id: data._id,
       acceptMessage: acceptMessage,
       rejectMessage: rejectMessage,
+      rejectStorageMessage: rejectStorageMessage,
     };
 
-    onSave(data);
+    onSave(newData);
   };
 
   return (
@@ -49,6 +54,13 @@ export default function EditScreen({
           placeHolder={"رسالة الرفض"}
           text={rejectMessage}
           onChange={setRejectMessage}
+          isRead={isRead}
+        />
+        <FormText
+          style={styles.formTextContainer}
+          placeHolder={"رسالة الرفض المخزن"}
+          text={rejectStorageMessage}
+          onChange={setRejectStorageMessage}
           isRead={isRead}
         />
       </ScrollView>

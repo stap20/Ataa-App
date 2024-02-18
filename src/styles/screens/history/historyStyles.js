@@ -9,10 +9,10 @@ export default historyStyles = () => {
     },
 
     cardContainer: {
-      padding:20,
+      padding: 20,
       marginBottom: 16,
       borderWidth: 1,
-      borderRadius:12,
+      borderRadius: 12,
       borderColor: Theme.colors.cardContainerBorder,
     },
   });
