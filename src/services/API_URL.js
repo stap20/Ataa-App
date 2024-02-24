@@ -12,6 +12,6 @@ export const getIdCode = () => {
   return desiredPart;
 };
 
-ToastHandler.showToast(`Connectting To ${getIdCode()}`, true);
+ToastHandler.showToast(`Connectting To ${getIdCode()} abomohammed`, true);
 
 export default url;
