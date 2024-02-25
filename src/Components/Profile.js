@@ -55,7 +55,7 @@ export default function Profile({
     const data = {
       name: name,
       email: email,
-      phoneNumber: phoneNumber,
+      phoneNumber: phoneNumber.replace("+974 ", ""),
       password: password,
       profileImage: profileImage,
     };
