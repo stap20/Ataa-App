@@ -36,16 +36,14 @@ export default function App() {
 
     const initializeApp = async () => {
       try {
-        alert("takakakakakka");
-        const a = await testConnection(); // Wait for testConnection to complete
+        await testConnection();
 
-        alert(a);
-        setConnected(true); // Set connected state to true if testConnection succeeds
+        setConnected(true);
       } catch (error) {
         console.error("Connection Error:", error);
-        setConnected(false); // Set connected state to false if testConnection fails
+        setConnected(false);
       } finally {
-        setShowLoading(false); // Hide loading screen once testConnection is complete
+        setShowLoading(false);
       }
     };
 
