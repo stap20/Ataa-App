@@ -39,6 +39,7 @@ export default function App() {
         await testConnection(); // Wait for testConnection to complete
         setConnected(true); // Set connected state to true if testConnection succeeds
       } catch (error) {
+        alert(error);
         console.error("Connection Error:", error);
         setConnected(false); // Set connected state to false if testConnection fails
       } finally {
