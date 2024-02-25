@@ -60,6 +60,8 @@ export default function Profile({
       profileImage: profileImage,
     };
 
+    alert(JSON.stringify(data));
+
     if (isCreate) {
       setName("");
       setEmail("");
