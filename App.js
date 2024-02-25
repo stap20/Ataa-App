@@ -36,9 +36,10 @@ export default function App() {
 
     const initializeApp = async () => {
       try {
+        alert("takakakakakka");
         const a = await testConnection(); // Wait for testConnection to complete
 
-        alert(JSON.stringify(a));
+        alert(a);
         setConnected(true); // Set connected state to true if testConnection succeeds
       } catch (error) {
         console.error("Connection Error:", error);
