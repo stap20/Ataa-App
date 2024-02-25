@@ -3,6 +3,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import NavigationService from "@navigation/NavigationService";
 import API_URL, { getIdCode } from "./API_URL";
 import { ToastHandler } from "@utils";
+import { API_URL } from "@services/API_URL";
 
 const API = axios.create({
   baseURL: API_URL,
@@ -39,10 +40,10 @@ API.interceptors.response.use(
 
 export const testConnection = async () => {
   try {
-    const response = await API.get(API_URL + "/");
+    const response = await axios.post(API_URL + "/");
 
     if (!response) {
-      alert("ya5taaaaaaaaaaay");
+      alert("ya5taaaaaaaaaaay v1");
       ToastHandler.showToast(`ya5taaaaaaaaaaaaay: ${response}`, true);
       throw new Error(`the response is ${response}`);
     }
