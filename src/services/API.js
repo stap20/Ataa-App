@@ -40,7 +40,7 @@ API.interceptors.response.use(
 
 export const testConnection = async () => {
   try {
-    await API.get("/");
+    const response = await API.get("/");
 
     if (!response) {
       alert("ya5taaaaaaaaaaay");
