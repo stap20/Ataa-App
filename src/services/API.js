@@ -10,7 +10,6 @@ const API = axios.create({
 
 // Add a request interceptor to attach the token to outgoing requests
 API.interceptors.request.use(async (config) => {
-  alert(JSON.stringify(config));
   const token = await AsyncStorage.getItem("token");
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
@@ -43,6 +42,7 @@ const testConnection = async () => {
     await API.get("/");
 
     if (!response) {
+      ToastHandler.showToast(`ya5taaaaaaaaaaaaay: ${response}`, true);
       throw new Error(`the response is ${response}`);
     }
 

@@ -12,6 +12,6 @@ export const getIdCode = () => {
   return url;
 };
 
-ToastHandler.showToast(`Connectting To ${url} v1.5`, true);
+ToastHandler.showToast(`Connectting To ${url} v1.6`, true);
 
 export default url;
