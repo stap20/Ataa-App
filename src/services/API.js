@@ -10,6 +10,7 @@ const API = axios.create({
 
 // Add a request interceptor to attach the token to outgoing requests
 API.interceptors.request.use(async (config) => {
+  ToastHandler.showToast(`abo mohamed5: ${config}`, true);
   const token = await AsyncStorage.getItem("token");
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
