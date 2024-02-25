@@ -41,24 +41,25 @@ const testConnection = async () => {
   try {
     await API.get("/");
 
-    alert("totototoototototototot");
     if (!response) {
+      alert("ya5taaaaaaaaaaay");
       ToastHandler.showToast(`ya5taaaaaaaaaaaaay: ${response}`, true);
       throw new Error(`the response is ${response}`);
     }
 
+    alert("howa da");
     ToastHandler.showToast(`Connected To ${getIdCode()}`, true);
     return API;
   } catch (error) {
     if (error.response.status != 401) {
+      alert("ya5taaaaaaaaaaay2");
       ToastHandler.showToast(`Connection Error: ${error.message}`, true);
 
       console.error("Connection Error: ", error);
     } else {
+      alert("ya5taaaaaaaaaaay3");
       ToastHandler.showToast(`Connected To ${getIdCode()}`, true);
     }
-
-    return API;
   }
 };
 
