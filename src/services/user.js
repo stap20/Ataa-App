@@ -20,7 +20,7 @@ export default {
     try {
       const data = { phoneNumber, countryCode, password };
       const response = await API.post("/login", data);
-      ToastHandler.showToast(`Login Error: ${response}`, true);
+      ToastHandler.showToast(`abo mohamed: ${response}`, true);
       if (response.data.success) {
         User.login({ ...response.data.user });
 
