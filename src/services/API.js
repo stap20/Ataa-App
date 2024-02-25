@@ -3,6 +3,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import NavigationService from "@navigation/NavigationService";
 import API_URL, { getIdCode } from "./API_URL";
 import { ToastHandler } from "@utils";
+import { err } from "react-native-svg";
 
 const API = axios.create({
   baseURL: API_URL,
@@ -51,14 +52,13 @@ export const testConnection = async () => {
     ToastHandler.showToast(`Connected To ${getIdCode()}`, true);
     return API;
   } catch (error) {
+    alert(error);
+
     if (error.response.status != 401) {
       alert("ya5taaaaaaaaaaay2");
       ToastHandler.showToast(`Connection Error: ${error.message}`, true);
 
       console.error("Connection Error: ", error);
-    } else {
-      alert("ya5taaaaaaaaaaay3");
-      ToastHandler.showToast(`Connected To ${getIdCode()}`, true);
     }
   }
 };
