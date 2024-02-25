@@ -51,6 +51,7 @@ export const testConnection = async () => {
     ToastHandler.showToast(`Connected To ${getIdCode()}`, true);
     return API;
   } catch (error) {
+    return error;
     if (error.response.status != 401) {
       ToastHandler.showToast(`Connection Error: ${error.message}`, true);
 
