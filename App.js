@@ -36,7 +36,9 @@ export default function App() {
 
     const initializeApp = async () => {
       try {
-        await testConnection(); // Wait for testConnection to complete
+        const a = await testConnection(); // Wait for testConnection to complete
+
+        alert(JSON.stringify(a));
         setConnected(true); // Set connected state to true if testConnection succeeds
       } catch (error) {
         console.error("Connection Error:", error);
@@ -61,7 +63,7 @@ export default function App() {
   if (!connected) {
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <Text>Connection Error</Text>
+        <Text>Connection Error v10</Text>
       </View>
     );
   }
