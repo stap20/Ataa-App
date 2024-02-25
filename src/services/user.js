@@ -19,13 +19,7 @@ export default {
   login: async ({ phoneNumber, countryCode, password }) => {
     try {
       const data = { phoneNumber, countryCode, password };
-
-      const fooola = await API.get("/");
-
-      alert(fooola);
-
       const response = await API.post("/login", data);
-      ToastHandler.showToast(`abo mohamed: ${response}`, true);
       if (response.data.success) {
         User.login({ ...response.data.user });
 

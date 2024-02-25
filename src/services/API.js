@@ -3,7 +3,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import NavigationService from "@navigation/NavigationService";
 import API_URL, { getIdCode } from "./API_URL";
 import { ToastHandler } from "@utils";
-// import { API_URL } from "@services/API_URL";
 
 const API = axios.create({
   baseURL: API_URL,
@@ -40,34 +39,25 @@ API.interceptors.response.use(
 
 export const testConnection = async () => {
   try {
-    alert("https://hopeful-hen-forcibly.ngrok-free.app" + "/");
-    const response = await axios.post(
-      "https://hopeful-hen-forcibly.ngrok-free.app" + "/"
-    );
+    const response = await API.get("/");
 
     if (!response) {
-      alert("ya5taaaaaaaaaaay v1");
-      ToastHandler.showToast(`ya5taaaaaaaaaaaaay: ${response}`, true);
       throw new Error(`the response is ${response}`);
     }
 
-    alert("howa da");
     ToastHandler.showToast(`Connected To ${getIdCode()}`, true);
     return API;
   } catch (error) {
-    alert(error);
-
     if (error.response.status != 401) {
-      alert("ya5taaaaaaaaaaay2");
       ToastHandler.showToast(`Connection Error: ${error.message}`, true);
 
       console.error("Connection Error: ", error);
+    } else {
+      ToastHandler.showToast(`Connected To ${getIdCode()}`, true);
     }
+
+    return API;
   }
 };
-
-testConnection().catch(() => {
-  return;
-});
 
 export default API;

@@ -51,11 +51,19 @@ export default function App() {
   }, []); // Empty dependency array to run only once when the component mounts
 
   if (!fontsLoaded) {
-    return <Text>Loading</Text>;
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <Text>Loading</Text>
+      </View>
+    );
   }
 
   if (!connected) {
-    return <Text>Connection Error</Text>;
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <Text>Connection Error</Text>
+      </View>
+    );
   }
 
   return (
