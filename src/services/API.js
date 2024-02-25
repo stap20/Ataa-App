@@ -39,12 +39,10 @@ API.interceptors.response.use(
 
 export const testConnection = async () => {
   try {
-    const response = await axios.get(
-      "https://hopeful-hen-forcibly.ngrok-free.app/"
-    );
+    const response = await axios.get(API_URL + "/");
 
     alert("totorararar");
-    alert(response);
+    alert(JSON.stringify(response));
     if (!response) {
       throw new Error(`the response is ${response}`);
     }
