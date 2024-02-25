@@ -62,7 +62,7 @@ export default function App() {
   if (!connected) {
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <Text>Connection Error v10</Text>
+        <Text>Connecting....</Text>
       </View>
     );
   }
