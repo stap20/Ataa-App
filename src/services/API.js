@@ -40,8 +40,10 @@ API.interceptors.response.use(
 
 export const testConnection = async () => {
   try {
-    alert("http://192.168.100.15:3000" + "/");
-    const response = await axios.post("http://192.168.100.15:3000" + "/");
+    alert("https://hopeful-hen-forcibly.ngrok-free.app" + "/");
+    const response = await axios.post(
+      "https://hopeful-hen-forcibly.ngrok-free.app" + "/"
+    );
 
     if (!response) {
       alert("ya5taaaaaaaaaaay v1");
