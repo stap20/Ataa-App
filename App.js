@@ -33,12 +33,6 @@ export default function App() {
     };
 
     loadUserData();
-
-    // Set up interval to fetch API URL every 60 seconds
-    const interval = setInterval(fetchApiUrl, 5 * 1000);
-
-    // Clear interval on component unmount to avoid memory leaks
-    return () => clearInterval(interval);
   }, []); // Empty dependency array to run only once when the component mounts
 
   if (!fontsLoaded) {

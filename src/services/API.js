@@ -8,7 +8,6 @@ const API = axios.create({
   baseURL: API_URL,
 });
 
-ToastHandler.showToast(`abo mohamed2222: ${API_URL}`, true);
 // Add a request interceptor to attach the token to outgoing requests
 API.interceptors.request.use(async (config) => {
   const token = await AsyncStorage.getItem("token");
