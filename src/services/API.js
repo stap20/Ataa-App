@@ -40,6 +40,7 @@ API.interceptors.response.use(
 
 export const testConnection = async () => {
   try {
+    alert(API_URL + "/");
     const response = await axios.post(API_URL + "/");
 
     if (!response) {
