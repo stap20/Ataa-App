@@ -3,7 +3,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import NavigationService from "@navigation/NavigationService";
 import API_URL, { getIdCode } from "./API_URL";
 import { ToastHandler } from "@utils";
-import { API_URL } from "@services/API_URL";
+// import { API_URL } from "@services/API_URL";
 
 const API = axios.create({
   baseURL: API_URL,
