@@ -37,7 +37,7 @@ API.interceptors.response.use(
   }
 );
 
-const testConnection = async () => {
+export const testConnection = async () => {
   try {
     await API.get("/");
 
