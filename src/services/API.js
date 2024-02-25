@@ -43,8 +43,7 @@ export const testConnection = async () => {
       "https://hopeful-hen-forcibly.ngrok-free.app/"
     );
 
-    alert("totorararar");
-    alert(JSON.stringify(response));
+    alert(API_URL);
     if (!response) {
       throw new Error(`the response is ${response}`);
     }
