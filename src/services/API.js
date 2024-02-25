@@ -41,6 +41,7 @@ const testConnection = async () => {
   try {
     await API.get("/");
 
+    alert("totototoototototototot");
     if (!response) {
       ToastHandler.showToast(`ya5taaaaaaaaaaaaay: ${response}`, true);
       throw new Error(`the response is ${response}`);
