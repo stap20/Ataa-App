@@ -18,7 +18,6 @@ export default function App() {
   let [fontsLoaded] = useFonts(fonts);
   const [showLoading, setShowLoading] = useState(false);
   const [connected, setConnected] = useState(false);
-  // const [apiUrl, setApiUrl] = useState("");
 
   useEffect(() => {
     // Load user data from AsyncStorage when the component mounts
